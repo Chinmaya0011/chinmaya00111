@@ -33,6 +33,17 @@ export const metadata = {
   alternates: {
     canonical: siteUrl,
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+  },
   robots: {
     index: true,
     follow: true,
@@ -84,7 +95,7 @@ const structuredData = {
         "https://www.linkedin.com/in/chinmaya00111/",
       ],
       description:
-        "Full-Stack Developer specializing in JavaScript, React, Next.js, Node.js, and MongoDB, with a growing interest in Application Security, Web Security, and API Security.",
+        "Chinmaya Kumar Mishra is a Full-Stack Developer specializing in JavaScript, React, Next.js, Node.js, and MongoDB, with a growing interest in Application Security, Web Security, and API Security.",
       knowsAbout: [
         "Full-Stack Development",
         "JavaScript",
