@@ -55,6 +55,9 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "XWfRmtiHt4gGRl2kjgSULgG3lEOqQ0kQMCd688OF3G8",
+  },
   openGraph: {
     title: "Chinmaya Kumar Mishra | Developer Portfolio",
     description:
