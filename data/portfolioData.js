@@ -247,7 +247,7 @@ const prompt = \`[CONTEXT]\${safeContext}[/CONTEXT]\\nUser: \${sanitize(userQuer
 // Alias for backwards compatibility
 export const securityNotes = securityResearch;
 
-// Employment History with Quantified Technical Impact
+// Employment History with Quantified Technical Impact & Roadmap Attributes
 export const experiences = [
   {
     id: "secure-code",
@@ -255,6 +255,11 @@ export const experiences = [
     company: "Secure Code LLC",
     location: "Texas, USA (Remote)",
     period: "Jul 2025 – Present",
+    phase: "PHASE 03",
+    badge: "CURRENT MISSION",
+    isCurrent: true,
+    mission: "AppSec Tooling & Enterprise GitHub Ingestion",
+    tags: ["Next.js 15", "Node.js", "Semgrep SAST", "OAuth 2.0", "GitHub Apps", "MongoDB"],
     bullets: [
       "Architected full-stack features for security tools connecting GitHub repositories to automated Semgrep static analysis pipelines.",
       "Implemented OAuth 2.0 authentication flows and fine-grained GitHub App integrations, enforcing least-privilege repository access.",
@@ -268,6 +273,11 @@ export const experiences = [
     company: "Metadee AI",
     location: "Remote",
     period: "Jan 2025 – Jun 2025",
+    phase: "PHASE 02",
+    badge: "DELIVERED",
+    isCurrent: false,
+    mission: "LLM Integrations & RAG Retrieval Pipelines",
+    tags: ["OpenAI API", "RAG Architecture", "Express.js", "MongoDB", "Streaming UI"],
     bullets: [
       "Developed full-stack web applications integrating OpenAI LLM APIs with vector-retrieval RAG architectures for contextual chatbot interactions.",
       "Designed and maintained high-throughput RESTful API endpoints using Node.js, Express, and MongoDB with sub-150ms average latency.",
@@ -280,6 +290,11 @@ export const experiences = [
     company: "Self-Employed",
     location: "Remote",
     period: "2021 – 2024",
+    phase: "PHASE 01",
+    badge: "FOUNDATION",
+    isCurrent: false,
+    mission: "20+ Client Deployments & Full-Lifecycle Development",
+    tags: ["React", "Next.js", "Node.js", "REST APIs", "CI/CD", "Linux"],
     bullets: [
       "Delivered 20+ bespoke web applications for international clients, driving projects from requirements to CI/CD production deployment.",
       "Engineered responsive UI components with React and Next.js, boosting Lighthouse performance scores and mobile responsiveness.",
