@@ -14,8 +14,10 @@ export const personalInfo = {
     github: "https://github.com/chinmaya0011",
     linkedin: "https://www.linkedin.com/in/chinmaya00111/",
     portfolio: "https://chinmayakumarmishra.sbs",
-    email: "mailto:imchinu17@gmail.com"
+    email: "mailto:imchinu17@gmail.com",
+    resume: "/resumes/Chinmaya_AppSec_Resume.pdf"
   },
+  resumeTitle: "Full-Stack Developer (MERN & AppSec)",
   heroIntro:
     "Full-stack developer with 4+ years of experience in React, Next.js, Node.js, and MongoDB. I build products where security is part of the design, not an afterthought.",
   heroStats: [

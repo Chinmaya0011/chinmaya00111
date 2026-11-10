@@ -8,8 +8,9 @@ import { fadeInUp, defaultViewport, buttonMotionProps } from "@/lib/motion";
 export default function InteractiveTerminal() {
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [inputVal, setInputVal] = useState("");
-  const terminalEndRef = useRef(null);
+  const terminalBodyRef = useRef(null);
   const inputRef = useRef(null);
+  const isFirstRender = useRef(true);
 
   const commandDatabase = {
     whoami: "chinmay",
@@ -51,8 +52,12 @@ Semgrep & Automated Pipeline Scanning`,
   const [history, setHistory] = useState(defaultHistory);
 
   useEffect(() => {
-    if (terminalEndRef.current) {
-      terminalEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
     }
   }, [history]);
 
@@ -185,6 +190,7 @@ Semgrep & Automated Pipeline Scanning`,
 
           {/* Terminal Body */}
           <div 
+            ref={terminalBodyRef}
             onClick={() => inputRef.current?.focus()}
             className="p-4 sm:p-5 max-h-[380px] overflow-y-auto space-y-3 cursor-text text-zinc-200"
           >
@@ -235,8 +241,6 @@ Semgrep & Automated Pipeline Scanning`,
               />
               <span className="w-2 h-4 bg-emerald-400 animate-pulse inline-block" />
             </form>
-
-            <div ref={terminalEndRef} />
           </div>
 
         </motion.div>
