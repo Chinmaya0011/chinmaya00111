@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { 
   ArrowRight, 
@@ -104,8 +105,16 @@ export default function Hero() {
             >
               {/* Tag */}
               <motion.div variants={fadeInUp} className="mb-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-emerald-400 text-xs font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-emerald-400 text-xs font-mono">
+                  <div className="relative w-5 h-5 rounded-full overflow-hidden border border-emerald-400/40 shrink-0">
+                    <Image
+                      src="/images/chinmaya.jpg"
+                      alt="Chinmaya Kumar Mishra"
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="tracking-wider uppercase font-semibold">
                     {personalInfo.tag}
                   </span>
