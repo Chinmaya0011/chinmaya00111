@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Terminal, Copy, Check, RotateCcw } from "lucide-react";
+import { fadeInUp, defaultViewport, buttonMotionProps } from "@/lib/motion";
 
 export default function InteractiveTerminal() {
   const [copiedIndex, setCopiedIndex] = useState(null);
@@ -101,13 +103,19 @@ Semgrep & Automated Pipeline Scanning`,
   ];
 
   return (
-    <section id="terminal" className="py-16 md:py-20 relative border-t border-white/[0.06] bg-[#04080D]/70">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+    <section id="terminal" className="py-16 md:py-24 relative border-t border-white/10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={fadeInUp}
+          className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+        >
           <div>
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-1">
+            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
               <span>TERMINAL</span>
             </div>
@@ -116,47 +124,61 @@ Semgrep & Automated Pipeline Scanning`,
             </h2>
           </div>
 
-          <button
+          <motion.button
+            {...buttonMotionProps}
             onClick={resetTerminal}
-            className="flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-emerald-400 bg-[#060C14] border border-white/[0.08] hover:border-emerald-500/30 px-3 py-1.5 rounded-lg transition-colors self-start sm:self-auto focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-emerald-400 bg-white/[0.04] border border-white/10 hover:border-emerald-500/30 px-3 py-1.5 rounded-lg transition-colors self-start sm:self-auto"
             title="Reset terminal history"
             aria-label="Reset terminal"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset</span>
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* Preset Command Pills */}
-        <div className="flex flex-wrap items-center gap-1.5 mb-4">
-          <span className="text-[11px] font-mono text-slate-500 mr-1 hidden sm:inline">Presets:</span>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={fadeInUp}
+          className="flex flex-wrap items-center gap-1.5 mb-5"
+        >
+          <span className="text-[11px] font-mono text-zinc-500 mr-1 hidden sm:inline">Presets:</span>
           {presetPills.map((cmd) => (
-            <button
+            <motion.button
               key={cmd}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => executeCommand(cmd)}
-              className="px-2.5 py-1 rounded bg-[#060C14] hover:bg-[#0D1824] border border-white/[0.08] hover:border-emerald-500/30 text-[11px] font-mono text-slate-300 hover:text-emerald-400 transition-colors focus:outline-none focus:ring-1 focus:ring-emerald-400"
+              className="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-emerald-500/40 text-[11px] font-mono text-zinc-300 hover:text-emerald-400 transition-colors"
               aria-label={`Run preset command ${cmd}`}
             >
               $ {cmd}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Terminal Window Card */}
-        <div className="rounded-2xl bg-[#03060A] border border-white/[0.1] shadow-2xl overflow-hidden font-mono text-xs">
-          
+        {/* Terminal Window Card with Glass Styling */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          variants={fadeInUp}
+          className="rounded-2xl bg-white/[0.02] border border-white/10 shadow-2xl overflow-hidden font-mono text-xs glass-card"
+        >
           {/* Top Window Bar */}
-          <div className="px-4 py-3 bg-[#060C14] border-b border-white/[0.08] flex items-center justify-between">
+          <div className="px-4 py-3 bg-white/[0.03] border-b border-white/10 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-              <span className="ml-2 text-slate-400 text-xs flex items-center gap-1.5">
+              <span className="ml-2 text-zinc-400 text-xs flex items-center gap-1.5">
                 <Terminal className="w-3.5 h-3.5 text-emerald-400" />
                 <span>chinmay@security-workstation:~</span>
               </span>
             </div>
-            <span className="text-[10px] text-slate-500 uppercase tracking-widest hidden sm:inline">
+            <span className="text-[10px] text-zinc-500 uppercase tracking-widest hidden sm:inline">
               bash 5.2
             </span>
           </div>
@@ -164,11 +186,11 @@ Semgrep & Automated Pipeline Scanning`,
           {/* Terminal Body */}
           <div 
             onClick={() => inputRef.current?.focus()}
-            className="p-4 sm:p-5 max-h-[360px] overflow-y-auto space-y-3 cursor-text text-slate-200"
+            className="p-4 sm:p-5 max-h-[380px] overflow-y-auto space-y-3 cursor-text text-zinc-200"
           >
             {history.map((item, idx) => (
               <div key={idx} className="space-y-1">
-                <div className="flex items-center justify-between text-slate-300">
+                <div className="flex items-center justify-between text-zinc-300">
                   <div className="flex items-center gap-1.5">
                     <span className="text-emerald-400 font-bold">$</span>
                     <span className="text-white font-semibold">{item.cmd}</span>
@@ -178,7 +200,7 @@ Semgrep & Automated Pipeline Scanning`,
                       e.stopPropagation();
                       copyToClipboard(item.output, idx);
                     }}
-                    className="p-1 rounded text-slate-500 hover:text-emerald-400 transition-colors"
+                    className="p-1 rounded text-zinc-500 hover:text-emerald-400 transition-colors"
                     title="Copy command output"
                     aria-label="Copy command output"
                   >
@@ -189,7 +211,7 @@ Semgrep & Automated Pipeline Scanning`,
                     )}
                   </button>
                 </div>
-                <pre className="text-slate-400 pl-4 whitespace-pre-wrap leading-relaxed text-[11px] sm:text-xs">
+                <pre className="text-zinc-400 pl-4 whitespace-pre-wrap leading-relaxed text-[11px] sm:text-xs">
                   {item.output}
                 </pre>
               </div>
@@ -207,7 +229,7 @@ Semgrep & Automated Pipeline Scanning`,
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
                 placeholder="type 'help' or command..."
-                className="flex-1 bg-transparent border-none text-white focus:outline-none placeholder-slate-600 text-xs"
+                className="flex-1 bg-transparent border-none text-white focus:outline-none placeholder-zinc-600 text-xs"
                 autoComplete="off"
                 spellCheck="false"
               />
@@ -217,7 +239,7 @@ Semgrep & Automated Pipeline Scanning`,
             <div ref={terminalEndRef} />
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

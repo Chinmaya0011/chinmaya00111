@@ -208,7 +208,7 @@ export const experiences = [
 
 // Education & Certifications (Kept as is)
 export const education = {
-  degree: "B.Tech in Computer Science & Engineering",
+  degree: "B.Tech",
   shortDegree: "B.Tech",
   institution: "Parala Maharaja Engineering College",
   period: "2018 – 2021",

@@ -3,7 +3,7 @@ import "./globals.css";
 const siteUrl = "https://chinmayakumarmishra.sbs";
 
 export const viewport = {
-  themeColor: "#03070A",
+  themeColor: "#0A0A0B",
   width: "device-width",
   initialScale: 1,
 };
@@ -138,7 +138,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="min-h-screen bg-[#03070A] text-[#F0F6FC] antialiased cyber-grid">
+      <body className="min-h-screen bg-[#0A0A0B] text-[#F4F4F5] antialiased bg-grid-faint">
         {children}
       </body>
     </html>
