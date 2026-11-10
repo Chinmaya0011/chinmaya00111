@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Terminal, Copy, Check, RotateCcw, Command } from "lucide-react";
+import { Terminal, Copy, Check, RotateCcw } from "lucide-react";
 
 export default function InteractiveTerminal() {
   const [copiedIndex, setCopiedIndex] = useState(null);
@@ -14,33 +14,36 @@ export default function InteractiveTerminal() {
     "uname -a": "Linux developer 6.8.0 x86_64 GNU/Linux",
     pwd: "/home/chinmay/projects",
     "ls -la": `total 24
-drwxr-xr-x 6 chinmay chinmay 4096 Nov 09 23:30 .
-drwxr-xr-x 3 chinmay chinmay 4096 Nov 09 20:10 ..
--rw-r--r-- 1 chinmay chinmay  148 Nov 09 21:04 interests.txt
-drwxr-xr-x 4 chinmay chinmay 4096 Nov 09 22:30 mern-projects
-drwxr-xr-x 3 chinmay chinmay 4096 Nov 09 23:00 security-labs`,
-    "cat interests.txt": `Full-Stack Development
-Application Security
-API Security
-Linux`,
-    "semgrep --version": "semgrep 1.98.0",
+drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 10:00 .
+drwxr-xr-x 3 chinmay chinmay 4096 Nov 10 09:10 ..
+-rw-r--r-- 1 chinmay chinmay  164 Nov 10 09:20 stack.txt
+drwxr-xr-x 4 chinmay chinmay 4096 Nov 10 09:30 security-tools
+drwxr-xr-x 3 chinmay chinmay 4096 Nov 10 09:45 mern-apps`,
+    "cat stack.txt": `Full-Stack Development (React, Next.js, Node.js, MongoDB)
+Application Security & Secure Code Review
+API Security & OAuth 2.0 Integrations
+Semgrep & Automated Pipeline Scanning`,
+    "cat interests.txt": `Full-Stack Development (React, Next.js, Node.js, MongoDB)
+Application Security & Secure Code Review
+API Security & OAuth 2.0 Integrations
+Semgrep & Automated Pipeline Scanning`,
+    "semgrep --version": "semgrep 1.98.0 (rules: owasp-top-ten, r2c-security-audit)",
     help: `Available commands:
-  whoami             - Display current session user
+  whoami             - Display current user
   uname -a           - Show kernel and system architecture
-  pwd                - Print current working directory
-  ls -la             - List detailed directory permissions
-  cat interests.txt  - View engineering interests
+  pwd                - Print working directory
+  ls -la             - List files and permissions
+  cat stack.txt      - View technical stack and security focus
   semgrep --version  - Check static analysis tool version
-  clear              - Clear terminal display buffer
+  clear              - Clear terminal output
   help               - List available commands`
   };
 
   const defaultHistory = [
     { cmd: "whoami", output: "chinmay" },
     { cmd: "uname -a", output: "Linux developer 6.8.0 x86_64 GNU/Linux" },
-    { cmd: "pwd", output: "/home/chinmay/projects" },
-    { cmd: "ls -la", output: `total 24\ndrwxr-xr-x 6 chinmay chinmay 4096 Nov 09 23:30 .\ndrwxr-xr-x 3 chinmay chinmay 4096 Nov 09 20:10 ..\n-rw-r--r-- 1 chinmay chinmay  148 Nov 09 21:04 interests.txt\ndrwxr-xr-x 4 chinmay chinmay 4096 Nov 09 22:30 mern-projects\ndrwxr-xr-x 3 chinmay chinmay 4096 Nov 09 23:00 security-labs` },
-    { cmd: "cat interests.txt", output: "Full-Stack Development\nApplication Security\nAPI Security\nLinux" },
+    { cmd: "cat stack.txt", output: "Full-Stack Development (React, Next.js, Node.js, MongoDB)\nApplication Security & Secure Code Review\nAPI Security & OAuth 2.0 Integrations\nSemgrep & Automated Pipeline Scanning" },
+    { cmd: "semgrep --version", output: "semgrep 1.98.0 (rules: owasp-top-ten, r2c-security-audit)" }
   ];
 
   const [history, setHistory] = useState(defaultHistory);
@@ -61,7 +64,9 @@ Linux`,
       return;
     }
 
-    const output = commandDatabase[trimmed] || commandDatabase[trimmed.toLowerCase()] || 
+    const output =
+      commandDatabase[trimmed] ||
+      commandDatabase[trimmed.toLowerCase()] ||
       `bash: command not found: ${trimmed}. Type 'help' for available commands.`;
 
     setHistory((prev) => [...prev, { cmd: trimmed, output }]);
@@ -89,19 +94,18 @@ Linux`,
     "uname -a",
     "pwd",
     "ls -la",
-    "cat interests.txt",
+    "cat stack.txt",
     "semgrep --version",
     "help",
     "clear"
   ];
 
   return (
-    <section id="terminal" className="py-20 md:py-24 relative border-t border-white/[0.06] bg-[#04080D]/70">
-      
+    <section id="terminal" className="py-16 md:py-20 relative border-t border-white/[0.06] bg-[#04080D]/70">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
@@ -114,93 +118,100 @@ Linux`,
 
           <button
             onClick={resetTerminal}
-            className="px-2.5 py-1 rounded bg-[#0D1824] hover:bg-[#142332] border border-white/[0.06] text-[11px] font-mono text-slate-400 hover:text-slate-200 transition-colors flex items-center gap-1.5"
-            title="Reset terminal session"
+            className="flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-emerald-400 bg-[#060C14] border border-white/[0.08] hover:border-emerald-500/30 px-3 py-1.5 rounded-lg transition-colors self-start sm:self-auto focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            title="Reset terminal history"
+            aria-label="Reset terminal"
           >
-            <RotateCcw className="w-3 h-3 text-slate-500" />
-            <span>RESET</span>
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Reset</span>
           </button>
         </div>
 
+        {/* Preset Command Pills */}
+        <div className="flex flex-wrap items-center gap-1.5 mb-4">
+          <span className="text-[11px] font-mono text-slate-500 mr-1 hidden sm:inline">Presets:</span>
+          {presetPills.map((cmd) => (
+            <button
+              key={cmd}
+              onClick={() => executeCommand(cmd)}
+              className="px-2.5 py-1 rounded bg-[#060C14] hover:bg-[#0D1824] border border-white/[0.08] hover:border-emerald-500/30 text-[11px] font-mono text-slate-300 hover:text-emerald-400 transition-colors focus:outline-none focus:ring-1 focus:ring-emerald-400"
+              aria-label={`Run preset command ${cmd}`}
+            >
+              $ {cmd}
+            </button>
+          ))}
+        </div>
+
         {/* Terminal Window Card */}
-        <div className="rounded-2xl bg-[#060B12] border border-white/[0.09] shadow-2xl overflow-hidden backdrop-blur-xl glow-card">
+        <div className="rounded-2xl bg-[#03060A] border border-white/[0.1] shadow-2xl overflow-hidden font-mono text-xs">
           
-          {/* Header Bar */}
-          <div className="px-4 py-2.5 bg-[#081018] border-b border-white/[0.06] flex items-center justify-between">
+          {/* Top Window Bar */}
+          <div className="px-4 py-3 bg-[#060C14] border-b border-white/[0.08] flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-              <span className="ml-2 text-xs font-mono text-slate-400">
-                chinmay@appsec-workstation:~/projects (bash)
+              <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
+              <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
+              <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
+              <span className="ml-2 text-slate-400 text-xs flex items-center gap-1.5">
+                <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+                <span>chinmay@security-workstation:~</span>
               </span>
             </div>
-            <span className="text-[10px] font-mono text-slate-500">BASH</span>
-          </div>
-
-          {/* Presets Bar */}
-          <div className="px-3.5 py-2 bg-[#05090F] border-b border-white/[0.04] flex items-center gap-1.5 overflow-x-auto no-scrollbar text-xs font-mono">
-            {presetPills.map((preset) => (
-              <button
-                key={preset}
-                onClick={() => executeCommand(preset)}
-                className="px-2 py-0.5 rounded bg-[#0A121A] hover:bg-emerald-500/10 text-slate-300 hover:text-emerald-400 border border-white/[0.06] hover:border-emerald-500/30 transition-all shrink-0 text-[11px]"
-              >
-                $ {preset}
-              </button>
-            ))}
+            <span className="text-[10px] text-slate-500 uppercase tracking-widest hidden sm:inline">
+              bash 5.2
+            </span>
           </div>
 
           {/* Terminal Body */}
-          <div
+          <div 
             onClick={() => inputRef.current?.focus()}
-            className="p-5 font-mono text-xs sm:text-sm min-h-[300px] max-h-[420px] overflow-y-auto space-y-3 cursor-text bg-[#04080D]/95"
+            className="p-4 sm:p-5 max-h-[360px] overflow-y-auto space-y-3 cursor-text text-slate-200"
           >
             {history.map((item, idx) => (
-              <div key={idx} className="space-y-1 group">
+              <div key={idx} className="space-y-1">
                 <div className="flex items-center justify-between text-slate-300">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-emerald-400 font-semibold">chinmay@appsec-workstation:~/projects$</span>
-                    <span className="text-white font-medium">{item.cmd}</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-emerald-400 font-bold">$</span>
+                    <span className="text-white font-semibold">{item.cmd}</span>
                   </div>
-
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      copyToClipboard(item.cmd, idx);
+                      copyToClipboard(item.output, idx);
                     }}
-                    className="opacity-0 group-hover:opacity-100 p-1 text-slate-500 hover:text-slate-300 transition-opacity"
-                    title="Copy command"
+                    className="p-1 rounded text-slate-500 hover:text-emerald-400 transition-colors"
+                    title="Copy command output"
+                    aria-label="Copy command output"
                   >
                     {copiedIndex === idx ? (
-                      <Check className="w-3 h-3 text-emerald-400" />
+                      <Check className="w-3.5 h-3.5 text-emerald-400" />
                     ) : (
-                      <Copy className="w-3 h-3" />
+                      <Copy className="w-3.5 h-3.5" />
                     )}
                   </button>
                 </div>
-
-                <div className="pl-3 border-l border-emerald-500/30 text-slate-300 whitespace-pre-wrap font-mono text-xs leading-relaxed">
+                <pre className="text-slate-400 pl-4 whitespace-pre-wrap leading-relaxed text-[11px] sm:text-xs">
                   {item.output}
-                </div>
+                </pre>
               </div>
             ))}
 
-            {/* Prompt Form */}
+            {/* Active Command Input Line */}
             <form onSubmit={handleFormSubmit} className="flex items-center gap-2 pt-1">
-              <span className="text-emerald-400 font-semibold shrink-0">chinmay@appsec-workstation:~/projects$</span>
-              <div className="relative flex-1 flex items-center">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={inputVal}
-                  onChange={(e) => setInputVal(e.target.value)}
-                  placeholder="type a command (e.g. whoami, ls -la, help)..."
-                  className="w-full bg-transparent text-white font-mono text-xs sm:text-sm focus:outline-none placeholder-slate-600 caret-emerald-400"
-                  autoFocus
-                />
-                <span className="inline-block w-1.5 h-3.5 bg-emerald-400 animate-pulse ml-0.5" />
-              </div>
+              <label htmlFor="terminal-input" className="text-emerald-400 font-bold">
+                $
+              </label>
+              <input
+                id="terminal-input"
+                ref={inputRef}
+                type="text"
+                value={inputVal}
+                onChange={(e) => setInputVal(e.target.value)}
+                placeholder="type 'help' or command..."
+                className="flex-1 bg-transparent border-none text-white focus:outline-none placeholder-slate-600 text-xs"
+                autoComplete="off"
+                spellCheck="false"
+              />
+              <span className="w-2 h-4 bg-emerald-400 animate-pulse inline-block" />
             </form>
 
             <div ref={terminalEndRef} />

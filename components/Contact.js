@@ -47,11 +47,11 @@ export default function Contact() {
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-3">
-            Let&apos;s Connect.
+            Let&apos;s build something secure.
           </h2>
 
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
-            Open to Full-Stack Development and Application Security opportunities.
+            Open to full-stack and application security roles, and freelance projects. I reply within 24 hours.
           </p>
         </div>
 
@@ -67,10 +67,10 @@ export default function Contact() {
                   <Mail className="w-4 h-4" />
                 </div>
                 <div className="min-w-0">
-                  <span className="text-[10px] font-mono text-slate-500 uppercase block">EMAIL</span>
+                  <span className="text-[10px] font-mono text-slate-500 uppercase block">DIRECT EMAIL</span>
                   <a
                     href={personalInfo.links.email}
-                    className="text-xs sm:text-sm font-semibold text-white hover:text-emerald-400 font-mono transition-colors truncate block"
+                    className="text-xs sm:text-sm font-semibold text-white hover:text-emerald-400 font-mono transition-colors truncate block focus:outline-none focus:underline"
                   >
                     {personalInfo.email}
                   </a>
@@ -79,8 +79,9 @@ export default function Contact() {
 
               <button
                 onClick={handleCopyEmail}
-                className="p-2 rounded-lg bg-[#0C1520] border border-white/[0.08] text-slate-300 hover:text-white hover:border-emerald-500/30 transition-all text-xs font-mono shrink-0"
+                className="p-2 rounded-lg bg-[#0C1520] border border-white/[0.08] text-slate-300 hover:text-white hover:border-emerald-500/30 transition-all text-xs font-mono shrink-0 focus:outline-none focus:ring-1 focus:ring-emerald-400"
                 title="Copy email to clipboard"
+                aria-label="Copy email address"
               >
                 {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
               </button>
@@ -92,7 +93,8 @@ export default function Contact() {
                 href={personalInfo.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-xl bg-[#060C14] border border-white/[0.08] hover:border-emerald-500/35 transition-all flex items-center justify-between group"
+                className="p-4 rounded-xl bg-[#060C14] border border-white/[0.08] hover:border-emerald-500/35 transition-all flex items-center justify-between group focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                aria-label="Open GitHub Profile in new tab"
               >
                 <div className="flex items-center gap-2.5">
                   <Github className="w-4 h-4 text-emerald-400" />
@@ -105,7 +107,8 @@ export default function Contact() {
                 href={personalInfo.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-xl bg-[#060C14] border border-white/[0.08] hover:border-emerald-500/35 transition-all flex items-center justify-between group"
+                className="p-4 rounded-xl bg-[#060C14] border border-white/[0.08] hover:border-emerald-500/35 transition-all flex items-center justify-between group focus:outline-none focus:ring-1 focus:ring-emerald-400"
+                aria-label="Open LinkedIn Profile in new tab"
               >
                 <div className="flex items-center gap-2.5">
                   <Linkedin className="w-4 h-4 text-emerald-400" />
@@ -115,9 +118,14 @@ export default function Contact() {
               </a>
             </div>
 
+            <div className="p-4 rounded-xl bg-[#060C14] border border-white/[0.06] text-xs font-mono text-slate-400">
+              <span className="text-emerald-400 mr-2">●</span>
+              <span>Available for full-time and contract roles. Fast response guaranteed.</span>
+            </div>
+
           </div>
 
-          {/* Right Column: Compact Contact Form (7 cols) */}
+          {/* Right Column: Contact Form (7 cols) */}
           <div className="lg:col-span-7">
             <div className="rounded-2xl bg-[#060C14] border border-white/[0.08] p-6 sm:p-7 backdrop-blur-xl">
               
@@ -130,7 +138,7 @@ export default function Contact() {
                     Message Sent
                   </h4>
                   <p className="text-xs text-slate-400 max-w-sm mx-auto font-sans">
-                    Thank you for reaching out. I will get back to you as soon as possible.
+                    Thank you for reaching out. I reply within 24 hours.
                   </p>
                   <button
                     onClick={() => {
@@ -146,51 +154,54 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] font-mono text-slate-400 uppercase mb-1.5">
+                      <label htmlFor="contact-name" className="block text-[11px] font-mono text-slate-400 uppercase mb-1.5 font-medium">
                         Name
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
                         required
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        placeholder="Your Name"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#03070A] border border-white/[0.08] focus:border-emerald-500/50 focus:outline-none text-xs text-white placeholder-slate-600 transition-colors"
+                        placeholder="Your name"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#03070A] border border-white/[0.08] focus:border-emerald-500/50 focus:outline-none text-xs text-white placeholder-slate-500 transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-mono text-slate-400 uppercase mb-1.5">
+                      <label htmlFor="contact-email" className="block text-[11px] font-mono text-slate-400 uppercase mb-1.5 font-medium">
                         Email
                       </label>
                       <input
+                        id="contact-email"
                         type="email"
                         required
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        placeholder="you@example.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#03070A] border border-white/[0.08] focus:border-emerald-500/50 focus:outline-none text-xs text-white placeholder-slate-600 transition-colors"
+                        placeholder="name@email.com"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#03070A] border border-white/[0.08] focus:border-emerald-500/50 focus:outline-none text-xs text-white placeholder-slate-500 transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-mono text-slate-400 uppercase mb-1.5">
+                    <label htmlFor="contact-message" className="block text-[11px] font-mono text-slate-400 uppercase mb-1.5 font-medium">
                       Message
                     </label>
                     <textarea
+                      id="contact-message"
                       rows={4}
                       required
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      placeholder="Your message..."
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#03070A] border border-white/[0.08] focus:border-emerald-500/50 focus:outline-none text-xs text-white placeholder-slate-600 transition-colors resize-none"
+                      placeholder="Tell me about your project, team, or security challenge..."
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#03070A] border border-white/[0.08] focus:border-emerald-500/50 focus:outline-none text-xs text-white placeholder-slate-500 transition-colors resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-mono font-bold text-xs transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 disabled:opacity-50"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-mono font-bold text-xs transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span>{isSubmitting ? "Sending..." : "Send Message"}</span>

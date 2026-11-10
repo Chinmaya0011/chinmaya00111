@@ -26,7 +26,7 @@ export default function Footer() {
               <span className="text-emerald-400 text-xs font-normal">FULL-STACK &amp; APPSEC</span>
             </div>
             <p className="text-xs text-slate-400 font-sans">
-              Full-Stack Developer | Application Security Enthusiast
+              Full-Stack Developer · Application Security
             </p>
           </div>
 

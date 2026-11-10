@@ -1,6 +1,6 @@
 "use client";
 
-import { X, BookOpen, Shield } from "lucide-react";
+import { X, ShieldCheck, CheckCircle2 } from "lucide-react";
 
 export default function ResearchModal({ article, onClose }) {
   if (!article) return null;
@@ -17,7 +17,7 @@ export default function ResearchModal({ article, onClose }) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-lg bg-[#0C1520] text-slate-400 hover:text-white border border-white/[0.08] transition-colors"
+          className="absolute top-5 right-5 p-2 rounded-lg bg-[#0C1520] text-slate-400 hover:text-white border border-white/[0.08] transition-colors focus:outline-none focus:ring-1 focus:ring-emerald-400"
           aria-label="Close modal"
         >
           <X className="w-4 h-4" />
@@ -25,7 +25,7 @@ export default function ResearchModal({ article, onClose }) {
 
         {/* Category Badge */}
         <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 mb-2">
-          <Shield className="w-3.5 h-3.5" />
+          <ShieldCheck className="w-3.5 h-3.5" />
           <span className="bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-semibold">
             {article.category}
           </span>
@@ -36,29 +36,45 @@ export default function ResearchModal({ article, onClose }) {
           {article.title}
         </h3>
 
-        {/* Summary Card */}
-        <div className="p-4 rounded-xl bg-[#04080E] border border-white/[0.06] mb-5">
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic font-sans">
-            &ldquo;{article.summary}&rdquo;
+        {/* Takeaway Card */}
+        <div className="p-4 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 mb-5">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-semibold block mb-1">
+            Core Takeaway
+          </span>
+          <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans font-medium">
+            {article.takeaway}
           </p>
         </div>
 
-        {/* Detailed Explanation */}
-        <div className="mb-6">
-          <h4 className="text-xs font-mono uppercase text-slate-400 font-semibold mb-2.5">
-            Key Insights &amp; Concepts
+        {/* Root Cause Analysis */}
+        <div className="mb-4">
+          <h4 className="text-xs font-mono uppercase text-slate-400 font-semibold mb-2">
+            Vulnerability Root Cause
           </h4>
-          <div className="text-sm text-slate-300 leading-relaxed bg-[#050A10] p-4 rounded-xl border border-white/[0.05] font-sans">
-            {article.content}
+          <div className="text-xs sm:text-sm text-slate-300 leading-relaxed bg-[#04080E] p-4 rounded-xl border border-white/[0.05] font-sans">
+            {article.summary}
           </div>
         </div>
 
+        {/* Mitigation & Fix */}
+        {article.fix && (
+          <div className="mb-6">
+            <h4 className="text-xs font-mono uppercase text-emerald-400 font-semibold mb-2 flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Production Remediation</span>
+            </h4>
+            <div className="text-xs sm:text-sm text-slate-300 leading-relaxed bg-[#04080E] p-4 rounded-xl border border-emerald-500/15 font-sans">
+              {article.fix}
+            </div>
+          </div>
+        )}
+
         {/* Footer */}
         <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>Chinmaya Kumar Mishra</span>
+          <span>Security Research</span>
           <button
             onClick={onClose}
-            className="text-emerald-400 hover:underline"
+            className="text-emerald-400 hover:underline font-semibold"
           >
             Close
           </button>

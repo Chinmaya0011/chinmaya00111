@@ -1,11 +1,12 @@
-// Streamlined Source of Truth for Chinmaya Kumar Mishra
-// Full-Stack Developer | Application Security Enthusiast
+// Centralized Source of Truth for Chinmaya Kumar Mishra
+// Full-Stack Developer · Application Security
 
 export const personalInfo = {
   name: "Chinmaya Kumar Mishra",
   brand: "chinmaya00111",
-  headline: "Building Software. Learning to Secure It.",
-  title: "Full-Stack Developer | Application Security Enthusiast",
+  tag: "FULL-STACK DEVELOPER · APPLICATION SECURITY",
+  headline: "Building secure web apps and security tools.",
+  title: "Full-Stack Developer · Application Security",
   location: "Bhubaneswar, Odisha, India",
   email: "imchinu17@gmail.com",
   phone: "+91 7077835119",
@@ -15,147 +16,182 @@ export const personalInfo = {
     portfolio: "https://chinmayakumarmishra.sbs",
     email: "mailto:imchinu17@gmail.com"
   },
-  heroIntro: "I'm a Full-Stack Developer working with modern JavaScript technologies, currently expanding my knowledge of Web Security, API Security, and Application Security.",
+  heroIntro:
+    "Full-stack developer with 4+ years of experience in React, Next.js, Node.js, and MongoDB. I build products where security is part of the design, not an afterthought.",
   heroStats: [
-    { label: "Experience", value: "2+ Years", detail: "Development Experience" },
-    { label: "Stack", value: "MERN Stack", detail: "React, Node, Express, MongoDB" },
-    { label: "Focus", value: "AppSec", detail: "Exploring Application Security" }
+    { label: "Experience", value: "4+ Years", detail: "building web apps" },
+    { label: "Delivered", value: "20+", detail: "Client projects delivered" },
+    { label: "Shipped", value: "3", detail: "Shipped products" }
   ],
-  aboutHeading: "Developer by Experience. Security by Interest.",
-  aboutText: "I'm a Full-Stack Developer experienced in building web applications using React, Next.js, Node.js, Express, and MongoDB. I'm expanding into Application Security through hands-on learning, vulnerability analysis, and authorized security testing."
+  aboutHeading: "Developer who builds with security in mind.",
+  aboutText:
+    "I'm a full-stack developer who builds with the MERN stack and cares about how apps break. At Secure Code, I build tools that connect GitHub repositories to scanning pipelines. Outside work, I study OWASP Top 10, API security, and secure code review through hands-on labs.",
+  aboutPillars: [
+    {
+      title: "Build",
+      description: "REST APIs, React/Next.js interfaces, OAuth and GitHub App integrations."
+    },
+    {
+      title: "Secure",
+      description: "Authorization checks, input validation, code scanning, AI/RAG security."
+    }
+  ]
 };
 
-// Compact Categorized Technical Expertise
+// Technical Skills (Grouped by category, no learning vs knowing split)
 export const technicalSkills = [
   {
-    category: "Development",
-    subtitle: "Practical experience",
-    status: "Core Stack",
-    skills: ["JavaScript", "React", "Next.js", "Node.js", "Express", "MongoDB", "REST APIs"]
+    category: "Frontend",
+    tag: "UI & Client",
+    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"]
   },
   {
-    category: "Application Security",
-    subtitle: "Active learning path",
-    status: "Currently Learning",
-    skills: ["OWASP Top 10", "Web Security", "API Security", "Authentication", "Authorization", "Secure Code Review"]
+    category: "Backend",
+    tag: "Server & APIs",
+    skills: ["Node.js", "Express", "REST APIs", "OAuth 2.0"]
+  },
+  {
+    category: "Database",
+    tag: "Storage & Data",
+    skills: ["MongoDB", "Mongoose"]
+  },
+  {
+    category: "Security",
+    tag: "AppSec & Defense",
+    skills: ["OWASP Top 10", "API security", "Secure code review", "AuthN / AuthZ"]
   },
   {
     category: "Tools",
-    subtitle: "Security & dev toolset",
-    status: "Hands-on Tools",
-    skills: ["Burp Suite", "OWASP ZAP", "Semgrep", "Nmap", "Git", "GitHub", "Postman", "Linux"]
+    tag: "DevOps & Audit",
+    skills: ["Semgrep", "Burp Suite", "OWASP ZAP", "Nmap", "Postman", "Git", "Linux"]
+  },
+  {
+    category: "AI",
+    tag: "Models & RAG",
+    skills: ["OpenAI / Gemini APIs", "RAG pipelines", "Prompt injection basics"]
   }
 ];
 
-// 4 Compact Security Interest Cards
+// Security Specializations
 export const securityInterests = [
   {
     id: "web-sec",
     title: "Web Application Security",
-    description: "Learning common web vulnerabilities, understanding attack surfaces, and exploring secure coding practices."
+    description: "Analyzing common web vulnerabilities, sanitizing user inputs, and engineering secure application architectures."
   },
   {
     id: "api-sec",
     title: "API Security",
-    description: "Exploring API authentication, authorization, access control, request validation, and business logic vulnerabilities."
+    description: "Hardening REST endpoints, enforcing strict token authN/authZ, and eliminating object-level authorization (BOLA) flaws."
   },
   {
     id: "secure-code",
     title: "Secure Code Review",
-    description: "Understanding insecure coding patterns, reviewing application code, and learning how vulnerabilities can be prevented."
+    description: "Auditing application source code, identifying vulnerable patterns, and automating Semgrep rule-based scanning."
   },
   {
     id: "ai-appsec",
     title: "AI Application Security",
-    description: "Exploring security challenges in LLM integrations, RAG applications, prompt injection, and AI-powered application architectures."
+    description: "Preventing prompt injection attacks, securing model integrations, and isolating RAG vector retrieval boundaries."
   }
 ];
 
-// 3 Featured Projects with 1-2 line descriptions
+// Featured Projects with Problem, Built, Stack, Impact
 export const projects = [
   {
     id: "github-scanner",
     title: "GitHub Security Scanner",
-    description: "GitHub-integrated security scanning platform with repository analysis and vulnerability reporting.",
-    tech: ["Next.js", "Express", "MongoDB", "GitHub Apps", "OAuth 2.0", "Semgrep"],
+    problem: "Teams can't easily see vulnerabilities across their repos.",
+    built: "A platform that connects via a GitHub App, scans code with Semgrep, and reports findings in a dashboard.",
+    stack: ["Next.js", "Express", "MongoDB", "OAuth 2.0", "Semgrep"],
+    impact: "Automated vulnerability detection across connected repositories with centralized scan triage.",
     githubUrl: "https://github.com/chinmaya0011/github-scanner-platform",
     liveUrl: "https://scanner.chinmayamishra.dev"
   },
   {
     id: "ai-github-assistant",
     title: "AI GitHub Repository Assistant",
-    description: "AI-powered application for repository conversations and contextual code analysis.",
-    tech: ["Next.js", "Express", "MongoDB", "OpenAI API", "RAG", "GitHub App"],
+    problem: "Understanding an unfamiliar codebase is slow.",
+    built: "A chat assistant that answers questions about a repo using RAG.",
+    stack: ["Next.js", "Express", "MongoDB", "OpenAI API", "RAG"],
+    impact: "Accelerated repository comprehension and code navigation using contextual retrieval.",
     githubUrl: "https://github.com/chinmaya0011/ai-github-chatbot",
     liveUrl: "https://aichat.chinmayamishra.dev"
   },
   {
     id: "booksaathi",
     title: "BookSaathi",
-    description: "MERN-based appointment booking application with authentication, backend APIs, and AI chatbot integration.",
-    tech: ["React", "Node.js", "Express", "MongoDB", "Gemini API", "REST APIs"],
+    problem: "Indian solo professionals (doctors, CAs, lawyers) manage appointments manually.",
+    built: "A booking and practice management SaaS with auth, real-time updates, and an AI chatbot.",
+    stack: ["Next.js", "Express", "MongoDB", "Socket.io", "Gemini API"],
+    impact: "Replaces manual appointment scheduling with automated client workflows and AI chat assistance.",
     githubUrl: "https://github.com/chinmaya0011/booksaathi-saas",
     liveUrl: "https://booksaathi.com"
   }
 ];
 
-// Security Notes & Research (renamed & streamlined)
-export const securityNotes = [
+// Security Research (Each note gets a one-line takeaway)
+export const securityResearch = [
   {
-    id: "api-auth-note",
-    title: "API Authentication & Authorization",
-    summary: "Exploring how API authentication works, how access controls are implemented, and how authorization weaknesses affect modern applications.",
+    id: "race-conditions",
+    title: "Race Conditions",
+    takeaway: "How two simultaneous requests can double-spend, and how atomic DB operations fix it.",
+    category: "Concurrency & DB",
+    summary: "Checking resource availability and mutating balance across separate operations creates Time-of-Check to Time-of-Use (TOCTOU) windows. Under concurrent traffic, multiple transactions pass checks simultaneously.",
+    fix: "Enforce atomicity at the database level using conditional atomic updates (e.g., MongoDB findOneAndUpdate with balance condition) or transactional row locks rather than memory-state flags."
+  },
+  {
+    id: "api-auth",
+    title: "API Auth & Authz",
+    takeaway: "Why authentication is not authorization, and how broken access control happens.",
     category: "API Security",
-    content: "When building REST APIs with Express and Node.js, authentication confirms caller identity, while authorization determines permission boundaries. Common vulnerabilities like Broken Object Level Authorization (BOLA/IDOR) occur when an API endpoint trusts client-supplied IDs without verifying ownership against session claims."
+    summary: "Authentication verifies who the client is, but authorization confirms what resources they are permitted to access. Broken Object Level Authorization (BOLA/IDOR) occurs when an endpoint accepts user-provided record IDs without validating ownership against session tokens.",
+    fix: "Always resolve tenant context server-side from verified JWT/session claims. Never trust client-supplied ID parameters to infer ownership."
   },
   {
-    id: "race-conditions-note",
-    title: "Race Conditions in Web Applications",
-    summary: "Understanding how concurrent requests create unexpected application behavior and how database-level atomic operations prevent state corruption.",
-    category: "Web Security",
-    content: "Checking resource availability and updating state across separate queries creates Time-of-Check to Time-of-Use (TOCTOU) race windows. Under concurrent traffic, multiple requests can pass checks simultaneously. Enforcing atomicity at the database layer with conditional updates prevents state inconsistencies."
-  },
-  {
-    id: "owasp-top-10-note",
-    title: "Exploring OWASP Top 10",
-    summary: "Studying common web application vulnerabilities, root causes, authorized testing approaches, and remediation strategies.",
+    id: "owasp-top-10",
+    title: "OWASP Top 10",
+    takeaway: "Root causes and fixes, explained simply.",
     category: "AppSec Fundamentals",
-    content: "The OWASP Top 10 highlights persistent security challenges across web development. Broken Access Control and Injection vulnerabilities demonstrate why strict server-side authorization and input parameterization must be foundational design requirements rather than afterthoughts."
+    summary: "The majority of web security compromises stem from fundamental architectural gaps: broken access control, cryptographic failures, injection, and insecure design.",
+    fix: "Adopt parameterized queries for zero-injection persistence, enforce strict default-deny access control on every route, and implement defense-in-depth header validation."
   },
   {
-    id: "ai-security-note",
-    title: "AI Application Security Considerations",
-    summary: "Learning about prompt injection, insecure AI integrations, RAG access boundaries, and security considerations in LLM applications.",
+    id: "ai-appsec",
+    title: "AI App Security",
+    takeaway: "Prompt injection and keeping RAG data inside access boundaries.",
     category: "AI Security",
-    content: "Integrating LLMs introduces unique attack surfaces including direct and indirect prompt injection. In RAG architectures, document retrieval must enforce permission checks so models only ground responses in data the requesting user is authorized to view."
+    summary: "Untrusted user inputs mixed into system prompts can override instruction guardrails (direct and indirect prompt injection). In RAG systems, embedding stores often lack row-level user permissions.",
+    fix: "Enforce strict tenant filtering inside vector queries prior to context insertion, treat all LLM outputs as untrusted before executing actions, and isolate tool calls with least privilege."
   }
 ];
 
 // Alias for backwards compatibility
-export const securityResearch = securityNotes;
+export const securityNotes = securityResearch;
 
-// Genuine Employment History with Max 2-3 concise bullets
+// Employment History
 export const experiences = [
   {
     id: "secure-code",
     role: "Full-Stack Developer",
     company: "Secure Code LLC",
     location: "Texas, USA (Remote)",
-    period: "July 2025 – Present",
+    period: "Jul 2025 – Present",
     bullets: [
-      "Build full-stack features for security tools connecting GitHub repositories to scanning pipelines.",
-      "Implement OAuth and GitHub App integrations for secure repository access and scan review dashboards."
+      "Built full-stack features for security tools linking GitHub repos to scanning pipelines.",
+      "Implemented OAuth 2.0 and GitHub App integrations for secure repo access.",
+      "Developed scan review dashboards for viewing and triaging findings."
     ]
   },
   {
     id: "metadee-ai",
-    role: "Full-Stack Web Developer",
+    role: "Full-Stack Developer",
     company: "Metadee AI",
     location: "Remote",
-    period: "January 2025 – June 2025",
+    period: "Jan 2025 – Jun 2025",
     bullets: [
-      "Integrated OpenAI models with RAG pipelines for contextual conversational features.",
-      "Built and maintained RESTful APIs using Node.js, Express, and MongoDB."
+      "Integrated OpenAI models with RAG pipelines for contextual chat features.",
+      "Built and maintained REST APIs with Node.js, Express, and MongoDB."
     ]
   },
   {
@@ -165,13 +201,12 @@ export const experiences = [
     location: "Remote",
     period: "2021 – 2024",
     bullets: [
-      "Delivered 20+ custom web solutions from requirements gathering to production deployment.",
-      "Built full-stack web applications using React, Next.js, and Express.js backend APIs."
+      "Delivered 20+ custom web apps, from requirements to production deployment."
     ]
   }
 ];
 
-// Compact Education & Certifications
+// Education & Certifications (Kept as is)
 export const education = {
   degree: "B.Tech in Computer Science & Engineering",
   shortDegree: "B.Tech",

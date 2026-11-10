@@ -1,7 +1,7 @@
 # Chinmaya Kumar Mishra – Personal Portfolio
 
-> **Full-Stack Developer | Application Security Enthusiast**  
-> *Building Software. Learning to Secure It.*
+> **Full-Stack Developer · Application Security**  
+> *Building secure web apps and security tools.*
 
 Personal portfolio website for **Chinmaya Kumar Mishra** ([`chinmaya00111`](https://github.com/chinmaya0011)), built with modern JavaScript, Next.js 15 (App Router), React 19, Tailwind CSS, and Framer Motion. 
 

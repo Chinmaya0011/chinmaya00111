@@ -92,15 +92,15 @@ function createOgSvg() {
 
   <!-- Professional Title -->
   <text x="80" y="330" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="700" fill="#10B981" letter-spacing="0">
-    Full-Stack Developer <tspan fill="#64748B" font-weight="400">|</tspan> AppSec Enthusiast
+    Full-Stack Developer <tspan fill="#64748B" font-weight="400">|</tspan> Application Security
   </text>
 
   <!-- Short Summary -->
   <text x="80" y="390" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400" fill="#94A3B8">
-    Building modern web applications with JavaScript, React, Next.js, and Node.js.
+    Building secure web applications and developer tools with modern JavaScript.
   </text>
   <text x="80" y="422" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400" fill="#94A3B8">
-    Exploring Application Security, Web Security, and API Security.
+    Specializing in Application Security, Web Security, and API Security.
   </text>
 
   <!-- Divider Line -->

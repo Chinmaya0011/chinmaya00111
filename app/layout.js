@@ -12,7 +12,7 @@ export const metadata = {
   metadataBase: new URL(siteUrl),
   title: "Chinmaya Kumar Mishra | Full-Stack Developer & AppSec",
   description:
-    "Chinmaya Kumar Mishra is a Full-Stack Developer specializing in JavaScript, React, Next.js, Node.js, and MongoDB, with a growing interest in Application Security, Web Security, and API Security.",
+    "Full-Stack Developer specializing in JavaScript, React, Next.js, Node.js, and MongoDB, with specialized focus in Application Security, Web Security, and API Security.",
   keywords: [
     "Chinmaya Kumar Mishra",
     "Chinmaya Developer",
@@ -61,7 +61,7 @@ export const metadata = {
   openGraph: {
     title: "Chinmaya Kumar Mishra | Developer Portfolio",
     description:
-      "Full-Stack Developer with a passion for building modern web applications and exploring Application Security, API Security, and secure software development.",
+      "Full-Stack Developer building modern, secure web applications with deep focus on Application Security, API Security, and secure software development.",
     url: siteUrl,
     siteName: "Chinmaya Kumar Mishra",
     locale: "en_US",
@@ -71,7 +71,7 @@ export const metadata = {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Chinmaya Kumar Mishra | Full-Stack Developer & AppSec Enthusiast",
+        alt: "Chinmaya Kumar Mishra | Full-Stack Developer & Application Security",
       },
     ],
   },
@@ -79,7 +79,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Chinmaya Kumar Mishra | Developer Portfolio",
     description:
-      "Full-Stack Developer exploring Application Security, Web Security, and API Security.",
+      "Full-Stack Developer specializing in Application Security, Web Security, and API Security.",
     images: [`${siteUrl}/og-image.png`],
   },
 };
@@ -98,7 +98,7 @@ const structuredData = {
         "https://www.linkedin.com/in/chinmaya00111/",
       ],
       description:
-        "Chinmaya Kumar Mishra is a Full-Stack Developer specializing in JavaScript, React, Next.js, Node.js, and MongoDB, with a growing interest in Application Security, Web Security, and API Security.",
+        "Chinmaya Kumar Mishra is a Full-Stack Developer specializing in JavaScript, React, Next.js, Node.js, and MongoDB, with expertise in Application Security, Web Security, and API Security.",
       knowsAbout: [
         "Full-Stack Development",
         "JavaScript",
@@ -121,7 +121,7 @@ const structuredData = {
       url: siteUrl,
       name: "Chinmaya Kumar Mishra",
       description:
-        "Personal portfolio of Chinmaya Kumar Mishra: Full-Stack Developer & Application Security Enthusiast.",
+        "Personal portfolio of Chinmaya Kumar Mishra: Full-Stack Developer & Application Security.",
       author: {
         "@id": `${siteUrl}/#person`,
       },
