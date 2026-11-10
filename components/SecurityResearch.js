@@ -50,11 +50,16 @@ export default function SecurityResearch() {
               className="rounded-2xl bg-white/[0.03] border border-white/10 p-6 backdrop-blur-md transition-colors flex flex-col justify-between glass-card group"
             >
               <div>
-                {/* Category tag */}
+                {/* Category tag & interactive badge */}
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
-                  <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/20 font-semibold">
-                    {item.category}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded border border-emerald-500/20 font-semibold">
+                      {item.category}
+                    </span>
+                    <span className="text-[10px] font-mono text-cyan-400/90 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20 hidden sm:inline">
+                      Code Diff
+                    </span>
+                  </div>
                   <span className="text-xs font-mono text-zinc-500">
                     0{idx + 1}
                   </span>

@@ -2,14 +2,27 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Menu, X, FileDown, Github, Linkedin } from "lucide-react";
+import { Shield, Menu, X, FileDown, Github, Linkedin, Search } from "lucide-react";
 import ResumeModal from "./ResumeModal";
+import CommandPalette from "./CommandPalette";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setCommandPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,9 +77,7 @@ export default function Navbar() {
             className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md hover:border-emerald-500/40 transition-all group"
             title="chinmaya00111 - Homepage"
           >
-            <div className="w-5 h-5 rounded-md bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
-              <Shield className="w-3 h-3" />
-            </div>
+           
             <span className="font-mono text-xs font-bold text-white tracking-wider group-hover:text-emerald-400 transition-colors">
               chinmaya00111
             </span>
@@ -101,6 +112,18 @@ export default function Navbar() {
 
           {/* Desktop Action Pod */}
           <div className="hidden sm:flex items-center gap-2">
+            {/* Quick Command Palette Button */}
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setCommandPaletteOpen(true)}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 hover:border-emerald-500/40 text-xs font-mono text-zinc-400 hover:text-white transition-all backdrop-blur-md"
+              title="Search commands and sections (⌘K or Ctrl+K)"
+            >
+              <Search className="w-3 h-3 text-emerald-400" />
+              <span className="text-[10px] text-zinc-400 font-medium">⌘K</span>
+            </motion.button>
+
             {/* Social Media Links */}
             <div className="flex items-center gap-1.5 border-r border-white/10 pr-2.5 mr-0.5">
               <motion.a
@@ -141,8 +164,15 @@ export default function Navbar() {
             </motion.button>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <div className="flex items-center gap-2 sm:hidden">
+          {/* Mobile Actions Pod */}
+          <div className="flex items-center gap-1.5 sm:hidden">
+            <button
+              onClick={() => setCommandPaletteOpen(true)}
+              className="p-2 rounded-lg bg-white/[0.04] border border-white/10 text-zinc-300 hover:text-white transition-colors"
+              aria-label="Open Command Palette"
+            >
+              <Search className="w-4 h-4 text-emerald-400" />
+            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg bg-white/[0.04] border border-white/10 text-zinc-300 hover:text-white transition-colors"
@@ -218,6 +248,13 @@ export default function Navbar() {
       <ResumeModal
         isOpen={resumeModalOpen}
         onClose={() => setResumeModalOpen(false)}
+      />
+
+      {/* Quick Command Palette (⌘K) */}
+      <CommandPalette
+        isOpen={commandPaletteOpen}
+        onClose={() => setCommandPaletteOpen(false)}
+        onOpenResume={() => setResumeModalOpen(true)}
       />
     </>
   );

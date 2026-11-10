@@ -112,15 +112,15 @@ export default function About() {
             </motion.h2>
 
             {/* Text */}
-            <motion.p
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={defaultViewport}
               variants={fadeInUp}
-              className="text-zinc-300 text-sm sm:text-base leading-relaxed font-sans mb-8"
+              className="text-zinc-300 text-sm sm:text-base leading-relaxed font-sans mb-8 whitespace-pre-line space-y-3"
             >
               {personalInfo.aboutText}
-            </motion.p>
+            </motion.div>
 
             {/* Two Cards: Build & Secure */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

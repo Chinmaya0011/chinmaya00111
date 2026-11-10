@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { X, Github, ExternalLink, Code2, TrendingUp } from "lucide-react";
+import { X, Github, ExternalLink, Code2, TrendingUp, ShieldCheck } from "lucide-react";
 import { buttonMotionProps } from "@/lib/motion";
 
 export default function ProjectModal({ project, onClose }) {
@@ -28,12 +28,18 @@ export default function ProjectModal({ project, onClose }) {
         {/* Modal Header */}
         <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold mb-2">
           <Code2 className="w-4 h-4" />
-          <span>PROJECT SPECIFICATION</span>
+          <span>PROJECT ARCHITECTURE SPECIFICATION</span>
         </div>
         
-        <h3 className="text-2xl font-bold text-white tracking-tight mb-5 font-mono">
+        <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight mb-1 font-mono">
           {project.title}
         </h3>
+
+        {project.subtitle && (
+          <p className="text-xs font-mono text-emerald-400 mb-5">
+            {project.subtitle}
+          </p>
+        )}
 
         {/* Problem */}
         <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 mb-4">
@@ -54,6 +60,24 @@ export default function ProjectModal({ project, onClose }) {
             {project.built}
           </p>
         </div>
+
+        {/* Architecture & Security Highlights */}
+        {project.architecture && (
+          <div className="p-4 rounded-xl bg-white/[0.02] border border-cyan-500/20 mb-4">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-semibold flex items-center gap-1.5 mb-2">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Security &amp; Engineering Highlights</span>
+            </span>
+            <ul className="space-y-2 text-xs text-zinc-300 font-sans">
+              {project.architecture.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-cyan-400 font-mono mt-0.5">▸</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Impact */}
         <div className="p-4 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 mb-5">
@@ -101,21 +125,19 @@ export default function ProjectModal({ project, onClose }) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-3.5 py-2 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-xs font-mono text-emerald-400 transition-colors flex items-center gap-2"
+              className="px-3.5 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-[#0A0A0B] text-xs font-mono font-bold transition-colors flex items-center gap-2"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              <span>Live Application</span>
+              <span>Live Demo</span>
             </motion.a>
           </div>
-
           <button
             onClick={onClose}
-            className="text-xs font-mono text-zinc-400 hover:text-white transition-colors"
+            className="text-xs text-zinc-400 hover:text-white transition-colors font-mono"
           >
             Close
           </button>
         </div>
-
       </div>
     </div>
   );

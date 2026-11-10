@@ -138,7 +138,7 @@ export default function Hero() {
                   href="#projects"
                   className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#0A0A0B] font-bold text-xs font-mono tracking-wider transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
                 >
-                  <span>View Projects</span>
+                  <span>Explore Systems</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </motion.a>
 
@@ -163,6 +163,35 @@ export default function Hero() {
                   />
                 ))}
               </motion.div>
+
+              {/* Live Security & Telemetry Indicator */}
+              {personalInfo.telemetry && (
+                <motion.div
+                  variants={fadeInUp}
+                  className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center gap-2 text-[10px] sm:text-[11px] font-mono text-zinc-400 w-full max-w-lg"
+                >
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/[0.03] border border-white/10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-zinc-200">SYS:</span>
+                    <span className="text-emerald-400 font-semibold">{personalInfo.telemetry.status}</span>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/[0.03] border border-white/10">
+                    <span className="text-zinc-400">LATENCY:</span>
+                    <span className="text-emerald-400 font-semibold">{personalInfo.telemetry.latency}</span>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/[0.03] border border-white/10">
+                    <span className="text-zinc-400">POSTURE:</span>
+                    <span className="text-cyan-400 font-semibold">{personalInfo.telemetry.policy}</span>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-semibold">
+                    <span>●</span>
+                    <span>{personalInfo.telemetry.availability}</span>
+                  </div>
+                </motion.div>
+              )}
 
             </motion.div>
 

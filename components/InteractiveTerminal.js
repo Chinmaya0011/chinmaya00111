@@ -13,33 +13,77 @@ export default function InteractiveTerminal() {
   const isFirstRender = useRef(true);
 
   const commandDatabase = {
-    whoami: "chinmay",
-    "uname -a": "Linux developer 6.8.0 x86_64 GNU/Linux",
-    pwd: "/home/chinmay/projects",
-    "ls -la": `total 24
-drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 10:00 .
-drwxr-xr-x 3 chinmay chinmay 4096 Nov 10 09:10 ..
--rw-r--r-- 1 chinmay chinmay  164 Nov 10 09:20 stack.txt
-drwxr-xr-x 4 chinmay chinmay 4096 Nov 10 09:30 security-tools
-drwxr-xr-x 3 chinmay chinmay 4096 Nov 10 09:45 mern-apps`,
-    "cat stack.txt": `Full-Stack Development (React, Next.js, Node.js, MongoDB)
-Application Security & Secure Code Review
-API Security & OAuth 2.0 Integrations
-Semgrep & Automated Pipeline Scanning`,
-    "cat interests.txt": `Full-Stack Development (React, Next.js, Node.js, MongoDB)
-Application Security & Secure Code Review
-API Security & OAuth 2.0 Integrations
-Semgrep & Automated Pipeline Scanning`,
-    "semgrep --version": "semgrep 1.98.0 (rules: owasp-top-ten, r2c-security-audit)",
+    whoami: "chinmay (Full-Stack Engineer // Application Security Specialist)",
+    profile: `Candidate: Chinmaya Kumar Mishra (@chinmaya00111)
+Domain: MERN Stack (React, Next.js, Node.js, Express, MongoDB) & Application Security
+Philosophy: "Software fails where assumptions live. I engineer systems to eliminate both."
+Experience: 4+ Years production full-stack engineering, 20+ client deployments.
+Current Role: Full-Stack Developer at Secure Code LLC (GitHub Apps & SAST pipeline integrations).`,
+    "uname -a": "Linux developer 6.8.0-45-generic x86_64 GNU/Linux (Hardened Kernel)",
+    pwd: "/home/chinmay/workspace/production-apps",
+    "ls -la": `total 32
+drwxr-xr-x 7 chinmay chinmay 4096 Nov 10 19:30 .
+drwxr-xr-x 4 chinmay chinmay 4096 Nov 10 09:10 ..
+-rw-r--r-- 1 chinmay chinmay  220 Nov 10 19:25 stack.txt
+drwxr-xr-x 5 chinmay chinmay 4096 Nov 10 18:30 github-security-scanner
+drwxr-xr-x 4 chinmay chinmay 4096 Nov 10 18:45 ai-github-assistant
+drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 19:00 booksaathi-saas
+-rw-r--r-- 1 chinmay chinmay  512 Nov 10 19:20 security-rules.semgrep`,
+    stack: `ENGINEERING STACK:
+- Frontend:  React 19, Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion
+- Backend:   Node.js, Express.js, RESTful APIs, WebSockets, OAuth 2.0, GitHub Apps
+- Database:  MongoDB, Mongoose, Atomic Operations, Compound Indexing, Aggregations
+- Security:  OWASP Top 10, API Security (BOLA/IDOR), Secure Code Review, Semgrep SAST
+- AI / RAG:  OpenAI & Gemini APIs, Vector Retrieval, Prompt Injection Guardrails`,
+    "cat stack.txt": `ENGINEERING STACK:
+- Frontend:  React 19, Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion
+- Backend:   Node.js, Express.js, RESTful APIs, WebSockets, OAuth 2.0, GitHub Apps
+- Database:  MongoDB, Mongoose, Atomic Operations, Compound Indexing, Aggregations
+- Security:  OWASP Top 10, API Security (BOLA/IDOR), Secure Code Review, Semgrep SAST
+- AI / RAG:  OpenAI & Gemini APIs, Vector Retrieval, Prompt Injection Guardrails`,
+    scan: `[+] Initializing Semgrep rule engine (owasp-top-ten, r2c-security-audit)...
+[✓] Auditing authorization middleware...... PASSED (JWT tenant boundary enforced)
+[✓] Inspecting DB write queries............ PASSED (Atomic findOneAndUpdate)
+[✓] Validating client parameters........... PASSED (Parameterized zero-injection)
+[✓] Checking CORS & security headers....... PASSED (Strict CSP, HSTS, frame-ancestors 'none')
+[RESULT] 0 High/Critical vulnerabilities found. Target hardened.`,
+    projects: `SHIPPED PRODUCTION PLATFORMS:
+[1] GitHub Security Scanner (Next.js 15, Semgrep SAST, OAuth 2.0, Express)
+    → Multi-tenant automated vulnerability triage platform
+[2] AI GitHub Repository Assistant (Next.js, OpenAI, RAG Vector Search)
+    → Context-aware codebase intelligence with prompt injection guardrails
+[3] BookSaathi SaaS (Next.js, Express, MongoDB, Socket.io, Gemini API)
+    → Atomic transaction scheduling & practice management platform`,
+    ctf: `[MINI-CTF CHALLENGE]: Identify the vulnerability in this endpoint:
+  app.get("/api/invoice", async (req, res) => {
+    const doc = await Invoice.findById(req.query.id);
+    res.json(doc);
+  });
+[FLAW]: Broken Object Level Authorization (BOLA / IDOR).
+[RISK]: Any authenticated client can exfiltrate other tenants' invoices by guessing IDs.
+[FIX]:  Bind query to verified session claim: Invoice.findOne({ _id: req.query.id, tenantId: req.user.tenantId })`,
+    hire: `RECRUITMENT & DIRECT CONTACT CHANNELS:
+- Candidate: Chinmaya Kumar Mishra
+- Role: Full-Stack Developer · Application Security Specialist
+- Email: imchinu17@gmail.com
+- Direct Phone: +91 7077835119
+- LinkedIn: https://www.linkedin.com/in/chinmaya00111/
+- GitHub: https://github.com/chinmaya0011
+- Availability: Actively open to Full-Time & High-Impact Contract roles.`,
+    "semgrep --version": "semgrep 1.98.0 (rules: owasp-top-ten, r2c-security-audit, nodejs-jwt-authz)",
     help: `Available commands:
-  whoami             - Display current user
-  uname -a           - Show kernel and system architecture
-  pwd                - Print working directory
-  ls -la             - List files and permissions
-  cat stack.txt      - View technical stack and security focus
-  semgrep --version  - Check static analysis tool version
-  clear              - Clear terminal output
-  help               - List available commands`
+  profile       - Display core bio, credentials & security philosophy
+  scan          - Run simulated AST static code analysis on mock endpoint
+  stack         - Print active full-stack & AppSec engineering stack
+  projects      - List shipped production platforms and architecture specs
+  ctf           - Play an interactive 1-question mini security code audit
+  hire          - Direct contact & hiring channels
+  whoami        - Display current user identity
+  uname -a      - Show kernel and system architecture
+  pwd           - Print working directory
+  ls -la        - List files and permissions
+  clear         - Clear terminal output
+  help          - List available commands`
   };
 
   const defaultHistory = [
@@ -97,12 +141,12 @@ Semgrep & Automated Pipeline Scanning`,
   };
 
   const presetPills = [
-    "whoami",
-    "uname -a",
-    "pwd",
-    "ls -la",
-    "cat stack.txt",
-    "semgrep --version",
+    "profile",
+    "scan",
+    "stack",
+    "projects",
+    "ctf",
+    "hire",
     "help",
     "clear"
   ];

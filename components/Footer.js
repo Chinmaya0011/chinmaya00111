@@ -88,7 +88,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {personalInfo.name} ({personalInfo.brand})
           </div>
           <div>
-            Built with Next.js, Tailwind CSS &amp; Framer Motion
+            Built with Next.js &amp; Tailwind CSS · Press <kbd className="px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/10 text-zinc-300">⌘K</kbd> for commands
           </div>
         </div>
 

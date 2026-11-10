@@ -74,10 +74,15 @@ export default function Projects() {
                   </motion.button>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-xl font-bold text-white font-mono tracking-tight mb-4 group-hover:text-emerald-400 transition-colors">
+                {/* Title & Subtitle */}
+                <h3 className="text-xl font-bold text-white font-mono tracking-tight mb-1 group-hover:text-emerald-400 transition-colors">
                   {proj.title}
                 </h3>
+                {proj.subtitle && (
+                  <p className="text-[11px] font-mono text-emerald-400/90 mb-4">
+                    {proj.subtitle}
+                  </p>
+                )}
 
                 {/* Structured Sections: Problem & Built */}
                 <div className="space-y-3 mb-5 text-xs sm:text-sm font-sans">
