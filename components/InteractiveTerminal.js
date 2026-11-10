@@ -2,8 +2,103 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Terminal, Copy, Check, RotateCcw } from "lucide-react";
+import { Terminal, Copy, Check, RotateCcw, ShieldCheck, Play, Sparkles } from "lucide-react";
 import { fadeInUp, defaultViewport, buttonMotionProps } from "@/lib/motion";
+
+function TerminalOutputRenderer({ output }) {
+  const lines = output.split("\n");
+
+  return (
+    <div className="pl-3 sm:pl-4 space-y-1 font-mono text-[11px] sm:text-xs leading-relaxed">
+      {lines.map((line, idx) => {
+        // Semgrep Scan checkmarks
+        if (line.startsWith("[✓]")) {
+          return (
+            <div key={idx} className="flex items-start gap-1.5 text-emerald-400">
+              <span className="font-bold shrink-0">[✓]</span>
+              <span className="text-zinc-200">{line.slice(3)}</span>
+            </div>
+          );
+        }
+        // Operations / Initializations
+        if (line.startsWith("[+]")) {
+          return (
+            <div key={idx} className="flex items-start gap-1.5 text-cyan-400">
+              <span className="font-bold shrink-0">[+]</span>
+              <span className="text-zinc-300">{line.slice(3)}</span>
+            </div>
+          );
+        }
+        // Vulnerabilities / Warnings
+        if (
+          line.startsWith("[!]") ||
+          line.startsWith("[FLAW]") ||
+          line.startsWith("[VULNERABILITY]") ||
+          line.startsWith("[RISK]")
+        ) {
+          return (
+            <div key={idx} className="flex items-start gap-1.5 text-rose-400 font-medium">
+              <span className="font-bold shrink-0">⚠</span>
+              <span className="text-rose-300">{line}</span>
+            </div>
+          );
+        }
+        // CTF Challenge Header
+        if (line.startsWith("[CHALLENGE]")) {
+          return (
+            <div key={idx} className="text-amber-300 font-bold pt-1">
+              {line}
+            </div>
+          );
+        }
+        // CTF Remediation / Fix
+        if (line.startsWith("[REMEDIATION]") || line.startsWith("[FIX]")) {
+          return (
+            <div key={idx} className="text-emerald-300 font-semibold pt-1">
+              {line}
+            </div>
+          );
+        }
+        // Final Scan Result Callout
+        if (line.startsWith("[RESULT]")) {
+          return (
+            <div key={idx} className="p-2 sm:p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-bold my-1 flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 shrink-0" />
+              <span>{line.slice(8)}</span>
+            </div>
+          );
+        }
+        // Dividers / Section Headers
+        if (line.includes("━━━━━")) {
+          return (
+            <div key={idx} className="text-white/10 select-none text-[10px]">
+              {line}
+            </div>
+          );
+        }
+        if (
+          line.startsWith("PROFILE //") ||
+          line.startsWith("ENGINEERING STACK:") ||
+          line.startsWith("SHIPPED PRODUCTION PLATFORMS:") ||
+          line.startsWith("RECRUITMENT & DIRECT CONTACT CHANNELS:") ||
+          line.startsWith("Available Commands:")
+        ) {
+          return (
+            <div key={idx} className="text-emerald-400 font-bold tracking-wider pt-1">
+              {line}
+            </div>
+          );
+        }
+        // Standard Output Line
+        return (
+          <div key={idx} className="text-zinc-300">
+            {line}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function InteractiveTerminal() {
   const [copiedIndex, setCopiedIndex] = useState(null);
@@ -13,84 +108,98 @@ export default function InteractiveTerminal() {
   const isFirstRender = useRef(true);
 
   const commandDatabase = {
-    whoami: "chinmay (Full-Stack Engineer // Application Security Specialist)",
-    profile: `Candidate: Chinmaya Kumar Mishra (@chinmaya00111)
-Domain: MERN Stack (React, Next.js, Node.js, Express, MongoDB) & Application Security
-Philosophy: "Software fails where assumptions live. I engineer systems to eliminate both."
-Experience: 4+ Years production full-stack engineering, 20+ client deployments.
-Current Role: Full-Stack Developer at Secure Code LLC (GitHub Apps & SAST pipeline integrations).`,
-    "uname -a": "Linux developer 6.8.0-45-generic x86_64 GNU/Linux (Hardened Kernel)",
-    pwd: "/home/chinmay/workspace/production-apps",
-    "ls -la": `total 32
-drwxr-xr-x 7 chinmay chinmay 4096 Nov 10 19:30 .
-drwxr-xr-x 4 chinmay chinmay 4096 Nov 10 09:10 ..
--rw-r--r-- 1 chinmay chinmay  220 Nov 10 19:25 stack.txt
-drwxr-xr-x 5 chinmay chinmay 4096 Nov 10 18:30 github-security-scanner
-drwxr-xr-x 4 chinmay chinmay 4096 Nov 10 18:45 ai-github-assistant
-drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 19:00 booksaathi-saas
--rw-r--r-- 1 chinmay chinmay  512 Nov 10 19:20 security-rules.semgrep`,
+    welcome: `Chinmaya OS v2.4 (Security & Full-Stack Workstation)
+Type 'help' or click presets below to run security scans, query the stack, or inspect architecture.`,
+
+    profile: `PROFILE // CHINMAYA KUMAR MISHRA (@chinmaya00111)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Role:         Full-Stack Developer · Application Security Specialist
+Experience:   4+ Years building production MERN & Next.js systems
+Current:      Full-Stack Developer at Secure Code LLC (Texas, USA - Remote)
+Stack:        React 19, Next.js 15, Node.js, Express, MongoDB, Semgrep SAST
+Mission:      "Software fails where assumptions live. I engineer systems to eliminate both."
+Availability: Open for Full-Time Full-Stack & AppSec Engineering roles.`,
+
+    scan: `[+] Initializing Semgrep AST Static Analysis Engine v1.98.0...
+[+] Loading security rulesets: [owasp-top-10, api-security, jwt-authz, r2c-audit]
+[✓] Auditing authorization middleware..... PASSED (Strict tenant claim enforcement)
+[✓] Inspecting database write queries..... PASSED (Atomic findOneAndUpdate operations)
+[✓] Checking input sanitization boundaries PASSED (Zero SQL/NoSQL injection sinks)
+[✓] Validating CORS & Security Headers.... PASSED (CSP, HSTS, frame-ancestors: 'none')
+[✓] Reviewing LLM & Vector retrieval..... PASSED (Tenant pre-filtering in vector query)
+[RESULT] 0 Vulnerabilities Detected. Repository posture: HARDENED (Grade A+).`,
+
     stack: `ENGINEERING STACK:
-- Frontend:  React 19, Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion
-- Backend:   Node.js, Express.js, RESTful APIs, WebSockets, OAuth 2.0, GitHub Apps
-- Database:  MongoDB, Mongoose, Atomic Operations, Compound Indexing, Aggregations
-- Security:  OWASP Top 10, API Security (BOLA/IDOR), Secure Code Review, Semgrep SAST
-- AI / RAG:  OpenAI & Gemini APIs, Vector Retrieval, Prompt Injection Guardrails`,
-    "cat stack.txt": `ENGINEERING STACK:
-- Frontend:  React 19, Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion
-- Backend:   Node.js, Express.js, RESTful APIs, WebSockets, OAuth 2.0, GitHub Apps
-- Database:  MongoDB, Mongoose, Atomic Operations, Compound Indexing, Aggregations
-- Security:  OWASP Top 10, API Security (BOLA/IDOR), Secure Code Review, Semgrep SAST
-- AI / RAG:  OpenAI & Gemini APIs, Vector Retrieval, Prompt Injection Guardrails`,
-    scan: `[+] Initializing Semgrep rule engine (owasp-top-ten, r2c-security-audit)...
-[✓] Auditing authorization middleware...... PASSED (JWT tenant boundary enforced)
-[✓] Inspecting DB write queries............ PASSED (Atomic findOneAndUpdate)
-[✓] Validating client parameters........... PASSED (Parameterized zero-injection)
-[✓] Checking CORS & security headers....... PASSED (Strict CSP, HSTS, frame-ancestors 'none')
-[RESULT] 0 High/Critical vulnerabilities found. Target hardened.`,
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Frontend   │ React 19, Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion
+Backend    │ Node.js, Express.js, RESTful APIs, WebSockets, OAuth 2.0, GitHub Apps
+Database   │ MongoDB, Mongoose, Atomic Transactions, Compound Indexing, Aggregations
+Security   │ OWASP Top 10, API Security (BOLA/IDOR), Secure Code Review, Semgrep SAST
+Tooling    │ Burp Suite, OWASP ZAP, Nmap, Postman, Git CLI, Linux Server Hardening
+AI Systems │ OpenAI & Gemini APIs, Vector Retrieval (RAG), Prompt Injection Defense`,
+
     projects: `SHIPPED PRODUCTION PLATFORMS:
-[1] GitHub Security Scanner (Next.js 15, Semgrep SAST, OAuth 2.0, Express)
-    → Multi-tenant automated vulnerability triage platform
-[2] AI GitHub Repository Assistant (Next.js, OpenAI, RAG Vector Search)
-    → Context-aware codebase intelligence with prompt injection guardrails
-[3] BookSaathi SaaS (Next.js, Express, MongoDB, Socket.io, Gemini API)
-    → Atomic transaction scheduling & practice management platform`,
-    ctf: `[MINI-CTF CHALLENGE]: Identify the vulnerability in this endpoint:
-  app.get("/api/invoice", async (req, res) => {
-    const doc = await Invoice.findById(req.query.id);
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[1] GitHub Security Scanner
+    Type:   Multi-Tenant Automated SAST & Vulnerability Triage Platform
+    Stack:  Next.js 15, Node.js, Express, MongoDB, Semgrep SAST, OAuth 2.0
+    Impact: Automated vulnerability detection across repos via GitHub App webhooks.
+
+[2] AI GitHub Repository Assistant
+    Type:   Context-Aware Codebase Intelligence & RAG Exploration Engine
+    Stack:  Next.js, Node.js, Express, MongoDB, OpenAI API, RAG Vector Search
+    Impact: Accelerated codebase comprehension with prompt injection defense.
+
+[3] BookSaathi SaaS
+    Type:   Real-Time Practice Management & Appointment Automation Suite
+    Stack:  Next.js, Express.js, MongoDB, Socket.io, Gemini API, Tailwind CSS
+    Impact: Atomic transaction scheduling preventing double-booking race conditions.`,
+
+    ctf: `[CHALLENGE]: Identify the security flaw in this Express endpoint:
+  app.get("/api/documents/:id", verifyToken, async (req, res) => {
+    const doc = await Document.findById(req.params.id);
     res.json(doc);
   });
-[FLAW]: Broken Object Level Authorization (BOLA / IDOR).
-[RISK]: Any authenticated client can exfiltrate other tenants' invoices by guessing IDs.
-[FIX]:  Bind query to verified session claim: Invoice.findOne({ _id: req.query.id, tenantId: req.user.tenantId })`,
+
+[VULNERABILITY]: Broken Object Level Authorization (BOLA / IDOR - OWASP API1:2023)
+[RISK]: Any authenticated client can exfiltrate other tenants' documents by tampering with :id.
+[REMEDIATION]: Enforce tenant ownership server-side from cryptographically signed session:
+  const doc = await Document.findOne({ _id: req.params.id, userId: req.user.id });`,
+
     hire: `RECRUITMENT & DIRECT CONTACT CHANNELS:
-- Candidate: Chinmaya Kumar Mishra
-- Role: Full-Stack Developer · Application Security Specialist
-- Email: imchinu17@gmail.com
-- Direct Phone: +91 7077835119
-- LinkedIn: https://www.linkedin.com/in/chinmaya00111/
-- GitHub: https://github.com/chinmaya0011
-- Availability: Actively open to Full-Time & High-Impact Contract roles.`,
-    "semgrep --version": "semgrep 1.98.0 (rules: owasp-top-ten, r2c-security-audit, nodejs-jwt-authz)",
-    help: `Available commands:
-  profile       - Display core bio, credentials & security philosophy
-  scan          - Run simulated AST static code analysis on mock endpoint
-  stack         - Print active full-stack & AppSec engineering stack
-  projects      - List shipped production platforms and architecture specs
-  ctf           - Play an interactive 1-question mini security code audit
-  hire          - Direct contact & hiring channels
-  whoami        - Display current user identity
-  uname -a      - Show kernel and system architecture
-  pwd           - Print working directory
-  ls -la        - List files and permissions
-  clear         - Clear terminal output
-  help          - List available commands`
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Candidate:    Chinmaya Kumar Mishra
+Role:         Full-Stack Developer · Application Security Specialist
+Direct Email: imchinu17@gmail.com
+Phone:        +91 7077835119
+Location:     Bhubaneswar, Odisha, India (Open to Remote & Relocation)
+GitHub:       https://github.com/chinmaya0011
+LinkedIn:     https://www.linkedin.com/in/chinmaya00111/
+Resume:       Download CV (MERN & AppSec) via navbar button or 'CV' modal
+Status:       Available for Full-Time Roles & High-Impact Contracts (Fast response).`,
+
+    help: `Available Commands:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  profile       - Display candidate overview, philosophy & current role
+  scan          - Run simulated Semgrep SAST security audit on production API
+  stack         - List full-stack engineering stack, tools & AI capabilities
+  projects      - Display shipped platforms, architectural specs & impact
+  ctf           - Solve an interactive code-level vulnerability review challenge
+  hire          - Show direct recruitment, contact channels & availability
+  clear         - Clear terminal buffer
+  help          - Display this command dictionary`,
+
+    whoami: "chinmay (Full-Stack Engineer // Application Security Specialist)",
+    "uname -a": "Linux developer 6.8.0-45-generic x86_64 GNU/Linux (Hardened Kernel)",
+    pwd: "/home/chinmay/workspace/production-apps",
+    "cat stack.txt": `React 19, Next.js 15, Node.js, Express, MongoDB, Semgrep SAST, OWASP Top 10, OpenAI/Gemini APIs`
   };
 
   const defaultHistory = [
-    { cmd: "whoami", output: "chinmay" },
-    { cmd: "uname -a", output: "Linux developer 6.8.0 x86_64 GNU/Linux" },
-    { cmd: "cat stack.txt", output: "Full-Stack Development (React, Next.js, Node.js, MongoDB)\nApplication Security & Secure Code Review\nAPI Security & OAuth 2.0 Integrations\nSemgrep & Automated Pipeline Scanning" },
-    { cmd: "semgrep --version", output: "semgrep 1.98.0 (rules: owasp-top-ten, r2c-security-audit)" }
+    {
+      cmd: "welcome",
+      output: commandDatabase.welcome
+    }
   ];
 
   const [history, setHistory] = useState(defaultHistory);
@@ -118,7 +227,7 @@ drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 19:00 booksaathi-saas
     const output =
       commandDatabase[trimmed] ||
       commandDatabase[trimmed.toLowerCase()] ||
-      `bash: command not found: ${trimmed}. Type 'help' for available commands.`;
+      `bash: command not found: '${trimmed}'. Type 'help' for available commands.`;
 
     setHistory((prev) => [...prev, { cmd: trimmed, output }]);
     setInputVal("");
@@ -141,14 +250,14 @@ drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 19:00 booksaathi-saas
   };
 
   const presetPills = [
-    "profile",
-    "scan",
-    "stack",
-    "projects",
-    "ctf",
-    "hire",
-    "help",
-    "clear"
+    { cmd: "profile", label: "profile", highlight: false },
+    { cmd: "scan", label: "scan", highlight: true, dot: "bg-emerald-400" },
+    { cmd: "stack", label: "stack", highlight: false },
+    { cmd: "projects", label: "projects", highlight: false },
+    { cmd: "ctf", label: "ctf challenge", highlight: false, dot: "bg-amber-400" },
+    { cmd: "hire", label: "hire info", highlight: true, dot: "bg-cyan-400" },
+    { cmd: "help", label: "help", highlight: false },
+    { cmd: "clear", label: "clear", highlight: false }
   ];
 
   return (
@@ -161,27 +270,30 @@ drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 19:00 booksaathi-saas
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInUp}
-          className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+          className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
         >
           <div>
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-1.5">
+            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>TERMINAL</span>
+              <span>TERMINAL // 03 // LIVE WORKSTATION</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white font-mono">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-mono tracking-tight">
               Interactive Linux Terminal
             </h2>
+            <p className="text-xs sm:text-sm text-zinc-400 font-sans mt-1 max-w-xl">
+              Simulated bash environment. Click preset commands or type directly to run AST security scans, inspect production stack, or review architecture.
+            </p>
           </div>
 
           <motion.button
             {...buttonMotionProps}
             onClick={resetTerminal}
-            className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-emerald-400 bg-white/[0.04] border border-white/10 hover:border-emerald-500/30 px-3 py-1.5 rounded-lg transition-colors self-start sm:self-auto"
+            className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-emerald-400 bg-white/[0.04] border border-white/10 hover:border-emerald-500/30 px-3 py-1.5 rounded-lg transition-colors self-start sm:self-auto shrink-0"
             title="Reset terminal history"
             aria-label="Reset terminal"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>Reset</span>
+            <span>Reset Buffer</span>
           </motion.button>
         </motion.div>
 
@@ -191,19 +303,28 @@ drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 19:00 booksaathi-saas
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInUp}
-          className="flex flex-wrap items-center gap-1.5 mb-5"
+          className="flex flex-wrap items-center gap-2 mb-6"
         >
-          <span className="text-[11px] font-mono text-zinc-500 mr-1 hidden sm:inline">Presets:</span>
-          {presetPills.map((cmd) => (
+          <div className="flex items-center gap-1 text-[11px] font-mono text-zinc-400 mr-1">
+            <Play className="w-3 h-3 text-emerald-400" />
+            <span>Presets:</span>
+          </div>
+
+          {presetPills.map((pill) => (
             <motion.button
-              key={cmd}
+              key={pill.cmd}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => executeCommand(cmd)}
-              className="px-2.5 py-1 rounded bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-emerald-500/40 text-[11px] font-mono text-zinc-300 hover:text-emerald-400 transition-colors"
-              aria-label={`Run preset command ${cmd}`}
+              onClick={() => executeCommand(pill.cmd)}
+              className={`px-3 py-1.5 rounded-lg border text-xs font-mono transition-all flex items-center gap-1.5 ${
+                pill.highlight
+                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 shadow-sm"
+                  : "bg-white/[0.03] border-white/10 text-zinc-300 hover:text-white hover:bg-white/[0.06] hover:border-white/20"
+              }`}
+              aria-label={`Run preset command ${pill.cmd}`}
             >
-              $ {cmd}
+              {pill.dot && <span className={`w-1.5 h-1.5 rounded-full ${pill.dot}`} />}
+              <span>$ {pill.label}</span>
             </motion.button>
           ))}
         </motion.div>
@@ -227,19 +348,23 @@ drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 19:00 booksaathi-saas
                 <span>chinmay@security-workstation:~</span>
               </span>
             </div>
-            <span className="text-[10px] text-zinc-500 uppercase tracking-widest hidden sm:inline">
-              bash 5.2
-            </span>
+            <div className="flex items-center gap-3 text-[10px] text-zinc-500 uppercase tracking-widest hidden sm:flex">
+              <span className="flex items-center gap-1 text-emerald-400/80">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>SHELL: ONLINE</span>
+              </span>
+              <span>bash 5.2</span>
+            </div>
           </div>
 
           {/* Terminal Body */}
           <div 
             ref={terminalBodyRef}
             onClick={() => inputRef.current?.focus()}
-            className="p-4 sm:p-5 max-h-[380px] overflow-y-auto space-y-3 cursor-text text-zinc-200"
+            className="p-4 sm:p-5 max-h-[420px] overflow-y-auto space-y-4 cursor-text text-zinc-200"
           >
             {history.map((item, idx) => (
-              <div key={idx} className="space-y-1">
+              <div key={idx} className="space-y-1.5">
                 <div className="flex items-center justify-between text-zinc-300">
                   <div className="flex items-center gap-1.5">
                     <span className="text-emerald-400 font-bold">$</span>
@@ -261,14 +386,14 @@ drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 19:00 booksaathi-saas
                     )}
                   </button>
                 </div>
-                <pre className="text-zinc-400 pl-4 whitespace-pre-wrap leading-relaxed text-[11px] sm:text-xs">
-                  {item.output}
-                </pre>
+                
+                {/* Formatted Terminal Output with Semantic Highlighting */}
+                <TerminalOutputRenderer output={item.output} />
               </div>
             ))}
 
             {/* Active Command Input Line */}
-            <form onSubmit={handleFormSubmit} className="flex items-center gap-2 pt-1">
+            <form onSubmit={handleFormSubmit} className="flex items-center gap-2 pt-2 border-t border-white/5">
               <label htmlFor="terminal-input" className="text-emerald-400 font-bold">
                 $
               </label>
@@ -278,8 +403,8 @@ drwxr-xr-x 6 chinmay chinmay 4096 Nov 10 19:00 booksaathi-saas
                 type="text"
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
-                placeholder="type 'help' or command..."
-                className="flex-1 bg-transparent border-none text-white focus:outline-none placeholder-zinc-600 text-xs"
+                placeholder="type 'help', 'scan', 'profile', 'stack', 'ctf'..."
+                className="flex-1 bg-transparent border-none text-white focus:outline-none placeholder-zinc-600 text-xs font-mono"
                 autoComplete="off"
                 spellCheck="false"
               />
