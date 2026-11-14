@@ -4,6 +4,7 @@
 
 export const personalInfo = {
   name: "Chinmaya Kumar Mishra",
+  alternateNames: ["Chinmay Kumar Mishra", "Chinmaya Mishra", "Chinmay Mishra", "Chinmaya K. Mishra"],
   brand: "Chinmaya Kumar Mishra",
   brandShort: "CM",
   brandSlug: "chinmaya00111",
@@ -31,7 +32,7 @@ export const personalInfo = {
   ],
   aboutHeading: "Full-stack engineering with an adversarial security mindset.",
   aboutBio: [
-    "I am a Full-Stack Developer and Application Security Engineer based in Odisha, India, with over 4 years of hands-on experience designing and building scalable web applications. My core engineering domain centers on JavaScript, React, Next.js, Node.js, Express, and MongoDB, paired with a disciplined adversarial focus on web and API security.",
+    "I am a Full-Stack Developer and Application Security Engineer based in Odisha, India, with over 4 years of hands-on experience designing and building scalable web applications. Known across developer communities as Chinmaya Kumar Mishra (and frequently as Chinmay or Chinmaya Mishra), my core engineering domain centers on JavaScript, React, Next.js, Node.js, Express, and MongoDB, paired with a disciplined adversarial focus on web and API security.",
     "At Secure Code LLC, I develop developer platforms that connect customer code repositories to automated SAST and security scanning pipelines. My engineering philosophy is simple: software fails where assumptions live. Rather than treating security as a post-deployment checklist, I integrate authentication, authorization checks, input validation, and tenant boundaries directly into software architecture from day one.",
     "Outside production builds, I continuously expand my security research across the OWASP Top 10, API security (BOLA/IDOR), LLM application security, and hands-on vulnerability audits."
   ],

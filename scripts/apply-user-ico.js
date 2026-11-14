@@ -52,3 +52,4 @@ applyUserIcon().catch(err => {
   console.error('Error applying user icon:', err);
   process.exit(1);
 });
+

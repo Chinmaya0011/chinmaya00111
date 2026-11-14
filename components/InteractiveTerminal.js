@@ -169,7 +169,7 @@ AI Systems │ OpenAI & Gemini APIs, Vector Retrieval (RAG), Prompt Injection De
 
     hire: `RECRUITMENT & DIRECT CONTACT CHANNELS:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Candidate:    Chinmaya Kumar Mishra
+Candidate:    Chinmaya Kumar Mishra (Chinmaya Mishra)
 Role:         Full-Stack Developer · Application Security Engineer
 Direct Email: imchinu17@gmail.com
 Phone:        +91 7077835119
@@ -190,7 +190,7 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
   clear         - Clear terminal buffer
   help          - Display this command dictionary`,
 
-    whoami: "chinmay (Full-Stack Engineer // Application Security Specialist)",
+    whoami: "chinmay (Chinmaya Kumar Mishra // Full-Stack Developer & Application Security Engineer)",
     "uname -a": "Linux developer 6.8.0-45-generic x86_64 GNU/Linux (Hardened Kernel)",
     pwd: "/home/chinmay/workspace/production-apps",
     "cat stack.txt": `React 19, Next.js 15, Node.js, Express, MongoDB, Semgrep SAST, OWASP Top 10, OpenAI/Gemini APIs`

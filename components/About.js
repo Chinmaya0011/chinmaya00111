@@ -60,6 +60,11 @@ export default function About() {
 
             <div className="space-y-3 text-xs font-mono text-[#666666]">
               <div>
+                <span className="text-[#171717] font-semibold block">IDENTITY</span>
+                <span>Chinmaya Kumar Mishra (Chinmaya / Chinmay)</span>
+              </div>
+
+              <div>
                 <span className="text-[#171717] font-semibold block">PRIMARY DOMAIN</span>
                 <span>Full-Stack Development &amp; AppSec</span>
               </div>
