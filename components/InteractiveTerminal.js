@@ -23,7 +23,7 @@ function TerminalOutputRenderer({ output }) {
         // Operations / Initializations
         if (line.startsWith("[+]")) {
           return (
-            <div key={idx} className="flex items-start gap-1.5 text-cyan-400">
+            <div key={idx} className="flex items-start gap-1.5 text-blue-400">
               <span className="font-bold shrink-0">[+]</span>
               <span className="text-zinc-300">{line.slice(3)}</span>
             </div>
@@ -84,7 +84,7 @@ function TerminalOutputRenderer({ output }) {
           line.startsWith("Available Commands:")
         ) {
           return (
-            <div key={idx} className="text-emerald-400 font-bold tracking-wider pt-1">
+            <div key={idx} className="text-[#365CF5] font-bold tracking-wider pt-1">
               {line}
             </div>
           );
@@ -113,11 +113,12 @@ Type 'help' or click presets below to run security scans, query the stack, or in
 
     profile: `PROFILE // CHINMAYA KUMAR MISHRA (@chinmaya00111)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Role:         Full-Stack Developer · Application Security Specialist
+Role:         Full-Stack Developer · Application Security Engineer
+Location:     Odisha, India
 Experience:   4+ Years building production MERN & Next.js systems
 Current:      Full-Stack Developer at Secure Code LLC (Texas, USA - Remote)
-Stack:        React 19, Next.js 15, Node.js, Express, MongoDB, Semgrep SAST
-Mission:      "Software fails where assumptions live. I engineer systems to eliminate both."
+Stack:        React, Next.js, Node.js, Express, MongoDB, Semgrep SAST
+Philosophy:   "Software fails where assumptions live. I engineer systems to eliminate both."
 Availability: Open for Full-Time Full-Stack & AppSec Engineering roles.`,
 
     scan: `[+] Initializing Semgrep AST Static Analysis Engine v1.98.0...
@@ -169,13 +170,13 @@ AI Systems │ OpenAI & Gemini APIs, Vector Retrieval (RAG), Prompt Injection De
     hire: `RECRUITMENT & DIRECT CONTACT CHANNELS:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Candidate:    Chinmaya Kumar Mishra
-Role:         Full-Stack Developer · Application Security Specialist
+Role:         Full-Stack Developer · Application Security Engineer
 Direct Email: imchinu17@gmail.com
 Phone:        +91 7077835119
-Location:     Bhubaneswar, Odisha, India (Open to Remote & Relocation)
+Location:     Odisha, India (Open to Remote & Global Opportunities)
 GitHub:       https://github.com/chinmaya0011
 LinkedIn:     https://www.linkedin.com/in/chinmaya00111/
-Resume:       Download CV (MERN & AppSec) via navbar button or 'CV' modal
+Resume:       Download CV via navbar button or 'Explore Projects'
 Status:       Available for Full-Time Roles & High-Impact Contracts (Fast response).`,
 
     help: `Available Commands:
@@ -251,17 +252,17 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
 
   const presetPills = [
     { cmd: "profile", label: "profile", highlight: false },
-    { cmd: "scan", label: "scan", highlight: true, dot: "bg-emerald-400" },
+    { cmd: "scan", label: "scan", highlight: true, dot: "bg-[#365CF5]" },
     { cmd: "stack", label: "stack", highlight: false },
     { cmd: "projects", label: "projects", highlight: false },
     { cmd: "ctf", label: "ctf challenge", highlight: false, dot: "bg-amber-400" },
-    { cmd: "hire", label: "hire info", highlight: true, dot: "bg-cyan-400" },
+    { cmd: "hire", label: "hire info", highlight: true, dot: "bg-emerald-400" },
     { cmd: "help", label: "help", highlight: false },
     { cmd: "clear", label: "clear", highlight: false }
   ];
 
   return (
-    <section id="terminal" className="py-16 md:py-24 relative border-t border-white/10">
+    <section id="terminal" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-[#FAF9F6]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
@@ -273,14 +274,14 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
           className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
         >
           <div>
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>TERMINAL // 03 // LIVE WORKSTATION</span>
+            <div className="flex items-center gap-2 text-[#365CF5] font-mono text-xs font-bold uppercase tracking-widest mb-2.5">
+              <span className="w-2 h-2 rounded-full bg-[#365CF5]" />
+              <span>TERMINAL // 08 // WORKSTATION SHELL</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-white font-mono tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#171717] font-sans tracking-tight">
               Interactive Linux Terminal
             </h2>
-            <p className="text-xs sm:text-sm text-zinc-400 font-sans mt-1 max-w-xl">
+            <p className="text-xs sm:text-sm text-[#666666] font-sans mt-1 max-w-xl">
               Simulated bash environment. Click preset commands or type directly to run AST security scans, inspect production stack, or review architecture.
             </p>
           </div>
@@ -288,7 +289,7 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
           <motion.button
             {...buttonMotionProps}
             onClick={resetTerminal}
-            className="flex items-center gap-1.5 text-xs font-mono text-zinc-400 hover:text-emerald-400 bg-white/[0.04] border border-white/10 hover:border-emerald-500/30 px-3 py-1.5 rounded-lg transition-colors self-start sm:self-auto shrink-0"
+            className="flex items-center gap-1.5 text-xs font-mono text-[#666666] hover:text-[#365CF5] bg-white border border-[#E7E5E0] hover:border-[#365CF5]/40 px-3.5 py-1.5 rounded-lg shadow-xs transition-colors self-start sm:self-auto shrink-0"
             title="Reset terminal history"
             aria-label="Reset terminal"
           >
@@ -305,8 +306,8 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
           variants={fadeInUp}
           className="flex flex-wrap items-center gap-2 mb-6"
         >
-          <div className="flex items-center gap-1 text-[11px] font-mono text-zinc-400 mr-1">
-            <Play className="w-3 h-3 text-emerald-400" />
+          <div className="flex items-center gap-1 text-[11px] font-mono text-[#666666] mr-1">
+            <Play className="w-3 h-3 text-[#365CF5]" />
             <span>Presets:</span>
           </div>
 
@@ -318,8 +319,8 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
               onClick={() => executeCommand(pill.cmd)}
               className={`px-3 py-1.5 rounded-lg border text-xs font-mono transition-all flex items-center gap-1.5 ${
                 pill.highlight
-                  ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 shadow-sm"
-                  : "bg-white/[0.03] border-white/10 text-zinc-300 hover:text-white hover:bg-white/[0.06] hover:border-white/20"
+                  ? "bg-[#365CF5]/5 border-[#365CF5]/30 text-[#365CF5] hover:bg-[#365CF5]/10 shadow-xs font-semibold"
+                  : "bg-white border-[#E7E5E0] text-[#171717] hover:text-[#365CF5] hover:border-[#365CF5]/40 shadow-xs"
               }`}
               aria-label={`Run preset command ${pill.cmd}`}
             >
@@ -329,27 +330,27 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
           ))}
         </motion.div>
 
-        {/* Terminal Window Card with Glass Styling */}
+        {/* Terminal Window Card with Sleek Dark Interior */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInUp}
-          className="rounded-2xl bg-white/[0.02] border border-white/10 shadow-2xl overflow-hidden font-mono text-xs glass-card"
+          className="rounded-2xl bg-[#0E0E11] border border-[#24242A] shadow-xl overflow-hidden font-mono text-xs"
         >
           {/* Top Window Bar */}
-          <div className="px-4 py-3 bg-white/[0.03] border-b border-white/10 flex items-center justify-between">
+          <div className="px-4 py-3 bg-[#15151A] border-b border-[#24242A] flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
               <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
               <span className="ml-2 text-zinc-400 text-xs flex items-center gap-1.5">
-                <Terminal className="w-3.5 h-3.5 text-emerald-400" />
+                <Terminal className="w-3.5 h-3.5 text-[#365CF5]" />
                 <span>chinmay@security-workstation:~</span>
               </span>
             </div>
             <div className="flex items-center gap-3 text-[10px] text-zinc-500 uppercase tracking-widest hidden sm:flex">
-              <span className="flex items-center gap-1 text-emerald-400/80">
+              <span className="flex items-center gap-1 text-emerald-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span>SHELL: ONLINE</span>
               </span>
@@ -361,13 +362,13 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
           <div 
             ref={terminalBodyRef}
             onClick={() => inputRef.current?.focus()}
-            className="p-4 sm:p-5 max-h-[420px] overflow-y-auto space-y-4 cursor-text text-zinc-200"
+            className="p-4 sm:p-5 max-h-[420px] overflow-y-auto space-y-4 cursor-text text-zinc-200 bg-[#0A0A0C]"
           >
             {history.map((item, idx) => (
               <div key={idx} className="space-y-1.5">
                 <div className="flex items-center justify-between text-zinc-300">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400 font-bold">$</span>
+                    <span className="text-[#365CF5] font-bold">$</span>
                     <span className="text-white font-semibold">{item.cmd}</span>
                   </div>
                   <button
@@ -375,7 +376,7 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
                       e.stopPropagation();
                       copyToClipboard(item.output, idx);
                     }}
-                    className="p-1 rounded text-zinc-500 hover:text-emerald-400 transition-colors"
+                    className="p-1 rounded text-zinc-500 hover:text-white transition-colors"
                     title="Copy command output"
                     aria-label="Copy command output"
                   >
@@ -394,7 +395,7 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
 
             {/* Active Command Input Line */}
             <form onSubmit={handleFormSubmit} className="flex items-center gap-2 pt-2 border-t border-white/5">
-              <label htmlFor="terminal-input" className="text-emerald-400 font-bold">
+              <label htmlFor="terminal-input" className="text-[#365CF5] font-bold">
                 $
               </label>
               <input
@@ -408,7 +409,7 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
                 autoComplete="off"
                 spellCheck="false"
               />
-              <span className="w-2 h-4 bg-emerald-400 animate-pulse inline-block" />
+              <span className="w-2 h-4 bg-[#365CF5] animate-pulse inline-block" />
             </form>
           </div>
 

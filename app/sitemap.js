@@ -1,13 +1,12 @@
 export default function sitemap() {
-  const baseUrl = "https://chinmayakumarmishra.sbs";
+  const baseUrl = "https://www.chinmayakumarmishra.sbs";
 
   return [
     {
-      url: baseUrl,
+      url: `${baseUrl}/`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 1.0,
     },
   ];
 }
-

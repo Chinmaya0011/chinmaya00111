@@ -4,23 +4,27 @@ import { motion } from "framer-motion";
 import { 
   Globe, 
   Key, 
+  Lock, 
   FileCode2, 
-  Cpu, 
-  ShieldCheck 
+  ShieldCheck, 
+  Cpu,
+  CheckCircle2
 } from "lucide-react";
-import { securityInterests } from "@/data/portfolioData";
+import { appSecCapabilities } from "@/data/portfolioData";
 import { fadeInUp, defaultViewport, cardHoverProps } from "@/lib/motion";
 
 export default function SecurityInterests() {
   const iconMap = {
-    "web-sec": Globe,
-    "api-sec": Key,
-    "secure-code": FileCode2,
-    "ai-appsec": Cpu
+    Globe: Globe,
+    Key: Key,
+    Lock: Lock,
+    FileCode2: FileCode2,
+    ShieldCheck: ShieldCheck,
+    Cpu: Cpu
   };
 
   return (
-    <section id="interests" className="py-16 md:py-24 relative border-t border-white/10">
+    <section id="appsec" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-[#FAF9F6]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
@@ -29,26 +33,24 @@ export default function SecurityInterests() {
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInUp}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-white/10"
+          className="mb-12 max-w-2xl"
         >
-          <div>
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-2">
-              <span className="w-2 h-2 rounded-sm bg-emerald-400" />
-              <span>SECURITY // 04 // DEFENSIVE SPECIALIZATIONS</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Security Focus Areas
-            </h2>
+          <div className="flex items-center gap-2 text-[#365CF5] font-mono text-xs font-bold uppercase tracking-widest mb-2.5">
+            <span className="w-2 h-2 rounded-full bg-[#365CF5]" />
+            <span>APPLICATION SECURITY // 03</span>
           </div>
-          <p className="text-xs font-mono text-zinc-400 max-w-sm">
-            Core security disciplines integrated directly into full-stack development and tooling.
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#171717] tracking-tight font-sans">
+            Defensive Security Capabilities
+          </h2>
+          <p className="text-xs sm:text-sm text-[#666666] font-sans mt-1">
+            Practical application security engineered into software architecture, API design, code pipelines, and AI systems.
           </p>
         </motion.div>
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {securityInterests.map((item, idx) => {
-            const Icon = iconMap[item.id] || ShieldCheck;
+        {/* 6 Capabilities Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {appSecCapabilities.map((item, idx) => {
+            const Icon = iconMap[item.icon] || ShieldCheck;
             return (
               <motion.div
                 key={item.id}
@@ -58,25 +60,35 @@ export default function SecurityInterests() {
                 variants={fadeInUp}
                 transition={{ delay: idx * 0.06 }}
                 {...cardHoverProps}
-                className="rounded-2xl bg-white/[0.03] border border-white/10 p-6 backdrop-blur-md transition-colors flex flex-col justify-between glass-card group"
+                className="rounded-2xl bg-white border border-[#E7E5E0] hover:border-[#365CF5]/50 p-6 shadow-sm transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 mb-4 group-hover:scale-105 transition-transform">
-                    <Icon className="w-5 h-5" />
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-[#F3F2EE] border border-[#E7E5E0] flex items-center justify-center text-[#365CF5]">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <span className="text-xs font-mono text-[#8E8C85]">
+                      0{idx + 1}
+                    </span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-bold text-white font-mono tracking-tight mb-2.5 group-hover:text-emerald-400 transition-colors">
+                  <h3 className="text-base sm:text-lg font-bold text-[#171717] font-sans tracking-tight mb-2">
                     {item.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
-                    {item.description}
+                  <p className="text-xs sm:text-sm text-[#666666] leading-relaxed font-sans mb-4">
+                    {item.summary}
                   </p>
                 </div>
 
-                <div className="pt-4 mt-5 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-zinc-500">
-                  <span>0{idx + 1}</span>
-                  <span className="text-emerald-400 font-medium">SPECIALIZATION</span>
+                <div className="pt-3 border-t border-[#E7E5E0] bg-[#FAF9F6] -mx-6 -mb-6 p-4 rounded-b-2xl">
+                  <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#365CF5] mb-1 flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3" />
+                    <span>ENGINEERING PRACTICE</span>
+                  </div>
+                  <p className="text-[11px] text-[#171717] font-sans leading-relaxed">
+                    {item.practice}
+                  </p>
                 </div>
               </motion.div>
             );

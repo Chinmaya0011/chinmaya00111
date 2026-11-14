@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GraduationCap, Award, Calendar, MapPin, ExternalLink } from "lucide-react";
+import { GraduationCap, Award, Calendar, MapPin, ExternalLink, CheckCircle2 } from "lucide-react";
 import { education, certifications } from "@/data/portfolioData";
 import { fadeInUp, defaultViewport, cardHoverProps } from "@/lib/motion";
 
 export default function EducationCertifications() {
   return (
-    <section id="credentials" className="py-16 md:py-24 relative border-t border-white/10">
+    <section id="credentials" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-[#FAF9F6]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
@@ -16,18 +16,16 @@ export default function EducationCertifications() {
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInUp}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-white/10"
+          className="mb-12 max-w-2xl"
         >
-          <div>
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              <span>CREDENTIALS // 08 // ACADEMICS &amp; CERTIFICATIONS</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Education &amp; Certifications
-            </h2>
+          <div className="flex items-center gap-2 text-[#365CF5] font-mono text-xs font-bold uppercase tracking-widest mb-2.5">
+            <span className="w-2 h-2 rounded-full bg-[#365CF5]" />
+            <span>CREDENTIALS // 07 // ACADEMICS &amp; CERTIFICATIONS</span>
           </div>
-          <p className="text-xs font-mono text-zinc-400 max-w-sm">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#171717] tracking-tight font-sans">
+            Education &amp; Verified Certifications
+          </h2>
+          <p className="text-xs sm:text-sm text-[#666666] font-sans mt-1">
             Formal engineering degree and verified technical skill assessments.
           </p>
         </motion.div>
@@ -41,33 +39,33 @@ export default function EducationCertifications() {
             viewport={defaultViewport}
             variants={fadeInUp}
             {...cardHoverProps}
-            className="rounded-2xl bg-white/[0.03] border border-white/10 p-6 backdrop-blur-md transition-colors glass-card"
+            className="rounded-2xl bg-white border border-[#E7E5E0] hover:border-[#365CF5]/40 p-6 sm:p-7 shadow-sm transition-all"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-[#F3F2EE] border border-[#E7E5E0] flex items-center justify-center text-[#365CF5]">
                 <GraduationCap className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-semibold block">
-                  EDUCATION
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#365CF5] font-bold block">
+                  FORMAL ACADEMICS
                 </span>
-                <h3 className="text-lg font-bold text-white font-mono">
+                <h3 className="text-lg font-bold text-[#171717] font-sans">
                   {education.degree}
                 </h3>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
-              <p className="text-sm font-semibold text-zinc-200">
+            <div className="p-4 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] space-y-2.5">
+              <p className="text-sm font-semibold text-[#171717] font-sans">
                 {education.institution}
               </p>
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-400">
+              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[#666666]">
                 <span className="flex items-center gap-1">
-                  <MapPin className="w-3 h-3 text-zinc-500" />
+                  <MapPin className="w-3.5 h-3.5 text-[#365CF5]" />
                   {education.location}
                 </span>
-                <span className="flex items-center gap-1 text-emerald-400 font-semibold">
-                  <Calendar className="w-3 h-3" />
+                <span className="flex items-center gap-1 text-[#171717] font-semibold">
+                  <Calendar className="w-3.5 h-3.5 text-[#365CF5]" />
                   {education.period}
                 </span>
               </div>
@@ -82,46 +80,55 @@ export default function EducationCertifications() {
             variants={fadeInUp}
             transition={{ delay: 0.1 }}
             {...cardHoverProps}
-            className="rounded-2xl bg-white/[0.03] border border-white/10 p-6 backdrop-blur-md transition-colors glass-card"
+            className="rounded-2xl bg-white border border-[#E7E5E0] hover:border-[#365CF5]/40 p-6 sm:p-7 shadow-sm transition-all"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-[#F3F2EE] border border-[#E7E5E0] flex items-center justify-center text-[#365CF5]">
                 <Award className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-semibold block">
-                  CERTIFICATIONS
+                <span className="text-[10px] font-mono uppercase tracking-widest text-[#365CF5] font-bold block">
+                  VERIFIED ASSESSMENTS
                 </span>
-                <h3 className="text-lg font-bold text-white font-mono">
-                  Skill Assessments
+                <h3 className="text-lg font-bold text-[#171717] font-sans">
+                  Technical Certifications
                 </h3>
               </div>
             </div>
 
-            <div className="space-y-2.5">
-              {certifications.map((cert, idx) => (
+            <div className="space-y-3">
+              {certifications.map((cert) => (
                 <div
-                  key={idx}
-                  className="p-3 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between gap-3 text-xs"
+                  key={cert.name}
+                  className="p-3.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] flex items-center justify-between gap-3 hover:border-[#D5D3CC] transition-colors"
                 >
                   <div>
-                    <span className="font-mono text-emerald-400 font-semibold mr-2">
-                      {cert.title}
-                    </span>
-                    <span className="text-zinc-200">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="text-[10px] font-mono text-[#365CF5] uppercase font-bold">
+                        {cert.title}
+                      </span>
+                      <span className="px-1.5 py-0.2 rounded text-[9px] font-mono bg-emerald-500/10 text-emerald-700 font-bold border border-emerald-500/20 flex items-center gap-1">
+                        <CheckCircle2 className="w-2.5 h-2.5" />
+                        <span>Verified</span>
+                      </span>
+                    </div>
+                    <p className="text-xs font-semibold text-[#171717] font-sans">
                       {cert.name}
-                    </span>
+                    </p>
                   </div>
-                  <a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-400 hover:text-emerald-400 transition-colors shrink-0 p-1 rounded focus:outline-none focus:ring-1 focus:ring-emerald-400"
-                    title="View Credential"
-                    aria-label={`View ${cert.title} credential`}
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
+
+                  {cert.link && (
+                    <a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-1.5 rounded-lg bg-white border border-[#E7E5E0] text-[#666666] hover:text-[#365CF5] hover:border-[#365CF5]/40 transition-colors shrink-0"
+                      title="View verified credential"
+                      aria-label={`View verified credential for ${cert.name}`}
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  )}
                 </div>
               ))}
             </div>

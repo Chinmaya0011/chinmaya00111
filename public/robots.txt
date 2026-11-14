@@ -1,5 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://chinmayakumarmishra.sbs/sitemap.xml
-
+Sitemap: https://www.chinmayakumarmishra.sbs/sitemap.xml

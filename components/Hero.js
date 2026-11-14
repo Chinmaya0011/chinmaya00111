@@ -6,29 +6,32 @@ import { motion, useInView } from "framer-motion";
 import { 
   ArrowRight, 
   FileDown, 
-  Code2, 
-  ShieldCheck, 
-  Terminal
+  MapPin, 
+  Mail, 
+  Github, 
+  Linkedin,
+  ShieldCheck,
+  CheckCircle2,
+  ExternalLink
 } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import { fadeInUp, staggerContainer, buttonMotionProps, easeOutQuad } from "@/lib/motion";
 import ResumeModal from "./ResumeModal";
 
-// Interactive Count-Up component for numerical stats
+// Stat Counter Component
 function StatCounter({ targetValue, suffix = "", detail, label }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [count, setCount] = useState(0);
 
-  // Parse integer from values like "4+", "20+", "3"
   const numericTarget = parseInt(targetValue, 10) || 0;
 
   useEffect(() => {
     if (!isInView) return;
 
     let start = 0;
-    const duration = 1200; // ms
-    const stepTime = Math.max(Math.floor(duration / (numericTarget || 1)), 25);
+    const duration = 1000;
+    const stepTime = Math.max(Math.floor(duration / (numericTarget || 1)), 30);
 
     const timer = setInterval(() => {
       start += 1;
@@ -42,42 +45,15 @@ function StatCounter({ targetValue, suffix = "", detail, label }) {
   }, [isInView, numericTarget]);
 
   return (
-    <div ref={ref} className="p-3 sm:p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 glass-card">
-      <div className="text-[11px] text-zinc-400 uppercase font-mono font-medium">{label}</div>
-      <div className="text-white font-bold text-lg sm:text-xl font-mono mt-0.5">
+    <div ref={ref} className="p-3.5 sm:p-4 rounded-xl bg-white border border-[#E7E5E0] shadow-sm">
+      <div className="text-[11px] text-[#666666] font-mono font-medium uppercase tracking-wider">{label}</div>
+      <div className="text-[#171717] font-bold text-xl sm:text-2xl font-mono mt-0.5">
         {count}{targetValue.includes("+") ? "+" : ""} {suffix}
       </div>
-      <div className="text-[11px] text-emerald-400/90 font-mono truncate mt-0.5">
+      <div className="text-[11px] text-[#365CF5] font-mono truncate mt-0.5 font-medium">
         {detail}
       </div>
     </div>
-  );
-}
-
-// Typing Headline Effect with blinking cursor
-function TypingHeadline({ text }) {
-  const [displayedText, setDisplayedText] = useState("");
-  const [isDone, setIsDone] = useState(false);
-
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayedText(text.slice(0, index));
-      index++;
-      if (index > text.length) {
-        setIsDone(true);
-        clearInterval(interval);
-      }
-    }, 45);
-
-    return () => clearInterval(interval);
-  }, [text]);
-
-  return (
-    <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.15] min-h-[72px] sm:min-h-[110px]">
-      {displayedText}
-      <span className={`inline-block w-2.5 h-8 sm:h-10 ml-1.5 align-middle bg-emerald-400 ${isDone ? "animate-pulse" : ""}`} />
-    </h1>
   );
 }
 
@@ -86,75 +62,115 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+      <section className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24">
         
-        {/* Faint Grid Background & Radial Gradient Glow behind Hero */}
-        <div className="absolute inset-0 bg-grid-faint opacity-40 pointer-events-none" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[360px] bg-emerald-500/[0.06] blur-[140px] rounded-full pointer-events-none" />
-
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 w-full">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            {/* Left Column (7 cols): Staggered Page Load Animation */}
+            {/* Left Column (7 cols): Editorial Typography & Introduction */}
             <motion.div
-              variants={staggerContainer(0.1, 0.1)}
+              variants={staggerContainer(0.08, 0.05)}
               initial="hidden"
               animate="visible"
               className="lg:col-span-7 flex flex-col items-start"
             >
-              {/* Tag */}
-              <motion.div variants={fadeInUp} className="mb-4">
-                <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-emerald-400 text-xs font-mono">
-                  <div className="relative w-5 h-5 rounded-full overflow-hidden border border-emerald-400/40 shrink-0">
-                    <Image
-                      src="/images/chinmaya.jpg"
-                      alt="Chinmaya Kumar Mishra"
-                      fill
-                      className="object-cover object-top"
-                    />
-                  </div>
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="tracking-wider uppercase font-semibold">
-                    {personalInfo.tag}
+              {/* Availability & Location Badges */}
+              <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-2 mb-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#E7E5E0] text-xs font-mono text-[#171717] shadow-sm">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="font-medium text-[#171717]">
+                    {personalInfo.availability}
                   </span>
+                </div>
+
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F3F2EE] border border-[#E7E5E0] text-xs font-mono text-[#666666]">
+                  <MapPin className="w-3.5 h-3.5 text-[#365CF5]" />
+                  <span>{personalInfo.location}</span>
                 </div>
               </motion.div>
 
-              {/* Headline with Typing Effect */}
-              <motion.div variants={fadeInUp} className="mb-4 w-full">
-                <TypingHeadline text={personalInfo.headline} />
+              {/* Name & Professional Title */}
+              <motion.div variants={fadeInUp} className="mb-3">
+                <span className="font-mono text-xs font-bold text-[#365CF5] tracking-widest uppercase block mb-1">
+                  {personalInfo.title}
+                </span>
+                <h2 className="text-xl sm:text-2xl font-bold text-[#171717] tracking-tight">
+                  {personalInfo.name}
+                </h2>
               </motion.div>
 
-              {/* Subtext */}
-              <motion.p variants={fadeInUp} className="text-zinc-300 text-sm sm:text-base leading-relaxed mb-6 max-w-xl font-sans">
+              {/* Main Headline */}
+              <motion.h1 
+                variants={fadeInUp} 
+                className="text-3xl sm:text-5xl font-extrabold text-[#171717] tracking-tight leading-[1.12] mb-5"
+              >
+                {personalInfo.headline}
+              </motion.h1>
+
+              {/* Description */}
+              <motion.p 
+                variants={fadeInUp} 
+                className="text-[#666666] text-base sm:text-lg leading-relaxed mb-8 max-w-xl font-sans"
+              >
                 {personalInfo.heroIntro}
               </motion.p>
 
-              {/* Buttons: View Projects, Download CV */}
-              <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-3 mb-8">
-                <motion.a
-                  {...buttonMotionProps}
+              {/* Actions & Links */}
+              <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-3 mb-10 w-full sm:w-auto">
+                <a
                   href="#projects"
-                  className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-[#0A0A0B] font-bold text-xs font-mono tracking-wider transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#365CF5] hover:bg-[#2548D9] text-white font-semibold text-xs font-mono tracking-wider transition-colors flex items-center justify-center gap-2 shadow-sm"
                 >
-                  <span>Explore Systems</span>
+                  <span>Explore Projects</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </motion.a>
+                </a>
 
-                <motion.button
-                  {...buttonMotionProps}
+                <button
                   onClick={() => setResumeModalOpen(true)}
-                  className="px-5 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-zinc-200 font-semibold text-xs font-mono tracking-wider border border-white/10 hover:border-emerald-500/40 transition-colors flex items-center gap-2"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white hover:bg-[#F3F2EE] text-[#171717] font-semibold text-xs font-mono tracking-wider border border-[#E7E5E0] transition-colors flex items-center justify-center gap-2 shadow-sm"
                 >
-                  <FileDown className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Download CV</span>
-                </motion.button>
+                  <FileDown className="w-3.5 h-3.5 text-[#365CF5]" />
+                  <span>Download Resume</span>
+                </button>
+
+                <div className="flex items-center gap-2 ml-0 sm:ml-2 pt-2 sm:pt-0">
+                  <a
+                    href={personalInfo.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-white hover:bg-[#F3F2EE] border border-[#E7E5E0] text-[#666666] hover:text-[#171717] transition-colors shadow-sm"
+                    aria-label="GitHub Profile"
+                    title="GitHub: chinmaya0011"
+                  >
+                    <Github className="w-4 h-4" />
+                  </a>
+
+                  <a
+                    href={personalInfo.links.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-xl bg-white hover:bg-[#F3F2EE] border border-[#E7E5E0] text-[#666666] hover:text-[#365CF5] transition-colors shadow-sm"
+                    aria-label="LinkedIn Profile"
+                    title="LinkedIn: chinmaya00111"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+
+                  <a
+                    href={personalInfo.links.email}
+                    className="p-2.5 rounded-xl bg-white hover:bg-[#F3F2EE] border border-[#E7E5E0] text-[#666666] hover:text-[#171717] transition-colors shadow-sm"
+                    aria-label="Email Chinmaya"
+                    title={personalInfo.email}
+                  >
+                    <Mail className="w-4 h-4" />
+                  </a>
+                </div>
               </motion.div>
 
-              {/* Stats: Count-up animation when in view */}
-              <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-3 w-full max-w-lg pt-6 border-t border-white/10 text-xs">
-                {personalInfo.heroStats.map((item, idx) => (
+              {/* Stats Grid */}
+              <motion.div variants={fadeInUp} className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-lg">
+                {personalInfo.stats.map((item, idx) => (
                   <StatCounter
                     key={idx}
                     targetValue={item.value}
@@ -164,79 +180,64 @@ export default function Hero() {
                 ))}
               </motion.div>
 
-              {/* Live Security & Telemetry Indicator */}
-              {personalInfo.telemetry && (
-                <motion.div
-                  variants={fadeInUp}
-                  className="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center gap-2 text-[10px] sm:text-[11px] font-mono text-zinc-400 w-full max-w-lg"
-                >
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/[0.03] border border-white/10">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-zinc-200">SYS:</span>
-                    <span className="text-emerald-400 font-semibold">{personalInfo.telemetry.status}</span>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/[0.03] border border-white/10">
-                    <span className="text-zinc-400">LATENCY:</span>
-                    <span className="text-emerald-400 font-semibold">{personalInfo.telemetry.latency}</span>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/[0.03] border border-white/10">
-                    <span className="text-zinc-400">POSTURE:</span>
-                    <span className="text-cyan-400 font-semibold">{personalInfo.telemetry.policy}</span>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-semibold">
-                    <span>●</span>
-                    <span>{personalInfo.telemetry.availability}</span>
-                  </div>
-                </motion.div>
-              )}
-
             </motion.div>
 
-            {/* Right Column (5 cols): Interactive Code/Terminal Card */}
+            {/* Right Column (5 cols): Professional Photograph Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25, ease: easeOutQuad }}
-              className="lg:col-span-5"
+              transition={{ duration: 0.5, delay: 0.2, ease: easeOutQuad }}
+              className="lg:col-span-5 flex justify-center"
             >
-              <div className="rounded-2xl bg-white/[0.03] border border-white/10 p-5 backdrop-blur-md glass-card hover:border-emerald-500/35 transition-all">
+              <div className="relative w-full max-w-md bg-white border border-[#E7E5E0] rounded-2xl p-4 shadow-sm">
                 
-                <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-                    <span className="ml-2 text-xs font-mono text-zinc-400">
-                      security-pipeline.js
-                    </span>
+                {/* Photo Top Header */}
+                <div className="flex items-center justify-between px-2 py-1.5 mb-3 border-b border-[#E7E5E0] font-mono text-[11px] text-[#666666]">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#365CF5]" />
+                    <span className="font-semibold text-[#171717]">ENGINEERING PROFILE</span>
                   </div>
-                  <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 font-semibold">
-                    SECURE ARCHITECTURE
-                  </span>
+                  <span>ODISHA, IN</span>
                 </div>
 
-                <div className="rounded-xl bg-[#070709] p-3.5 border border-white/5 font-mono text-xs text-zinc-300 leading-relaxed overflow-x-auto space-y-1 mb-4">
-                  <div className="text-zinc-500">// Enforce strict authorization &amp; input sanitization</div>
-                  <div><span className="text-purple-400">router</span>.<span className="text-blue-400">post</span>(<span className="text-emerald-400">&quot;/api/scan&quot;</span>, <span className="text-cyan-400">verifyAuth</span>, <span className="text-yellow-400">async</span> (req, res) =&gt; &#123;</div>
-                  <div className="pl-4 text-zinc-500">// Verify repository tenant boundary</div>
-                  <div className="pl-4"><span className="text-yellow-400">const</span> repo = <span className="text-yellow-400">await</span> Repos.<span className="text-blue-400">findOne</span>(&#123; _id: req.body.id, orgId: req.user.orgId &#125;);</div>
-                  <div className="pl-4"><span className="text-purple-400">if</span> (!repo) <span className="text-purple-400">return</span> res.<span className="text-blue-400">status</span>(<span className="text-amber-400">403</span>).<span className="text-blue-400">json</span>(&#123; error: <span className="text-rose-400">&quot;BOLA Denied&quot;</span> &#125;);</div>
-                  <div className="pl-4"><span className="text-yellow-400">await</span> semgrepPipeline.<span className="text-blue-400">trigger</span>(repo);</div>
-                  <div className="pl-4">res.<span className="text-blue-400">json</span>(&#123; status: <span className="text-emerald-400">&quot;scanning&quot;</span> &#125;);</div>
-                  <div>&#125;);</div>
+                {/* Main Photo Frame */}
+                <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden border border-[#E7E5E0] bg-[#F3F2EE]">
+                  <Image
+                    src="/images/chinmaya.jpg"
+                    alt="Chinmaya Kumar Mishra — Full-Stack Developer and Application Security Engineer"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
+                    priority
+                    className="object-cover object-top filter contrast-[1.02] hover:scale-[1.02] transition-transform duration-500 ease-out"
+                  />
+
+                  {/* Gradient Vignette at Bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 pointer-events-none" />
+
+                  {/* Caption Overlay */}
+                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-white/95 backdrop-blur-md border border-[#E7E5E0] shadow-sm pointer-events-none">
+                    <div className="flex items-center justify-between mb-0.5">
+                      <span className="text-xs font-mono font-bold text-[#171717]">
+                        Chinmaya Kumar Mishra
+                      </span>
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#365CF5]" />
+                    </div>
+                    <p className="text-[11px] font-mono text-[#666666]">
+                      Full-Stack Dev | AppSec Engineer
+                    </p>
+                  </div>
                 </div>
 
-                <div className="flex items-center justify-between text-xs font-mono text-zinc-400 pt-2 border-t border-white/10">
-                  <span className="flex items-center gap-1.5 text-zinc-300">
-                    <Code2 className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>MERN Stack Production</span>
+                {/* Core Focus Tags */}
+                <div className="flex items-center justify-between gap-1.5 pt-3 px-1 text-[10px] font-mono text-[#666666]">
+                  <span className="px-2 py-0.5 rounded bg-[#F3F2EE] border border-[#E7E5E0] text-[#171717]">
+                    React · Next.js · Node
                   </span>
-                  <span className="flex items-center gap-1.5 text-zinc-300">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                    <span>Secure by Design</span>
+                  <span className="px-2 py-0.5 rounded bg-[#F3F2EE] border border-[#E7E5E0] text-[#171717]">
+                    OWASP &amp; API Security
+                  </span>
+                  <span className="px-2 py-0.5 rounded bg-[#365CF5]/10 border border-[#365CF5]/20 text-[#365CF5] font-semibold">
+                    AI Integrations
                   </span>
                 </div>
 

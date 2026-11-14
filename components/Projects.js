@@ -7,7 +7,9 @@ import {
   ExternalLink, 
   Github, 
   Maximize2,
-  TrendingUp
+  ShieldCheck,
+  AlertCircle,
+  Wrench
 } from "lucide-react";
 import { projects } from "@/data/portfolioData";
 import { fadeInUp, defaultViewport, cardHoverProps, buttonMotionProps } from "@/lib/motion";
@@ -17,7 +19,7 @@ export default function Projects() {
   const [activeProject, setActiveProject] = useState(null);
 
   return (
-    <section id="projects" className="py-16 md:py-24 relative border-t border-white/10">
+    <section id="projects" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-[#FAF9F6]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
@@ -26,24 +28,24 @@ export default function Projects() {
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInUp}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14 pb-6 border-b border-white/10"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12"
         >
           <div>
-            <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-2">
-              <span className="w-2 h-2 rounded-sm bg-emerald-400" />
-              <span>PROJECTS // 05 // PRODUCTION &amp; TOOLS</span>
+            <div className="flex items-center gap-2 text-[#365CF5] font-mono text-xs font-bold uppercase tracking-widest mb-2.5">
+              <span className="w-2 h-2 rounded-full bg-[#365CF5]" />
+              <span>FEATURED PROJECTS // 04</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Featured Projects
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#171717] tracking-tight font-sans">
+              Production Systems &amp; Developer Tools
             </h2>
           </div>
-          <p className="text-xs font-mono text-zinc-400 max-w-sm">
-            Production web applications and security tools engineered with modern full-stack architectures.
+          <p className="text-xs sm:text-sm text-[#666666] font-sans max-w-sm">
+            Full-stack web applications and security platforms engineered with security-first architectures.
           </p>
         </motion.div>
 
         {/* 3 Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {projects.map((proj, idx) => (
             <motion.div
               key={proj.id}
@@ -53,112 +55,110 @@ export default function Projects() {
               variants={fadeInUp}
               transition={{ delay: idx * 0.08 }}
               {...cardHoverProps}
-              className="rounded-2xl bg-white/[0.03] border border-white/10 p-6 backdrop-blur-md transition-colors flex flex-col justify-between glass-card group"
+              className="rounded-2xl bg-white border border-[#E7E5E0] hover:border-[#365CF5]/50 p-6 sm:p-7 shadow-sm transition-all flex flex-col justify-between"
             >
               <div>
-                {/* Header: index & details button */}
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
-                  <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold">
+                {/* Header: Index & Details Button */}
+                <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[#E7E5E0]">
+                  <div className="flex items-center gap-2 text-[#365CF5] font-mono text-xs font-bold">
                     <FolderGit2 className="w-4 h-4" />
-                    <span>0{idx + 1}</span>
+                    <span>PROJECT 0{idx + 1}</span>
                   </div>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+
+                  <button
                     onClick={() => setActiveProject(proj)}
-                    className="text-[11px] font-mono text-zinc-400 hover:text-emerald-400 transition-colors flex items-center gap-1 px-2 py-0.5 rounded focus:outline-none focus:ring-1 focus:ring-emerald-400"
-                    aria-label={`View details for ${proj.title}`}
+                    className="text-xs font-mono text-[#666666] hover:text-[#365CF5] transition-colors flex items-center gap-1 px-2.5 py-1 rounded bg-[#F3F2EE] hover:bg-[#E7E5E0] focus:outline-none"
+                    aria-label={`View full specification for ${proj.title}`}
                   >
                     <Maximize2 className="w-3 h-3" />
-                    <span>Details</span>
-                  </motion.button>
+                    <span>Specification</span>
+                  </button>
                 </div>
 
                 {/* Title & Subtitle */}
-                <h3 className="text-xl font-bold text-white font-mono tracking-tight mb-1 group-hover:text-emerald-400 transition-colors">
+                <h3 className="text-xl font-bold text-[#171717] font-sans tracking-tight mb-1">
                   {proj.title}
                 </h3>
-                {proj.subtitle && (
-                  <p className="text-[11px] font-mono text-emerald-400/90 mb-4">
-                    {proj.subtitle}
-                  </p>
-                )}
+                <p className="text-xs font-mono text-[#365CF5] font-medium mb-4">
+                  {proj.subtitle}
+                </p>
 
-                {/* Structured Sections: Problem & Built */}
-                <div className="space-y-3 mb-5 text-xs sm:text-sm font-sans">
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-rose-400 font-semibold block mb-1">
-                      Problem
+                {/* Description */}
+                <p className="text-xs sm:text-sm text-[#666666] font-sans leading-relaxed mb-5">
+                  {proj.description}
+                </p>
+
+                {/* Structured Sections: Problem & Implementation */}
+                <div className="space-y-3 mb-5 text-xs font-sans">
+                  <div className="p-3.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0]">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#171717] font-bold flex items-center gap-1.5 mb-1">
+                      <AlertCircle className="w-3 h-3 text-[#E02E2E]" />
+                      <span>The Problem</span>
                     </span>
-                    <p className="text-zinc-300 leading-relaxed">
+                    <p className="text-[#666666] leading-relaxed">
                       {proj.problem}
                     </p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-semibold block mb-1">
-                      Built
+                  <div className="p-3.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0]">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#171717] font-bold flex items-center gap-1.5 mb-1">
+                      <Wrench className="w-3 h-3 text-[#365CF5]" />
+                      <span>Technical Implementation</span>
                     </span>
-                    <p className="text-zinc-300 leading-relaxed">
-                      {proj.built}
+                    <p className="text-[#666666] leading-relaxed">
+                      {proj.implementation}
                     </p>
                   </div>
+
+                  {proj.securityConsiderations && (
+                    <div className="p-3.5 rounded-xl bg-[#365CF5]/5 border border-[#365CF5]/20">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#365CF5] font-bold flex items-center gap-1.5 mb-1">
+                        <ShieldCheck className="w-3.5 h-3.5 text-[#365CF5]" />
+                        <span>Security Considerations</span>
+                      </span>
+                      <p className="text-[#171717] leading-relaxed text-[11px]">
+                        {proj.securityConsiderations}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
-                {/* Tag Row (Stack) */}
-                <div className="mb-4">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 block mb-1.5 font-medium">
-                    Stack
-                  </span>
+                {/* Tech Stack Pills */}
+                <div className="mb-6">
                   <div className="flex flex-wrap gap-1.5">
                     {proj.stack.map((t) => (
                       <span
                         key={t}
-                        className="px-2.5 py-1 rounded bg-white/[0.04] border border-white/10 text-[11px] font-mono text-zinc-200"
+                        className="px-2.5 py-1 rounded-md bg-[#FAF9F6] border border-[#E7E5E0] text-[11px] font-mono text-[#171717]"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
-
-                {/* Impact (Placeholder Metric) */}
-                <div className="p-3 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 mb-6">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-semibold flex items-center gap-1.5 mb-1">
-                    <TrendingUp className="w-3.5 h-3.5" />
-                    <span>Impact &amp; Metric</span>
-                  </span>
-                  <p className="text-xs text-zinc-300 font-sans leading-relaxed">
-                    {proj.impact}
-                  </p>
-                </div>
               </div>
 
-              {/* Action Buttons: GitHub + Live Demo */}
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                <motion.a
-                  {...buttonMotionProps}
+              {/* Action Buttons: GitHub & Live Demo */}
+              <div className="pt-4 border-t border-[#E7E5E0] flex items-center gap-2.5">
+                <a
                   href={proj.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-zinc-300 hover:text-white transition-colors px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/10 hover:border-emerald-500/40"
-                  aria-label={`View ${proj.title} on GitHub`}
+                  className="flex-1 py-2 px-3 rounded-lg bg-[#FAF9F6] hover:bg-[#F3F2EE] border border-[#E7E5E0] text-[#171717] text-xs font-mono font-medium transition-colors flex items-center justify-center gap-1.5 shadow-sm"
                 >
-                  <Github className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>GitHub</span>
-                </motion.a>
+                  <Github className="w-3.5 h-3.5 text-[#666666]" />
+                  <span>Source Code</span>
+                </a>
 
-                <motion.a
-                  {...buttonMotionProps}
+                <a
                   href={proj.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors font-semibold px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30"
-                  aria-label={`Open live demo of ${proj.title}`}
+                  className="flex-1 py-2 px-3 rounded-lg bg-[#171717] hover:bg-[#365CF5] text-white text-xs font-mono font-medium transition-colors flex items-center justify-center gap-1.5 shadow-sm"
                 >
+                  <ExternalLink className="w-3.5 h-3.5" />
                   <span>Live Demo</span>
-                  <ExternalLink className="w-3 h-3" />
-                </motion.a>
+                </a>
               </div>
             </motion.div>
           ))}
@@ -166,7 +166,7 @@ export default function Projects() {
 
       </div>
 
-      {/* Project Details Modal */}
+      {/* Project Specification Modal */}
       <ProjectModal
         project={activeProject}
         onClose={() => setActiveProject(null)}

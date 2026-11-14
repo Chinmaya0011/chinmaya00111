@@ -6,7 +6,6 @@ export default function robots() {
         allow: "/",
       },
     ],
-    sitemap: "https://chinmayakumarmishra.sbs/sitemap.xml",
+    sitemap: "https://www.chinmayakumarmishra.sbs/sitemap.xml",
   };
 }
-

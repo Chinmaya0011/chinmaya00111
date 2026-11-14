@@ -1,174 +1,119 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { personalInfo } from "@/data/portfolioData";
-import { Code2, ShieldCheck, MapPin } from "lucide-react";
+import { Code2, ShieldCheck, Cpu } from "lucide-react";
 import { fadeInUp, defaultViewport, cardHoverProps } from "@/lib/motion";
 
 export default function About() {
+  const pillarIcons = [Code2, ShieldCheck, Cpu];
+
   return (
-    <section id="about" className="py-16 md:py-24 relative border-t border-white/10">
+    <section id="about" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-[#FAF9F6]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
-        {/* Section Label */}
+        {/* Section Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInUp}
-          className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-semibold uppercase tracking-widest mb-6"
+          className="mb-12 max-w-2xl"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          <span>ABOUT</span>
+          <div className="flex items-center gap-2 text-[#365CF5] font-mono text-xs font-bold uppercase tracking-widest mb-2.5">
+            <span className="w-2 h-2 rounded-full bg-[#365CF5]" />
+            <span>ABOUT ME // 01</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#171717] tracking-tight font-sans">
+            {personalInfo.aboutHeading}
+          </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        {/* Narrative Biography Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
           
-          {/* Left / Profile Image Card (5 cols on lg) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={defaultViewport}
             variants={fadeInUp}
-            className="lg:col-span-5 flex justify-center"
+            className="lg:col-span-8 space-y-4 text-base sm:text-lg text-[#666666] leading-relaxed font-sans"
           >
-            <div className="relative w-full max-w-sm sm:max-w-md group">
-              {/* Emerald ambient blur glow behind card */}
-              <div className="absolute -inset-1 bg-gradient-to-tr from-emerald-500/20 via-cyan-500/10 to-emerald-500/30 rounded-3xl blur-2xl opacity-40 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none" />
+            {personalInfo.aboutBio.map((paragraph, idx) => (
+              <p key={idx}>
+                {paragraph}
+              </p>
+            ))}
+          </motion.div>
 
-              {/* Glass Card Container */}
-              <div className="relative rounded-2xl bg-white/[0.03] border border-white/10 group-hover:border-emerald-500/40 p-3 sm:p-3.5 backdrop-blur-md transition-all duration-300 shadow-2xl glass-card">
-                
-                {/* Image Top Status Bar */}
-                <div className="flex items-center justify-between px-2 py-1.5 mb-2.5 font-mono text-[11px] text-zinc-400 border-b border-white/5">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-zinc-200 font-semibold tracking-wider">DEV_PROFILE // 01</span>
-                  </div>
-                  <span className="text-[10px] text-emerald-400/90 font-mono flex items-center gap-1">
-                    <MapPin className="w-3 h-3 text-emerald-400" />
-                    <span>ODISHA, IN</span>
-                  </span>
-                </div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={defaultViewport}
+            variants={fadeInUp}
+            className="lg:col-span-4 p-6 rounded-2xl bg-white border border-[#E7E5E0] shadow-sm space-y-4"
+          >
+            <div className="font-mono text-xs font-bold text-[#171717] uppercase tracking-wider pb-2 border-b border-[#E7E5E0]">
+              Quick Facts
+            </div>
 
-                {/* Main Photo Frame */}
-                <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden border border-white/10 bg-[#0E0E11]">
-                  <Image
-                    src="/images/chinmaya.jpg"
-                    alt="Chinmaya Kumar Mishra - Full-Stack Developer & AppSec"
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
-                    priority
-                    className="object-cover object-top filter contrast-[1.03] brightness-[0.98] group-hover:scale-[1.03] group-hover:contrast-[1.05] transition-all duration-500 ease-out"
-                  />
+            <div className="space-y-3 text-xs font-mono text-[#666666]">
+              <div>
+                <span className="text-[#171717] font-semibold block">PRIMARY DOMAIN</span>
+                <span>Full-Stack Development &amp; AppSec</span>
+              </div>
 
-                  {/* Subtle Gradient Vignette at Bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0B] via-transparent to-transparent opacity-80 pointer-events-none" />
+              <div>
+                <span className="text-[#171717] font-semibold block">LOCATION</span>
+                <span>Odisha, India (Remote / Worldwide)</span>
+              </div>
 
-                  {/* In-photo Tag at Bottom */}
-                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-lg bg-[#0A0A0B]/85 backdrop-blur-md border border-white/10 pointer-events-none">
-                    <div className="flex items-center justify-between mb-0.5">
-                      <span className="text-xs font-mono font-bold text-white tracking-wide">
-                        Chinmaya Kumar Mishra
-                      </span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    </div>
-                    <p className="text-[11px] font-mono text-zinc-400">
-                      Full-Stack Dev · Application Security
-                    </p>
-                  </div>
-                </div>
+              <div>
+                <span className="text-[#171717] font-semibold block">CURRENT WORK</span>
+                <span>Full-Stack Developer @ Secure Code LLC</span>
+              </div>
 
-                {/* Tech Chips Below Photo */}
-                <div className="flex items-center justify-between gap-1.5 pt-3 px-1 text-[10px] font-mono text-zinc-400">
-                  <span className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/5 text-zinc-300">
-                    React · Next.js
-                  </span>
-                  <span className="px-2 py-0.5 rounded bg-white/[0.04] border border-white/5 text-zinc-300">
-                    Node.js · MERN
-                  </span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-                    AppSec Focus
-                  </span>
-                </div>
-
+              <div>
+                <span className="text-[#171717] font-semibold block">CORE TECHNOLOGIES</span>
+                <span>React, Next.js, Node.js, Express, MongoDB, Semgrep</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Right / Content Column (7 cols on lg) */}
-          <div className="lg:col-span-7 flex flex-col justify-center text-left">
-            
-            {/* Heading */}
-            <motion.h2
-              initial="hidden"
-              whileInView="visible"
-              viewport={defaultViewport}
-              variants={fadeInUp}
-              className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 font-mono"
-            >
-              {personalInfo.aboutHeading}
-            </motion.h2>
+        </div>
 
-            {/* Text */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={defaultViewport}
-              variants={fadeInUp}
-              className="text-zinc-300 text-sm sm:text-base leading-relaxed font-sans mb-8 whitespace-pre-line space-y-3"
-            >
-              {personalInfo.aboutText}
-            </motion.div>
-
-            {/* Two Cards: Build & Secure */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* 3 Pillars Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {personalInfo.aboutPillars.map((pillar, idx) => {
+            const Icon = pillarIcons[idx] || Code2;
+            return (
               <motion.div
+                key={pillar.title}
                 initial="hidden"
                 whileInView="visible"
                 viewport={defaultViewport}
                 variants={fadeInUp}
+                transition={{ delay: idx * 0.08 }}
                 {...cardHoverProps}
-                className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 transition-colors flex items-start gap-3.5 text-left glass-card"
+                className="p-6 rounded-2xl bg-white border border-[#E7E5E0] hover:border-[#365CF5]/50 shadow-sm transition-all flex flex-col justify-between"
               >
-                <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
-                  <Code2 className="w-4 h-4" />
-                </div>
                 <div>
-                  <h3 className="text-sm font-bold text-white font-mono uppercase tracking-wider text-emerald-400">
-                    Build
+                  <div className="w-10 h-10 rounded-xl bg-[#F3F2EE] border border-[#E7E5E0] flex items-center justify-center text-[#365CF5] mb-4">
+                    <Icon className="w-5 h-5" />
+                  </div>
+
+                  <h3 className="text-base font-bold text-[#171717] font-sans mb-2">
+                    {pillar.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-zinc-300 font-sans mt-1 leading-relaxed">
-                    {personalInfo.aboutPillars[0].description}
+
+                  <p className="text-xs sm:text-sm text-[#666666] font-sans leading-relaxed">
+                    {pillar.description}
                   </p>
                 </div>
               </motion.div>
-
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={defaultViewport}
-                variants={fadeInUp}
-                {...cardHoverProps}
-                className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/40 transition-colors flex items-start gap-3.5 text-left glass-card"
-              >
-                <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 shrink-0 mt-0.5">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-white font-mono uppercase tracking-wider text-emerald-400">
-                    Secure
-                  </h3>
-                  <p className="text-xs sm:text-sm text-zinc-300 font-sans mt-1 leading-relaxed">
-                    {personalInfo.aboutPillars[1].description}
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-
-          </div>
-
+            );
+          })}
         </div>
 
       </div>

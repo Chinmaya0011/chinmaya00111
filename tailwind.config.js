@@ -9,14 +9,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#0A0A0B",
-        surface: "#111113",
-        "surface-card": "rgba(255, 255, 255, 0.03)",
-        border: "rgba(255, 255, 255, 0.1)",
+        background: "#FAF9F6",
+        surface: "#FFFFFF",
+        "surface-muted": "#F3F2EE",
+        border: "#E7E5E0",
+        "border-dark": "#D5D3CC",
+        primary: "#171717",
+        secondary: "#666666",
         accent: {
-          DEFAULT: "#10B981",
-          hover: "#34D399",
-          muted: "rgba(16, 185, 129, 0.15)",
+          DEFAULT: "#365CF5",
+          hover: "#2548D9",
+          subtle: "rgba(54, 92, 245, 0.08)",
         },
       },
       fontFamily: {
@@ -27,6 +30,13 @@ module.exports = {
           "Segoe UI",
           "Roboto",
           "sans-serif",
+        ],
+        serif: [
+          "Newsreader",
+          "Georgia",
+          "Cambria",
+          "'Times New Roman'",
+          "serif",
         ],
         mono: [
           "'JetBrains Mono'",

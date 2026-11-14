@@ -10,12 +10,12 @@ import {
   Mail, 
   Github, 
   Linkedin, 
-  Sparkles,
   ArrowRight,
   ShieldCheck,
   User,
   Layers,
-  Briefcase
+  Briefcase,
+  GraduationCap
 } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 
@@ -35,7 +35,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
   const actions = [
     {
       id: "projects",
-      name: "Explore Featured Projects",
+      name: "Explore Featured Engineering Projects",
       category: "Navigation",
       icon: FolderGit2,
       run: () => {
@@ -69,14 +69,24 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
       category: "Navigation",
       icon: Layers,
       run: () => {
-        document.getElementById("expertise")?.scrollIntoView({ behavior: "smooth" });
+        document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
+        onClose();
+      }
+    },
+    {
+      id: "appsec",
+      name: "Explore Application Security Capabilities",
+      category: "Security",
+      icon: ShieldCheck,
+      run: () => {
+        document.getElementById("appsec")?.scrollIntoView({ behavior: "smooth" });
         onClose();
       }
     },
     {
       id: "research",
-      name: "Read Security Vulnerability Research",
-      category: "Navigation",
+      name: "Read Security Vulnerability Deep-Dives",
+      category: "Research",
       icon: ShieldCheck,
       run: () => {
         document.getElementById("research")?.scrollIntoView({ behavior: "smooth" });
@@ -85,8 +95,8 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
     },
     {
       id: "experience",
-      name: "View Work Experience & Roles",
-      category: "Navigation",
+      name: "View Work History & Roadmap",
+      category: "Experience",
       icon: Briefcase,
       run: () => {
         document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
@@ -94,8 +104,18 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
       }
     },
     {
+      id: "credentials",
+      name: "View Academic Background & Certifications",
+      category: "Academics",
+      icon: GraduationCap,
+      run: () => {
+        document.getElementById("credentials")?.scrollIntoView({ behavior: "smooth" });
+        onClose();
+      }
+    },
+    {
       id: "about",
-      name: "About Philosophy & Story",
+      name: "About Philosophy & Engineering Pillars",
       category: "Navigation",
       icon: User,
       run: () => {
@@ -115,7 +135,7 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
     },
     {
       id: "github",
-      name: "Open GitHub Profile",
+      name: "Open GitHub Profile (@chinmaya0011)",
       category: "External",
       icon: Github,
       run: () => {
@@ -159,17 +179,17 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150"
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-xl bg-[#0E0E11] border border-white/10 rounded-2xl shadow-2xl overflow-hidden glass-card"
+        className="relative w-full max-w-xl bg-white border border-[#E7E5E0] rounded-2xl shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3.5 border-b border-white/10 gap-3">
-          <Search className="w-4 h-4 text-emerald-400 shrink-0" />
+        <div className="flex items-center px-4 py-3.5 border-b border-[#E7E5E0] gap-3 bg-white">
+          <Search className="w-4 h-4 text-[#365CF5] shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -178,12 +198,12 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
               setSearch(e.target.value);
               setSelectedIndex(0);
             }}
-            placeholder="Search commands, sections, or actions..."
-            className="w-full bg-transparent border-none text-white text-sm focus:outline-none placeholder-zinc-500 font-mono"
+            placeholder="Search sections, projects, or commands..."
+            className="w-full bg-transparent border-none text-[#171717] text-sm focus:outline-none placeholder-[#888888] font-mono"
           />
           <button
             onClick={onClose}
-            className="p-1 rounded bg-white/[0.04] text-zinc-400 hover:text-white transition-colors"
+            className="p-1 rounded bg-[#FAF9F6] text-[#666666] hover:text-[#171717] border border-[#E7E5E0] transition-colors"
             aria-label="Close command palette"
           >
             <X className="w-3.5 h-3.5" />
@@ -191,9 +211,9 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
         </div>
 
         {/* Action List */}
-        <div className="max-h-72 overflow-y-auto p-2 space-y-1">
+        <div className="max-h-72 overflow-y-auto p-2 space-y-1 bg-white">
           {filtered.length === 0 ? (
-            <div className="p-6 text-center text-xs font-mono text-zinc-500">
+            <div className="p-6 text-center text-xs font-mono text-[#666666]">
               No matching commands found.
             </div>
           ) : (
@@ -207,20 +227,20 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`flex items-center justify-between px-3 py-2.5 rounded-xl cursor-pointer transition-colors text-xs font-mono ${
                     isSelected
-                      ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"
-                      : "text-zinc-300 hover:bg-white/[0.04] border border-transparent"
+                      ? "bg-[#365CF5]/10 text-[#365CF5] border border-[#365CF5]/25"
+                      : "text-[#171717] hover:bg-[#FAF9F6] border border-transparent"
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
-                    <Icon className={`w-4 h-4 ${isSelected ? "text-emerald-400" : "text-zinc-400"}`} />
-                    <span className="font-medium text-white">{action.name}</span>
+                    <Icon className={`w-4 h-4 ${isSelected ? "text-[#365CF5]" : "text-[#666666]"}`} />
+                    <span className="font-semibold">{action.name}</span>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-zinc-500 uppercase tracking-wider">
+                    <span className="text-[10px] text-[#666666] uppercase tracking-wider">
                       {action.category}
                     </span>
-                    <ArrowRight className={`w-3 h-3 ${isSelected ? "text-emerald-400" : "text-zinc-600"}`} />
+                    <ArrowRight className={`w-3.5 h-3.5 ${isSelected ? "text-[#365CF5]" : "text-[#CCCCCC]"}`} />
                   </div>
                 </div>
               );
@@ -229,16 +249,15 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
         </div>
 
         {/* Footer shortcuts */}
-        <div className="px-4 py-2.5 bg-white/[0.02] border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-zinc-500">
+        <div className="px-4 py-2.5 bg-[#FAF9F6] border-t border-[#E7E5E0] flex items-center justify-between text-[10px] font-mono text-[#666666]">
           <div className="flex items-center gap-3">
             <span>↑↓ Navigate</span>
             <span>↵ Select</span>
             <span>ESC Close</span>
           </div>
-          <span className="text-emerald-400 font-semibold">chinmaya00111</span>
+          <span className="text-[#365CF5] font-semibold">Chinmaya Kumar Mishra</span>
         </div>
       </div>
     </div>
   );
 }
-
