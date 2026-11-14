@@ -2,24 +2,7 @@ const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
 
-// 1. Create Minimal "CM" Monogram Favicon SVG
-function createFaviconSvg(size, bgColor = '#171717', textColor = '#FFFFFF', accentColor = '#365CF5') {
-  return `
-<svg width="${size}" height="${size}" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" rx="96" fill="${bgColor}"/>
-  <!-- Geometric "CM" Monogram -->
-  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="230" letter-spacing="-14">
-    <!-- C in pure white -->
-    <text x="64" y="335" fill="${textColor}">C</text>
-    <!-- M in electric blue -->
-    <text x="215" y="335" fill="${accentColor}">M</text>
-  </g>
-  <!-- Minimal geometric security dot -->
-  <circle cx="430" cy="335" r="22" fill="${accentColor}" />
-</svg>`;
-}
-
-// 2. Create Editorial OpenGraph Image (1200 x 630)
+// 1. Create Editorial OpenGraph Image SVG (1200 x 630)
 function createOgSvg(photoBase64) {
   const width = 1200;
   const height = 630;
@@ -115,7 +98,7 @@ function createOgSvg(photoBase64) {
 </svg>`;
 }
 
-// 3. Create Multi-Resolution ICO buffer
+// 2. Create Multi-Resolution ICO buffer
 function createIco(pngBuffers) {
   const header = Buffer.alloc(6);
   header.writeUInt16LE(0, 0); // reserved
@@ -127,8 +110,8 @@ function createIco(pngBuffers) {
 
   for (const { buffer, size } of pngBuffers) {
     const entry = Buffer.alloc(16);
-    entry.writeUInt8(size >= 256 ? 0 : size, 0); // width
-    entry.writeUInt8(size >= 256 ? 0 : size, 1); // height
+    entry.writeUInt8(size >= 256 ? 0 : size, 0); // width (0 = 256)
+    entry.writeUInt8(size >= 256 ? 0 : size, 1); // height (0 = 256)
     entry.writeUInt8(0, 2); // color count
     entry.writeUInt8(0, 3); // reserved
     entry.writeUInt16LE(1, 4); // planes
@@ -144,56 +127,95 @@ function createIco(pngBuffers) {
 
 async function buildAll() {
   const publicDir = path.join(__dirname, '..', 'public');
+  const imagesDir = path.join(publicDir, 'images');
   if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir, { recursive: true });
+  if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
 
-  console.log('Generating Google-Compliant Favicons & Monogram Assets...');
-  const svg512 = Buffer.from(createFaviconSvg(512));
+  const sourceIconPath = path.join(publicDir, 'chinmaya.png');
+  if (!fs.existsSync(sourceIconPath)) {
+    throw new Error(`Source icon ${sourceIconPath} not found!`);
+  }
 
-  const png16 = await sharp(svg512).resize(16, 16).png().toBuffer();
-  const png32 = await sharp(svg512).resize(32, 32).png().toBuffer();
-  const png48 = await sharp(svg512).resize(48, 48).png().toBuffer();
-  const png96 = await sharp(svg512).resize(96, 96).png().toBuffer();
-  const png180 = await sharp(svg512).resize(180, 180).png().toBuffer();
-  const png192 = await sharp(svg512).resize(192, 192).png().toBuffer();
-  const png512 = await sharp(svg512).resize(512, 512).png().toBuffer();
+  console.log(`Loading source image: ${sourceIconPath}...`);
+  const sourceBuffer = fs.readFileSync(sourceIconPath);
 
+  console.log('Generating crisp multi-resolution favicons and touch icons...');
+  
+  // Icon sizes needed across standard browsers, Google search, Apple iOS, and Android PWA
+  const png16 = await sharp(sourceBuffer).resize(16, 16).png().toBuffer();
+  const png32 = await sharp(sourceBuffer).resize(32, 32).png().toBuffer();
+  const png48 = await sharp(sourceBuffer).resize(48, 48).png().toBuffer();
+  const png96 = await sharp(sourceBuffer).resize(96, 96).png().toBuffer();
+  const png180 = await sharp(sourceBuffer).resize(180, 180).png().toBuffer();
+  const png192 = await sharp(sourceBuffer).resize(192, 192).png().toBuffer();
+  const png256 = await sharp(sourceBuffer).resize(256, 256).png().toBuffer();
+  const png512 = await sharp(sourceBuffer).resize(512, 512).png().toBuffer();
+
+  // 1. Multi-Resolution ICO containing 16x16, 32x32, 48x48, and 256x256
   const icoBuffer = createIco([
     { buffer: png16, size: 16 },
     { buffer: png32, size: 32 },
-    { buffer: png48, size: 48 }
+    { buffer: png48, size: 48 },
+    { buffer: png256, size: 256 },
   ]);
-
-  // Write Google-compliant favicon suite to public/
   fs.writeFileSync(path.join(publicDir, 'favicon.ico'), icoBuffer);
-  fs.writeFileSync(path.join(publicDir, 'favicon-48x48.png'), png48);
-  fs.writeFileSync(path.join(publicDir, 'favicon-96x96.png'), png96);
-  fs.writeFileSync(path.join(publicDir, 'icon.png'), png32);
-  fs.writeFileSync(path.join(publicDir, 'apple-touch-icon.png'), png180);
-  fs.writeFileSync(path.join(publicDir, 'apple-icon.png'), png180);
-  fs.writeFileSync(path.join(publicDir, 'android-chrome-192x192.png'), png192);
-  fs.writeFileSync(path.join(publicDir, 'android-chrome-512x512.png'), png512);
-  fs.writeFileSync(path.join(publicDir, 'icon-192.png'), png192);
-  fs.writeFileSync(path.join(publicDir, 'icon-512.png'), png512);
+  console.log(`Saved favicon.ico (${icoBuffer.length} bytes, 4 resolutions)`);
 
-  console.log('Generating Editorial OpenGraph Image (1200x630)...');
-  
-  // Read chinmaya.jpg for composite
-  const photoPath = path.join(publicDir, 'images', 'chinmaya.jpg');
-  let photoDataUri = '';
-  if (fs.existsSync(photoPath)) {
-    const photoBuffer = fs.readFileSync(photoPath);
-    // Resize photo to optimize svg embedding
-    const resizedPhoto = await sharp(photoBuffer).resize(400, 500, { fit: 'cover', position: 'top' }).jpeg({ quality: 90 }).toBuffer();
-    photoDataUri = `data:image/jpeg;base64,${resizedPhoto.toString('base64')}`;
+  // 2. Individual PNG favicons and app icons
+  const iconFiles = [
+    { name: 'favicon-16x16.png', buffer: png16 },
+    { name: 'favicon-32x32.png', buffer: png32 },
+    { name: 'icon.png', buffer: png32 },
+    { name: 'favicon-48x48.png', buffer: png48 },
+    { name: 'favicon-96x96.png', buffer: png96 },
+    { name: 'apple-icon.png', buffer: png180 },
+    { name: 'apple-touch-icon.png', buffer: png180 },
+    { name: 'icon-192.png', buffer: png192 },
+    { name: 'android-chrome-192x192.png', buffer: png192 },
+    { name: 'icon-512.png', buffer: png512 },
+    { name: 'android-chrome-512x512.png', buffer: png512 },
+  ];
+
+  for (const { name, buffer } of iconFiles) {
+    fs.writeFileSync(path.join(publicDir, name), buffer);
+    console.log(`Saved ${name} (${buffer.length} bytes)`);
   }
+
+  // 3. Update optimized profile image in public/images/chinmaya.jpg and public/chinmaya.jpg
+  const oldPhotoPath = path.join(imagesDir, 'chinmaya.jpg');
+  const backupBikePath = path.join(imagesDir, 'chinmaya-bike.jpg');
+  if (fs.existsSync(oldPhotoPath) && !fs.existsSync(backupBikePath)) {
+    fs.copyFileSync(oldPhotoPath, backupBikePath);
+    console.log(`Backed up previous photo to ${backupBikePath}`);
+  }
+
+  const optimizedPhotoJpeg = await sharp(sourceBuffer)
+    .resize(1024, 1024, { fit: 'cover', position: 'top' })
+    .jpeg({ quality: 92, mozjpeg: true })
+    .toBuffer();
+
+  fs.writeFileSync(path.join(imagesDir, 'chinmaya.jpg'), optimizedPhotoJpeg);
+  console.log(`Updated public/images/chinmaya.jpg (${optimizedPhotoJpeg.length} bytes)`);
+
+  fs.writeFileSync(path.join(publicDir, 'chinmaya.jpg'), optimizedPhotoJpeg);
+  console.log(`Restored/Updated public/chinmaya.jpg (${optimizedPhotoJpeg.length} bytes)`);
+
+  // 4. Generate Editorial OpenGraph Image (1200x630)
+  console.log('Generating Editorial OpenGraph Image (1200x630)...');
+  const ogPhotoBuffer = await sharp(sourceBuffer)
+    .resize(400, 530, { fit: 'cover', position: 'top' })
+    .jpeg({ quality: 92 })
+    .toBuffer();
+  const photoDataUri = `data:image/jpeg;base64,${ogPhotoBuffer.toString('base64')}`;
 
   const ogSvg = Buffer.from(createOgSvg(photoDataUri));
   const ogPng = await sharp(ogSvg).resize(1200, 630).png({ quality: 95 }).toBuffer();
 
   fs.writeFileSync(path.join(publicDir, 'og-image.png'), ogPng);
   fs.writeFileSync(path.join(publicDir, 'opengraph-image.png'), ogPng);
+  console.log('Generated og-image.png and opengraph-image.png');
 
-  console.log('All branding and metadata assets generated successfully!');
+  console.log('All branding, icon suite, and metadata assets updated successfully!');
 }
 
 buildAll().catch(err => {

@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { 
-  ArrowRight, 
-  FileDown, 
-  MapPin, 
-  Mail, 
-  Github, 
+import {
+  ArrowRight,
+  FileDown,
+  MapPin,
+  Mail,
+  Github,
   Linkedin,
   ShieldCheck,
   CheckCircle2,
@@ -63,11 +63,11 @@ export default function Hero() {
   return (
     <>
       <section className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24">
-        
+
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 w-full">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
+
             {/* Left Column (7 cols): Editorial Typography & Introduction */}
             <motion.div
               variants={staggerContainer(0.08, 0.05)}
@@ -101,16 +101,16 @@ export default function Hero() {
               </motion.div>
 
               {/* Main Headline */}
-              <motion.h1 
-                variants={fadeInUp} 
+              <motion.h1
+                variants={fadeInUp}
                 className="text-3xl sm:text-5xl font-extrabold text-[#171717] tracking-tight leading-[1.12] mb-5"
               >
                 {personalInfo.headline}
               </motion.h1>
 
               {/* Description */}
-              <motion.p 
-                variants={fadeInUp} 
+              <motion.p
+                variants={fadeInUp}
                 className="text-[#666666] text-base sm:text-lg leading-relaxed mb-8 max-w-xl font-sans"
               >
                 {personalInfo.heroIntro}
@@ -190,7 +190,7 @@ export default function Hero() {
               className="lg:col-span-5 flex justify-center"
             >
               <div className="relative w-full max-w-md bg-white border border-[#E7E5E0] rounded-2xl p-4 shadow-sm">
-                
+
                 {/* Photo Top Header */}
                 <div className="flex items-center justify-between px-2 py-1.5 mb-3 border-b border-[#E7E5E0] font-mono text-[11px] text-[#666666]">
                   <div className="flex items-center gap-1.5">
@@ -203,7 +203,7 @@ export default function Hero() {
                 {/* Main Photo Frame */}
                 <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden border border-[#E7E5E0] bg-[#F3F2EE]">
                   <Image
-                    src="/images/chinmaya.jpg"
+                    src="/images/chinmaya.png"
                     alt="Chinmaya Kumar Mishra — Full-Stack Developer and Application Security Engineer"
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
