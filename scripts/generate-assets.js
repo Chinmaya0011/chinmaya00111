@@ -200,6 +200,11 @@ async function buildAll() {
   fs.writeFileSync(path.join(publicDir, 'chinmaya.jpg'), optimizedPhotoJpeg);
   console.log(`Restored/Updated public/chinmaya.jpg (${optimizedPhotoJpeg.length} bytes)`);
 
+  // Ensure public/images/chinmaya.png is synchronized for src="/images/chinmaya.png"
+  const destImagesPng = path.join(imagesDir, 'chinmaya.png');
+  fs.copyFileSync(sourceIconPath, destImagesPng);
+  console.log(`Synced public/images/chinmaya.png (${fs.statSync(destImagesPng).size} bytes)`);
+
   // 4. Generate Editorial OpenGraph Image (1200x630)
   console.log('Generating Editorial OpenGraph Image (1200x630)...');
   const ogPhotoBuffer = await sharp(sourceBuffer)

@@ -203,7 +203,7 @@ export default function Hero() {
                 {/* Main Photo Frame */}
                 <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden border border-[#E7E5E0] bg-[#F3F2EE]">
                   <Image
-                    src="/images/chinmaya.png"
+                    src="/chinmaya.png"
                     alt="Chinmaya Kumar Mishra — Full-Stack Developer and Application Security Engineer"
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
