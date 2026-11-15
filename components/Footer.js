@@ -13,10 +13,10 @@ export default function Footer() {
   return (
     <footer className="bg-[#FAF9F6] border-t border-[#E7E5E0] py-14 text-[#666666] relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        
+
         {/* Main Footer Block */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-[#E7E5E0]">
-          
+
           {/* Brand Identity */}
           <div>
             <div className="flex items-center gap-2.5 mb-2">
@@ -108,13 +108,13 @@ export default function Footer() {
               href="https://www.seobility.net/en/seocheck/check?url=https%3A%2F%2Fwww.chinmayakumarmishra.sbs%2F"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center hover:opacity-80 transition-opacity"
+              className="inline-flex items-center hover:opacity-85 transition-opacity"
               title="Seobility Score for chinmayakumarmishra.sbs"
             >
               <img
                 src="https://app.seobility.net/widget/widget.png?url=https%3A%2F%2Fwww.chinmayakumarmishra.sbs%2F"
                 alt="Seobility Score for chinmayakumarmishra.sbs"
-                className="h-5 w-auto object-contain"
+                className="h-8 sm:h-9 w-auto object-contain rounded drop-shadow-xs"
               />
             </a>
           </div>
