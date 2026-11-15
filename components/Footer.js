@@ -100,9 +100,23 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-[#666666]">
-          <div>
-            &copy; {new Date().getFullYear()} {personalInfo.name}. Engineered in Odisha, India.
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#666666]">
+          <div className="flex flex-wrap items-center gap-3">
+            <span>&copy; {new Date().getFullYear()} {personalInfo.name}. Engineered in Odisha, India.</span>
+            <span className="text-[#E7E5E0] hidden sm:inline">•</span>
+            <a
+              href="https://www.seobility.net/en/seocheck/check?url=https%3A%2F%2Fwww.chinmayakumarmishra.sbs%2F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center hover:opacity-80 transition-opacity"
+              title="Seobility Score for chinmayakumarmishra.sbs"
+            >
+              <img
+                src="https://app.seobility.net/widget/widget.png?url=https%3A%2F%2Fwww.chinmayakumarmishra.sbs%2F"
+                alt="Seobility Score for chinmayakumarmishra.sbs"
+                className="h-5 w-auto object-contain"
+              />
+            </a>
           </div>
           <div className="flex items-center gap-2">
             <span>Built with Next.js, Tailwind CSS &amp; Framer Motion</span>
