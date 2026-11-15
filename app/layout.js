@@ -1,4 +1,17 @@
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 const siteUrl = "https://www.chinmayakumarmishra.sbs";
 
@@ -10,32 +23,26 @@ export const viewport = {
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Chinmaya Kumar Mishra | Full-Stack Developer & Application Security Engineer",
+  title: "Chinmaya Kumar Mishra | AI Application Security Engineer & Full-Stack Developer",
   description:
-    "Explore Chinmaya Kumar Mishra's (Chinmaya Mishra) professional portfolio featuring full-stack development, application security, API security, secure software engineering, and production web applications.",
+    "Chinmaya Kumar Mishra is an AI Application Security Engineer and Full-Stack Developer working on LLM-powered vulnerability analysis, secure code review, and AI-powered security tools.",
   keywords: [
     "Chinmaya Kumar Mishra",
-    "Chinmay Kumar Mishra",
-    "Chinmaya Mishra",
-    "Chinmay Mishra",
-    "Chinmaya K Mishra",
-    "Chinmaya K. Mishra",
-    "Chinmaya Kumar Mishra Developer",
-    "Chinmaya Kumar Mishra AppSec",
-    "Chinmaya Mishra Odisha",
-    "Full-Stack Developer",
-    "Application Security Engineer",
-    "AppSec Engineer",
-    "MERN Stack Developer",
-    "Next.js Developer",
-    "React Developer",
-    "Node.js Developer",
-    "API Security",
-    "Web Application Security",
+    "AI Application Security Engineer",
+    "Full-Stack Engineer",
+    "Vulnerability Analysis",
+    "AI Security",
     "Secure Code Review",
-    "OWASP Top 10",
-    "chinmaya0011",
-    "chinmaya00111",
+    "LLM Security",
+    "RAG Security",
+    "Next.js",
+    "React",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "OWASP",
+    "OAuth 2.0",
+    "GitHub Apps",
   ],
   authors: [{ name: "Chinmaya Kumar Mishra", url: `${siteUrl}/` }],
   creator: "Chinmaya Kumar Mishra",
@@ -74,8 +81,8 @@ export const metadata = {
     google: "XWfRmtiHt4gGRl2kjgSULgG3lEOqQ0kQMCd688OF3G8",
   },
   openGraph: {
-    title: "Chinmaya Kumar Mishra | Full-Stack Developer & AppSec",
-    description: "Building modern software and engineering security into every layer.",
+    title: "Chinmaya Kumar Mishra | AI Application Security Engineer & Full-Stack Developer",
+    description: "Chinmaya Kumar Mishra is an AI Application Security Engineer and Full-Stack Developer working on LLM-powered vulnerability analysis, secure code review, and AI-powered security tools.",
     url: `${siteUrl}/`,
     siteName: "Chinmaya Kumar Mishra",
     locale: "en_IN",
@@ -85,14 +92,14 @@ export const metadata = {
         url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
-        alt: "Chinmaya Kumar Mishra — Full-Stack Developer and Application Security Engineer",
+        alt: "Chinmaya Kumar Mishra — AI Application Security Engineer and Full-Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chinmaya Kumar Mishra | Full-Stack Developer & AppSec",
-    description: "Full-stack engineering, application security, and AI-powered systems.",
+    title: "Chinmaya Kumar Mishra | AI Application Security Engineer & Full-Stack Developer",
+    description: "Chinmaya Kumar Mishra is an AI Application Security Engineer and Full-Stack Developer working on LLM-powered vulnerability analysis, secure code review, and AI-powered security tools.",
     images: [`${siteUrl}/og-image.png`],
   },
 };
@@ -112,13 +119,12 @@ const structuredData = {
         "Chinmaya Mishra",
         "Chinmay Mishra",
         "Chinmaya K. Mishra",
-        "Chinmay K. Mishra",
         "chinmaya0011",
         "chinmaya00111",
       ],
       url: `${siteUrl}/`,
-      image: `${siteUrl}/images/chinmaya.jpg`,
-      jobTitle: ["Full-Stack Developer", "Application Security Engineer"],
+      image: `${siteUrl}/chinmaya.png`,
+      jobTitle: ["AI Application Security Engineer", "Full-Stack Engineer"],
       worksFor: {
         "@type": "Organization",
         name: "Secure Code LLC",
@@ -129,6 +135,7 @@ const structuredData = {
       },
       address: {
         "@type": "PostalAddress",
+        addressLocality: "Bhubaneswar",
         addressRegion: "Odisha",
         addressCountry: "IN",
       },
@@ -137,25 +144,23 @@ const structuredData = {
         "https://www.linkedin.com/in/chinmaya00111/",
       ],
       knowsAbout: [
-        "Full-Stack Development",
         "Application Security",
+        "AI-Assisted Vulnerability Analysis",
+        "LLM & RAG Security",
+        "Secure Code Review",
         "API Security",
-        "AI Security",
-        "Web Application Security",
-        "Secure Software Engineering",
-        "JavaScript",
-        "React",
+        "Full-Stack Engineering",
         "Next.js",
+        "React",
         "Node.js",
         "Express.js",
         "MongoDB",
         "OWASP Top 10",
-        "Secure Code Review",
         "OAuth 2.0",
-        "Semgrep",
+        "GitHub Apps",
       ],
       description:
-        "Chinmaya Kumar Mishra (also known as Chinmaya Mishra or Chinmay) is a Full-Stack Developer and Application Security Engineer based in Odisha, India, specializing in React, Next.js, Node.js, Express, MongoDB, and defensive web/API security.",
+        "Chinmaya Kumar Mishra is an AI Application Security Engineer and Full-Stack Developer working on LLM-powered vulnerability analysis, secure code review, and AI-powered security tools.",
     },
     {
       "@type": "WebSite",
@@ -165,7 +170,7 @@ const structuredData = {
       alternateName: ["Chinmaya Mishra", "Chinmay Kumar Mishra"],
       inLanguage: "en-IN",
       description:
-        "Official portfolio and engineering publications of Chinmaya Kumar Mishra: Full-Stack Developer & Application Security Engineer.",
+        "Official portfolio of Chinmaya Kumar Mishra: AI Application Security Engineer & Full-Stack Developer.",
       publisher: {
         "@id": `${siteUrl}/#person`,
       },
@@ -174,7 +179,7 @@ const structuredData = {
       "@type": "ProfilePage",
       "@id": `${siteUrl}/#profilepage`,
       url: `${siteUrl}/`,
-      name: "Chinmaya Kumar Mishra | Full-Stack Developer & Application Security Engineer",
+      name: "Chinmaya Kumar Mishra | AI Application Security Engineer & Full-Stack Developer",
       isPartOf: {
         "@id": `${siteUrl}/#website`,
       },
@@ -187,14 +192,17 @@ const structuredData = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="min-h-screen bg-[#FAF9F6] text-[#171717] antialiased selection:bg-[#365CF5]/15 selection:text-[#171717]">
+      <body
+        suppressHydrationWarning
+        className={`min-h-screen bg-[#FAF9F6] text-[#171717] antialiased selection:bg-[#365CF5]/15 selection:text-[#171717] ${inter.className}`}
+      >
         {children}
       </body>
     </html>

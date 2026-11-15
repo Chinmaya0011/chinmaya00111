@@ -15,7 +15,8 @@ import {
   User,
   Layers,
   Briefcase,
-  GraduationCap
+  GraduationCap,
+  BookOpen
 } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 
@@ -34,8 +35,18 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
 
   const actions = [
     {
+      id: "blog",
+      name: "Read Engineering & AppSec Blog",
+      category: "Publications",
+      icon: BookOpen,
+      run: () => {
+        window.location.href = "/blogs";
+        onClose();
+      }
+    },
+    {
       id: "projects",
-      name: "Explore Featured Engineering Projects",
+      name: "Explore Selected Engineering Work",
       category: "Navigation",
       icon: FolderGit2,
       run: () => {
@@ -44,18 +55,8 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
       }
     },
     {
-      id: "terminal-scan",
-      name: "Run Security SAST Scan in Terminal",
-      category: "Interactive",
-      icon: Terminal,
-      run: () => {
-        document.getElementById("terminal")?.scrollIntoView({ behavior: "smooth" });
-        onClose();
-      }
-    },
-    {
       id: "resume",
-      name: "Download Resume (Full-Stack & AppSec)",
+      name: "Download Resume (AI AppSec & Full-Stack)",
       category: "Recruitment",
       icon: FileDown,
       run: () => {
@@ -64,52 +65,32 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
       }
     },
     {
-      id: "skills",
-      name: "View Technical Capabilities & Stack",
+      id: "services",
+      name: "Services & Technical Consulting",
+      category: "Services",
+      icon: Briefcase,
+      run: () => {
+        document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+        onClose();
+      }
+    },
+    {
+      id: "expertise",
+      name: "View Technical Expertise (3 Focus Areas)",
       category: "Navigation",
       icon: Layers,
       run: () => {
-        document.getElementById("skills")?.scrollIntoView({ behavior: "smooth" });
-        onClose();
-      }
-    },
-    {
-      id: "appsec",
-      name: "Explore Application Security Capabilities",
-      category: "Security",
-      icon: ShieldCheck,
-      run: () => {
-        document.getElementById("appsec")?.scrollIntoView({ behavior: "smooth" });
-        onClose();
-      }
-    },
-    {
-      id: "research",
-      name: "Read Security Vulnerability Deep-Dives",
-      category: "Research",
-      icon: ShieldCheck,
-      run: () => {
-        document.getElementById("research")?.scrollIntoView({ behavior: "smooth" });
+        document.getElementById("expertise")?.scrollIntoView({ behavior: "smooth" });
         onClose();
       }
     },
     {
       id: "experience",
-      name: "View Work History & Roadmap",
+      name: "View Professional Work Experience",
       category: "Experience",
       icon: Briefcase,
       run: () => {
         document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
-        onClose();
-      }
-    },
-    {
-      id: "credentials",
-      name: "View Academic Background & Certifications",
-      category: "Academics",
-      icon: GraduationCap,
-      run: () => {
-        document.getElementById("credentials")?.scrollIntoView({ behavior: "smooth" });
         onClose();
       }
     },

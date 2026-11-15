@@ -1,12 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, FileDown, Github, Linkedin, Search } from "lucide-react";
-import ResumeModal from "./ResumeModal";
-import CommandPalette from "./CommandPalette";
+import dynamic from "next/dynamic";
+
+const ResumeModal = dynamic(() => import("./ResumeModal"), { ssr: false });
+const CommandPalette = dynamic(() => import("./CommandPalette"), { ssr: false });
 
 export default function Navbar() {
+  const pathname = usePathname() || "/";
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
@@ -25,37 +29,54 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-
-      const sections = ["about", "skills", "appsec", "projects", "research", "experience", "contact"];
-      const scrollPos = window.scrollY + 200;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          if (window.scrollY < 200) setActiveSection("home");
+          ticking = false;
+        });
+        ticking = true;
       }
-      if (window.scrollY < 200) setActiveSection("home");
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    // Zero-reflow IntersectionObserver for active section tracking
+    const sections = ["about", "expertise", "services", "projects", "experience", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const navLinks = [
     { label: "About", href: "#about", id: "about" },
-    { label: "Skills", href: "#skills", id: "skills" },
-    { label: "AppSec", href: "#appsec", id: "appsec" },
-    { label: "Projects", href: "#projects", id: "projects" },
-    { label: "Research", href: "#research", id: "research" },
+    { label: "Expertise", href: "#expertise", id: "expertise" },
+    { label: "Services", href: "#services", id: "services" },
+    { label: "Work", href: "#projects", id: "projects" },
     { label: "Experience", href: "#experience", id: "experience" },
+    { label: "Blog", href: "/blogs", id: "blogs" },
     { label: "Contact", href: "#contact", id: "contact" },
   ];
 
@@ -84,7 +105,7 @@ export default function Navbar() {
                 Chinmaya Kumar Mishra
               </span>
               <span className="font-mono text-[10px] text-[#666666] tracking-wider uppercase">
-                Full-Stack · AppSec
+                AI AppSec · Full-Stack
               </span>
             </div>
           </a>
@@ -92,11 +113,16 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-white border border-[#E7E5E0] shadow-sm">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+              const isExternalOrPath = link.href.startsWith("/");
+              const resolvedHref = !isExternalOrPath && pathname !== "/" ? `/${link.href}` : link.href;
+              const isActive =
+                (link.id === "blogs" && pathname.startsWith("/blogs")) ||
+                (pathname === "/" && activeSection === link.id);
+
               return (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={resolvedHref}
                   className={`px-3 py-1 text-xs font-medium tracking-wide rounded-full transition-all duration-200 relative ${
                     isActive
                       ? "text-[#365CF5] font-semibold"
@@ -194,17 +220,29 @@ export default function Navbar() {
               className="sm:hidden absolute top-full left-0 right-0 bg-[#FAF9F6] border-b border-[#E7E5E0] shadow-xl px-4 py-4"
             >
               <nav className="flex flex-col space-y-1">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="px-3 py-2 rounded-lg text-xs font-mono text-[#171717] hover:bg-white hover:text-[#365CF5] transition-colors flex items-center justify-between"
-                  >
-                    <span>{link.label}</span>
-                    <span className="text-[#365CF5]">→</span>
-                  </a>
-                ))}
+                {navLinks.map((link) => {
+                  const isExternalOrPath = link.href.startsWith("/");
+                  const resolvedHref = !isExternalOrPath && pathname !== "/" ? `/${link.href}` : link.href;
+                  const isActive =
+                    (link.id === "blogs" && pathname.startsWith("/blogs")) ||
+                    (pathname === "/" && activeSection === link.id);
+
+                  return (
+                    <a
+                      key={link.href}
+                      href={resolvedHref}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`px-3 py-2 rounded-lg text-xs font-mono transition-colors flex items-center justify-between ${
+                        isActive
+                          ? "bg-white text-[#365CF5] font-semibold border border-[#E7E5E0]"
+                          : "text-[#171717] hover:bg-white hover:text-[#365CF5]"
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      <span className="text-[#365CF5]">→</span>
+                    </a>
+                  );
+                })}
 
                 <div className="pt-3 mt-2 border-t border-[#E7E5E0] flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2">

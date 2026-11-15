@@ -113,13 +113,13 @@ Type 'help' or click presets below to run security scans, query the stack, or in
 
     profile: `PROFILE // CHINMAYA KUMAR MISHRA (@chinmaya00111)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Role:         Full-Stack Developer · Application Security Engineer
-Location:     Odisha, India
-Experience:   4+ Years building production MERN & Next.js systems
+Role:         AI Application Security Engineer | Full-Stack Engineer
+Location:     Bhubaneswar, Odisha, India
+Experience:   2+ Years
 Current:      Full-Stack Developer at Secure Code LLC (Texas, USA - Remote)
-Stack:        React, Next.js, Node.js, Express, MongoDB, Semgrep SAST
-Philosophy:   "Software fails where assumptions live. I engineer systems to eliminate both."
-Availability: Open for Full-Time Full-Stack & AppSec Engineering roles.`,
+Stack:        Next.js, React, Node.js, Express, MongoDB, Semgrep, OpenAI API
+Philosophy:   "Building software, investigating vulnerabilities, and engineering security."
+Availability: Open for Application Security, Product Security & Full-Stack roles.`,
 
     scan: `[+] Initializing Semgrep AST Static Analysis Engine v1.98.0...
 [+] Loading security rulesets: [owasp-top-10, api-security, jwt-authz, r2c-audit]
@@ -170,10 +170,10 @@ AI Systems │ OpenAI & Gemini APIs, Vector Retrieval (RAG), Prompt Injection De
     hire: `RECRUITMENT & DIRECT CONTACT CHANNELS:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Candidate:    Chinmaya Kumar Mishra (Chinmaya Mishra)
-Role:         Full-Stack Developer · Application Security Engineer
+Role:         AI Application Security Engineer | Full-Stack Engineer
 Direct Email: imchinu17@gmail.com
-Phone:        +91 7077835119
-Location:     Odisha, India (Open to Remote & Global Opportunities)
+Phone:        7077835119
+Location:     Bhubaneswar, Odisha, India (Available Worldwide)
 GitHub:       https://github.com/chinmaya0011
 LinkedIn:     https://www.linkedin.com/in/chinmaya00111/
 Resume:       Download CV via navbar button or 'Explore Projects'

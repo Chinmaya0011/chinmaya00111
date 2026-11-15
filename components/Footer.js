@@ -28,25 +28,23 @@ export default function Footer() {
               </span>
               <span className="text-[#E7E5E0] font-mono">/</span>
               <span className="text-[#365CF5] text-xs font-mono font-semibold">
-                FULL-STACK &amp; APPSEC
+                AI APPSEC &amp; FULL-STACK
               </span>
             </div>
             <p className="text-xs text-[#666666] font-sans">
-              Engineering modern web applications &amp; defensive security architectures. Based in Odisha, India.
+              Building software, investigating vulnerabilities, and engineering security. Based in Bhubaneswar, Odisha, India.
             </p>
           </div>
 
           {/* Nav Jumps & Socials */}
           <div className="flex flex-wrap items-center gap-5 text-xs font-mono">
-            <a href="#about" className="hover:text-[#365CF5] transition-colors">About</a>
-            <a href="#skills" className="hover:text-[#365CF5] transition-colors">Skills</a>
-            <a href="#appsec" className="hover:text-[#365CF5] transition-colors">AppSec</a>
-            <a href="#projects" className="hover:text-[#365CF5] transition-colors">Projects</a>
-            <a href="#research" className="hover:text-[#365CF5] transition-colors">Research</a>
-            <a href="#experience" className="hover:text-[#365CF5] transition-colors">Experience</a>
-            <a href="#credentials" className="hover:text-[#365CF5] transition-colors">Academics</a>
-            <a href="#terminal" className="hover:text-[#365CF5] transition-colors">Terminal</a>
-            <a href="#contact" className="hover:text-[#365CF5] transition-colors">Contact</a>
+            <a href="/blogs" className="text-[#365CF5] font-semibold hover:underline transition-colors">Blog</a>
+            <a href="/#about" className="hover:text-[#365CF5] transition-colors">About</a>
+            <a href="/#expertise" className="hover:text-[#365CF5] transition-colors">Expertise</a>
+            <a href="/#services" className="hover:text-[#365CF5] transition-colors">Services</a>
+            <a href="/#projects" className="hover:text-[#365CF5] transition-colors">Work</a>
+            <a href="/#experience" className="hover:text-[#365CF5] transition-colors">Experience</a>
+            <a href="/#contact" className="hover:text-[#365CF5] transition-colors">Contact</a>
 
             <div className="h-4 w-px bg-[#E7E5E0] hidden sm:block" />
 

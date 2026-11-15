@@ -8,8 +8,8 @@ export default function ResumeModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   const resume = {
-    title: "Full-Stack Developer (MERN & AppSec)",
-    focus: "MERN Stack (React, Next.js, Node.js, Express, MongoDB) & Application Security (OWASP Top 10, API Security, SAST)",
+    title: "AI Application Security & Full-Stack Resume",
+    focus: "Full-Stack Engineering, Vulnerability Analysis, Secure Code Review, LLM & RAG Application Security, and Security Automation.",
     file: "/resumes/Chinmaya_AppSec_Resume.pdf",
     badge: "Official CV",
     badgeColor: "bg-[#365CF5]/10 text-[#365CF5] border-[#365CF5]/25",
@@ -47,7 +47,7 @@ export default function ResumeModal({ isOpen, onClose }) {
         </h3>
         
         <p className="text-xs text-[#666666] mb-6 leading-relaxed font-sans">
-          Chinmaya Kumar Mishra — Full-Stack Developer &amp; Application Security Engineer curriculum vitae in standard PDF format.
+          Chinmaya Kumar Mishra — AI Application Security Engineer &amp; Full-Stack Engineer curriculum vitae in standard PDF format.
         </p>
 
         {/* Single Resume Card */}

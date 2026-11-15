@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, ShieldAlert, Code2 } from "lucide-react";
 import { securityResearch } from "@/data/portfolioData";
 import { fadeInUp, defaultViewport, cardHoverProps } from "@/lib/motion";
-import ResearchModal from "./ResearchModal";
+import dynamic from "next/dynamic";
+
+const ResearchModal = dynamic(() => import("./ResearchModal"), { ssr: false });
 
 export default function SecurityResearch() {
   const [activeArticle, setActiveArticle] = useState(null);
