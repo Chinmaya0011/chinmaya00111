@@ -171,8 +171,12 @@ export default function BlogsPage() {
                 {/* Footer Bar with Author & Read Button */}
                 <div className="pt-6 border-t border-[#E7E5E0] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#171717] text-white font-mono font-bold text-xs flex items-center justify-center border border-[#E7E5E0]">
-                      CM
+                    <div className="w-9 h-9 rounded-full overflow-hidden border border-[#E7E5E0] shadow-xs flex-shrink-0 bg-[#FAF9F6]">
+                      <img
+                        src="/chinmaya.png"
+                        alt="Chinmaya Kumar Mishra"
+                        className="w-full h-full object-cover object-top"
+                      />
                     </div>
                     <div>
                       <div className="text-xs font-bold text-[#171717] flex items-center gap-1.5">

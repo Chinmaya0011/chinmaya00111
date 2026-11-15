@@ -97,8 +97,12 @@ export default function Navbar() {
             className="flex items-center gap-2.5 group"
             title="Chinmaya Kumar Mishra - Homepage"
           >
-            <div className="w-8 h-8 rounded-lg bg-[#171717] flex items-center justify-center text-white font-mono text-xs font-bold tracking-tight shadow-sm group-hover:scale-105 transition-transform">
-              <span>C<span className="text-[#365CF5]">M</span></span>
+            <div className="w-8 h-8 rounded-lg overflow-hidden border border-[#E7E5E0] shadow-xs group-hover:scale-105 group-hover:border-[#3B5BFF]/60 transition-all flex-shrink-0 bg-[#FAF9F6]">
+              <img
+                src="/chinmaya.png"
+                alt="Chinmaya Kumar Mishra"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
             <div className="flex flex-col">
               <span className="font-sans text-sm font-bold text-[#171717] tracking-tight group-hover:text-[#365CF5] transition-colors leading-tight">

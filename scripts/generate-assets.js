@@ -31,12 +31,12 @@ function createOgSvg(photoBase64) {
   <!-- Top Badge -->
   <g transform="translate(120, 115)">
     <rect width="44" height="44" rx="10" fill="#171717"/>
-    <text x="7" y="31" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" fill="#FFFFFF" letter-spacing="-1">C<tspan fill="#365CF5">M</tspan></text>
+    <text x="7" y="31" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" fill="#FFFFFF" letter-spacing="-1">C<tspan fill="#3B5BFF">M</tspan></text>
     
     <g transform="translate(56, 12)">
-      <circle cx="6" cy="10" r="4" fill="#365CF5" />
-      <text x="18" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#365CF5" letter-spacing="1.5">
-        FULL-STACK DEVELOPER // APPLICATION SECURITY
+      <circle cx="6" cy="10" r="4" fill="#3B5BFF" />
+      <text x="18" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#3B5BFF" letter-spacing="1.5">
+        AI APPLICATION SECURITY // FULL-STACK
       </text>
     </g>
   </g>
@@ -47,21 +47,21 @@ function createOgSvg(photoBase64) {
   </text>
 
   <!-- Professional Title -->
-  <text x="120" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#365CF5">
-    Full-Stack Developer | Application Security Engineer
+  <text x="120" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#3B5BFF">
+    AI Application Security Engineer | Full-Stack Engineer
   </text>
 
   <!-- Tagline -->
   <text x="120" y="325" font-family="Georgia, serif" font-style="italic" font-size="24" fill="#171717">
-    &#8220;Building Software. Securing Systems.&#8221;
+    &#8220;Building Software. Investigating Vulnerabilities. Engineering Security.&#8221;
   </text>
 
   <!-- Bio Summary -->
   <text x="120" y="375" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="400" fill="#666666">
-    High-performance web applications, secure APIs, and AI integrations
+    Vulnerability analysis, secure code reviews, and developer tooling
   </text>
   <text x="120" y="402" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="400" fill="#666666">
-    engineered with an adversarial security mindset.
+    engineered with modern AI systems and an adversarial security mindset.
   </text>
 
   <!-- Divider -->
@@ -73,7 +73,7 @@ function createOgSvg(photoBase64) {
       www.chinmayakumarmishra.sbs
     </text>
     <text x="240" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="500" fill="#666666">
-      •  Odisha, India  •  github.com/chinmaya0011
+      •  Bhubaneswar, India  •  github.com/chinmaya0011
     </text>
   </g>
 
@@ -83,14 +83,14 @@ function createOgSvg(photoBase64) {
     ${photoBase64 ? `<image href="${photoBase64}" x="760" y="70" width="370" height="490" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatar-clip)" />` : ''}
     
     <!-- Photo Border Overlay -->
-    <rect x="760" y="70" width="370" height="490" rx="20" fill="none" stroke="#E7E5E0" stroke-width="2"/>
+    <rect x="760" y="70" width="370" height="490" rx="24" fill="none" stroke="#E7E5E0" stroke-width="2"/>
 
     <!-- Photo Floating Location Badge -->
     <g transform="translate(780, 500)">
-      <rect width="180" height="38" rx="10" fill="#171717" fill-opacity="0.9" />
-      <circle cx="18" cy="19" r="4" fill="#365CF5" />
+      <rect width="200" height="38" rx="10" fill="#171717" fill-opacity="0.9" />
+      <circle cx="18" cy="19" r="4" fill="#10B981" />
       <text x="32" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
-        Odisha, India
+        Bhubaneswar, India
       </text>
     </g>
   </g>
@@ -139,17 +139,25 @@ async function buildAll() {
   console.log(`Loading source image: ${sourceIconPath}...`);
   const sourceBuffer = fs.readFileSync(sourceIconPath);
 
+  // Extract a square centered on the face for favicons and square icons
+  // Image is 824 x 1024. Extract 700x700 starting at x: 62, y: 40.
+  console.log('Extracting face-centered square region for icon suite...');
+  const squareFaceBuffer = await sharp(sourceBuffer)
+    .extract({ left: 62, top: 40, width: 700, height: 700 })
+    .png()
+    .toBuffer();
+
   console.log('Generating crisp multi-resolution favicons and touch icons...');
   
   // Icon sizes needed across standard browsers, Google search, Apple iOS, and Android PWA
-  const png16 = await sharp(sourceBuffer).resize(16, 16).png().toBuffer();
-  const png32 = await sharp(sourceBuffer).resize(32, 32).png().toBuffer();
-  const png48 = await sharp(sourceBuffer).resize(48, 48).png().toBuffer();
-  const png96 = await sharp(sourceBuffer).resize(96, 96).png().toBuffer();
-  const png180 = await sharp(sourceBuffer).resize(180, 180).png().toBuffer();
-  const png192 = await sharp(sourceBuffer).resize(192, 192).png().toBuffer();
-  const png256 = await sharp(sourceBuffer).resize(256, 256).png().toBuffer();
-  const png512 = await sharp(sourceBuffer).resize(512, 512).png().toBuffer();
+  const png16 = await sharp(squareFaceBuffer).resize(16, 16).png().toBuffer();
+  const png32 = await sharp(squareFaceBuffer).resize(32, 32).png().toBuffer();
+  const png48 = await sharp(squareFaceBuffer).resize(48, 48).png().toBuffer();
+  const png96 = await sharp(squareFaceBuffer).resize(96, 96).png().toBuffer();
+  const png180 = await sharp(squareFaceBuffer).resize(180, 180).png().toBuffer();
+  const png192 = await sharp(squareFaceBuffer).resize(192, 192).png().toBuffer();
+  const png256 = await sharp(squareFaceBuffer).resize(256, 256).png().toBuffer();
+  const png512 = await sharp(squareFaceBuffer).resize(512, 512).png().toBuffer();
 
   // 1. Multi-Resolution ICO containing 16x16, 32x32, 48x48, and 256x256
   const icoBuffer = createIco([
@@ -182,15 +190,8 @@ async function buildAll() {
   }
 
   // 3. Update optimized profile image in public/images/chinmaya.jpg and public/chinmaya.jpg
-  const oldPhotoPath = path.join(imagesDir, 'chinmaya.jpg');
-  const backupBikePath = path.join(imagesDir, 'chinmaya-bike.jpg');
-  if (fs.existsSync(oldPhotoPath) && !fs.existsSync(backupBikePath)) {
-    fs.copyFileSync(oldPhotoPath, backupBikePath);
-    console.log(`Backed up previous photo to ${backupBikePath}`);
-  }
-
   const optimizedPhotoJpeg = await sharp(sourceBuffer)
-    .resize(1024, 1024, { fit: 'cover', position: 'top' })
+    .resize(824, 1024, { fit: 'cover' })
     .jpeg({ quality: 92, mozjpeg: true })
     .toBuffer();
 
@@ -198,7 +199,7 @@ async function buildAll() {
   console.log(`Updated public/images/chinmaya.jpg (${optimizedPhotoJpeg.length} bytes)`);
 
   fs.writeFileSync(path.join(publicDir, 'chinmaya.jpg'), optimizedPhotoJpeg);
-  console.log(`Restored/Updated public/chinmaya.jpg (${optimizedPhotoJpeg.length} bytes)`);
+  console.log(`Updated public/chinmaya.jpg (${optimizedPhotoJpeg.length} bytes)`);
 
   // Ensure public/images/chinmaya.png is synchronized for src="/images/chinmaya.png"
   const destImagesPng = path.join(imagesDir, 'chinmaya.png');
@@ -208,7 +209,7 @@ async function buildAll() {
   // 4. Generate Editorial OpenGraph Image (1200x630)
   console.log('Generating Editorial OpenGraph Image (1200x630)...');
   const ogPhotoBuffer = await sharp(sourceBuffer)
-    .resize(400, 530, { fit: 'cover', position: 'top' })
+    .resize(370, 490, { fit: 'cover', position: 'top' })
     .jpeg({ quality: 92 })
     .toBuffer();
   const photoDataUri = `data:image/jpeg;base64,${ogPhotoBuffer.toString('base64')}`;

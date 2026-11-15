@@ -247,8 +247,12 @@ export default function BlogArticleContent({ post }) {
                   <div className="pt-8 mt-12 border-t border-[#E7E5E0] bg-white p-6 sm:p-8 rounded-2xl border border-[#E7E5E0] shadow-xs">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                       <div className="flex items-center gap-4">
-                          <div className="w-14 h-14 rounded-2xl bg-[#171717] text-white font-mono font-black text-lg flex items-center justify-center border border-[#E7E5E0] shadow-xs flex-shrink-0">
-                            CM
+                          <div className="w-14 h-14 rounded-2xl overflow-hidden border border-[#E7E5E0] shadow-xs flex-shrink-0 bg-[#FAF9F6]">
+                            <img
+                              src="/chinmaya.png"
+                              alt="Chinmaya Kumar Mishra"
+                              className="w-full h-full object-cover object-top"
+                            />
                           </div>
                           <div>
                             <div className="flex items-center gap-2 mb-1">

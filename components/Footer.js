@@ -20,8 +20,12 @@ export default function Footer() {
           {/* Brand Identity */}
           <div>
             <div className="flex items-center gap-2.5 mb-2">
-              <div className="w-7 h-7 rounded-lg bg-[#365CF5] text-white font-mono font-bold text-xs flex items-center justify-center tracking-tight shadow-xs">
-                CM
+              <div className="w-7 h-7 rounded-lg overflow-hidden border border-[#E7E5E0] shadow-xs flex-shrink-0 bg-[#FAF9F6]">
+                <img
+                  src="/chinmaya.png"
+                  alt="Chinmaya Kumar Mishra"
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
               <span className="font-sans font-extrabold text-base text-[#171717] tracking-tight">
                 {personalInfo.name}

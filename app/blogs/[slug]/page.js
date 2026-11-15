@@ -159,8 +159,12 @@ export default async function BlogPostPage({ params }) {
             {/* Author Information Bar */}
             <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#E7E5E0]">
               <div className="flex items-center gap-3.5">
-                <div className="w-11 h-11 rounded-xl bg-[#171717] text-white font-mono font-bold text-sm flex items-center justify-center border border-[#E7E5E0] shadow-xs">
-                  CM
+                <div className="w-11 h-11 rounded-xl overflow-hidden border border-[#E7E5E0] shadow-xs flex-shrink-0 bg-[#FAF9F6]">
+                  <img
+                    src="/chinmaya.png"
+                    alt="Chinmaya Kumar Mishra"
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
                 <div>
                   <div className="text-sm font-bold text-[#171717] flex items-center gap-1.5">
