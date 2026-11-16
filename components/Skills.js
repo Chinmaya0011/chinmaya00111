@@ -13,7 +13,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="expertise" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-[#FAF9F6] scroll-mt-20">
+    <section id="expertise" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-transparent scroll-mt-20">
       <div id="skills" className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 scroll-mt-20">
         
         {/* Section Header */}

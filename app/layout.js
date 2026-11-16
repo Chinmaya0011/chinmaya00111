@@ -1,4 +1,5 @@
 import { Inter, JetBrains_Mono } from "next/font/google";
+import AnimatedBackground from "@/components/AnimatedBackground";
 import "./globals.css";
 
 const inter = Inter({
@@ -328,9 +329,12 @@ export default function RootLayout({ children }) {
       </head>
       <body
         suppressHydrationWarning
-        className={`min-h-screen bg-[#FAF9F6] text-[#171717] antialiased selection:bg-[#365CF5]/15 selection:text-[#171717] ${inter.className}`}
+        className={`min-h-screen bg-[#FAF9F6] text-[#171717] antialiased selection:bg-[#365CF5]/15 selection:text-[#171717] relative ${inter.className}`}
       >
-        {children}
+        <AnimatedBackground />
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

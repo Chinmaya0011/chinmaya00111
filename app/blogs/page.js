@@ -100,7 +100,7 @@ export default function BlogsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#171717] selection:bg-[#365CF5]/15 selection:text-[#365CF5]">
+    <div className="min-h-screen bg-transparent text-[#171717] selection:bg-[#365CF5]/15 selection:text-[#365CF5]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}

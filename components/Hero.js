@@ -75,29 +75,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-[#FAF9F6]">
-
-        {/* Subtle dot matrix with radial fade out */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none opacity-[0.4]"
-          style={{
-            backgroundImage: "radial-gradient(#C4C2B8 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-            maskImage: "radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%)",
-            WebkitMaskImage: "radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%)"
-          }}
-        />
-
-        {/* Ambient lighting glows */}
-        <div
-          aria-hidden="true"
-          className="absolute right-[-8%] sm:right-[4%] top-1/2 -translate-y-1/2 w-[380px] sm:w-[560px] h-[380px] sm:h-[560px] bg-[#3B5BFF]/12 rounded-full blur-[120px] pointer-events-none"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute left-[-10%] top-1/4 w-[320px] sm:w-[480px] h-[320px] sm:h-[480px] bg-[#60A5FA]/8 rounded-full blur-[130px] pointer-events-none"
-        />
+      <section className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-transparent">
 
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">

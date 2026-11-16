@@ -72,6 +72,57 @@ textarea:focus-visible {
   outline-offset: 2px;
 }
 
+/* Fluid Aurora Background Animations */
+@keyframes auroraSlow {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(35px, -45px, 0) scale(1.08);
+  }
+  66% {
+    transform: translate3d(-30px, 25px, 0) scale(0.94);
+  }
+}
+
+@keyframes auroraReverse {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(-40px, 40px, 0) scale(1.06);
+  }
+  66% {
+    transform: translate3d(30px, -35px, 0) scale(0.95);
+  }
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 0.55;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate3d(15px, -15px, 0) scale(1.1);
+  }
+}
+
+.animate-aurora-slow {
+  animation: auroraSlow 24s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-aurora-reverse {
+  animation: auroraReverse 28s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

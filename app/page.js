@@ -19,7 +19,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#171717] selection:bg-[#3B5BFF]/15 selection:text-[#3B5BFF]">
+    <div className="min-h-screen bg-transparent text-[#171717] selection:bg-[#3B5BFF]/15 selection:text-[#3B5BFF]">
       <Navbar />
       <main className="relative">
         <Hero />

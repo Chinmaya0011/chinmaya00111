@@ -10,7 +10,7 @@ import { fadeInUp, defaultViewport, cardHoverProps } from "@/lib/motion";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-[#FAF9F6]">
+    <section id="projects" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-transparent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}

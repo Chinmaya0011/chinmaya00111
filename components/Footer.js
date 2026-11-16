@@ -11,7 +11,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#FAF9F6] border-t border-[#E7E5E0] py-14 text-[#666666] relative">
+    <footer className="bg-[#FAF9F6]/85 backdrop-blur-md border-t border-[#E7E5E0] py-14 text-[#666666] relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         {/* Main Footer Block */}

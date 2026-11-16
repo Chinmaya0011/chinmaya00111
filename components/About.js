@@ -7,7 +7,7 @@ import { fadeInUp, defaultViewport } from "@/lib/motion";
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-[#FAF9F6]">
+    <section id="about" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-transparent">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header */}
