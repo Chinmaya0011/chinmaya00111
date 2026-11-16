@@ -82,15 +82,14 @@ export default function Navbar() {
 
   return (
     <>
-      <header 
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-3.5 px-4 sm:px-6 ${
-          scrolled 
-            ? "bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E7E5E0] shadow-sm" 
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-3.5 px-4 sm:px-6 ${scrolled
+            ? "bg-[#FAF9F6]/90 backdrop-blur-md border-b border-[#E7E5E0] shadow-sm"
             : "bg-transparent border-b border-transparent"
-        }`}
+          }`}
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          
+
           {/* Brand: CM Monogram + Chinmaya Kumar Mishra */}
           <a
             href="/"
@@ -109,7 +108,7 @@ export default function Navbar() {
                 Chinmaya Kumar Mishra
               </span>
               <span className="font-mono text-[10px] text-[#666666] tracking-wider uppercase">
-                Full-Stack · AppSec
+                AI AppSec · Full-Stack
               </span>
             </div>
           </a>
@@ -127,11 +126,10 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={resolvedHref}
-                  className={`px-3 py-1 text-xs font-medium tracking-wide rounded-full transition-all duration-200 relative ${
-                    isActive
+                  className={`px-3 py-1 text-xs font-medium tracking-wide rounded-full transition-all duration-200 relative ${isActive
                       ? "text-[#365CF5] font-semibold"
                       : "text-[#666666] hover:text-[#171717]"
-                  }`}
+                    }`}
                 >
                   {link.label}
                   {isActive && (
@@ -236,11 +234,10 @@ export default function Navbar() {
                       key={link.href}
                       href={resolvedHref}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`px-3 py-2 rounded-lg text-xs font-mono transition-colors flex items-center justify-between ${
-                        isActive
+                      className={`px-3 py-2 rounded-lg text-xs font-mono transition-colors flex items-center justify-between ${isActive
                           ? "bg-white text-[#365CF5] font-semibold border border-[#E7E5E0]"
                           : "text-[#171717] hover:bg-white hover:text-[#365CF5]"
-                      }`}
+                        }`}
                     >
                       <span>{link.label}</span>
                       <span className="text-[#365CF5]">→</span>

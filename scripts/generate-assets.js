@@ -73,7 +73,7 @@ function createOgSvg(photoBase64) {
       www.chinmayakumarmishra.sbs
     </text>
     <text x="240" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="500" fill="#666666">
-      •  Ganjam · Berhampur · Bhubaneswar, Odisha  •  github.com/chinmaya0011
+      •  Bhubaneswar, India  •  github.com/chinmaya0011
     </text>
   </g>
 
@@ -87,10 +87,10 @@ function createOgSvg(photoBase64) {
 
     <!-- Photo Floating Location Badge -->
     <g transform="translate(780, 500)">
-      <rect width="210" height="38" rx="10" fill="#171717" fill-opacity="0.9" />
+      <rect width="200" height="38" rx="10" fill="#171717" fill-opacity="0.9" />
       <circle cx="18" cy="19" r="4" fill="#10B981" />
       <text x="32" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
-        Ganjam, Odisha, IN
+        Bhubaneswar, India
       </text>
     </g>
   </g>
@@ -148,7 +148,7 @@ async function buildAll() {
     .toBuffer();
 
   console.log('Generating crisp multi-resolution favicons and touch icons...');
-  
+
   // Icon sizes needed across standard browsers, Google search, Apple iOS, and Android PWA
   const png16 = await sharp(squareFaceBuffer).resize(16, 16).png().toBuffer();
   const png32 = await sharp(squareFaceBuffer).resize(32, 32).png().toBuffer();

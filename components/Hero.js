@@ -76,7 +76,7 @@ export default function Hero() {
   return (
     <>
       <section className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-[#FAF9F6]">
-        
+
         {/* Subtle dot matrix with radial fade out */}
         <div
           aria-hidden="true"
@@ -101,7 +101,7 @@ export default function Hero() {
 
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-            
+
             {/* Left Column (7 cols): Clean, minimal typography */}
             <motion.div
               variants={containerVariants}
@@ -118,7 +118,7 @@ export default function Hero() {
                   </span>
                   <span className="font-medium text-[#171717]">Available worldwide</span>
                   <span className="text-[#C8C6BE]">•</span>
-                  <span className="text-[#666666] hidden sm:inline">Ganjam &amp; Bhubaneswar, Odisha</span>
+                  <span className="text-[#666666] hidden sm:inline">Bhubaneswar, IN</span>
                 </div>
               </motion.div>
 
@@ -128,7 +128,7 @@ export default function Hero() {
                   Chinmaya Kumar Mishra
                 </span>
                 <span className="font-mono text-xs sm:text-sm font-semibold text-[#3B5BFF] uppercase tracking-wider block mt-0.5">
-                  Full Stack Developer · Application Security
+                  AI Application Security Engineer
                 </span>
               </motion.div>
 
@@ -164,9 +164,9 @@ export default function Hero() {
                         shouldReduceMotion
                           ? { duration: 0 }
                           : {
-                              pathLength: { delay: 0.55, duration: 0.75, ease: [0.16, 1, 0.3, 1] },
-                              opacity: { delay: 0.55, duration: 0.2 }
-                            }
+                            pathLength: { delay: 0.55, duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+                            opacity: { delay: 0.55, duration: 0.2 }
+                          }
                       }
                     />
                   </svg>
@@ -179,7 +179,7 @@ export default function Hero() {
                 variants={itemVariants}
                 className="text-[#666666] text-base sm:text-lg lg:text-xl font-normal leading-relaxed mb-8 max-w-lg font-sans"
               >
-                Full-Stack Developer in Odisha, India, specializing in React, Next.js, and Application Security.
+                Full-stack engineer finding and fixing vulnerabilities with AI.
               </motion.p>
 
               {/* 2 Buttons Only & 3 Small Icon Links */}
@@ -261,14 +261,14 @@ export default function Hero() {
                     shouldReduceMotion
                       ? {}
                       : {
-                          y: { duration: 6, ease: "easeInOut", repeat: Infinity }
-                        }
+                        y: { duration: 6, ease: "easeInOut", repeat: Infinity }
+                      }
                   }
                   className="relative will-change-transform"
                 >
                   {/* Outer Bezel Card */}
                   <div className="relative aspect-[4/5] w-full rounded-[30px] p-2.5 sm:p-3 bg-white/90 backdrop-blur-md border border-[#E7E5E0] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.09)] transition-all">
-                    
+
                     {/* Inner Photo Container */}
                     <div className="relative w-full h-full rounded-[22px] overflow-hidden bg-gradient-to-b from-[#EDEDF2] to-[#DFDFE6]">
                       <Image
@@ -292,7 +292,7 @@ export default function Hero() {
                           </span>
                         </div>
                         <span className="text-[10px] font-mono font-medium text-[#3B5BFF]">
-                          Full-Stack · AppSec
+                          AppSec · AI
                         </span>
                       </div>
                     </div>
@@ -305,10 +305,10 @@ export default function Hero() {
                       shouldReduceMotion
                         ? {}
                         : {
-                            duration: 3.6,
-                            ease: "easeInOut",
-                            repeat: Infinity
-                          }
+                          duration: 3.6,
+                          ease: "easeInOut",
+                          repeat: Infinity
+                        }
                     }
                     className="absolute -top-3.5 -right-3 sm:-right-5 z-20"
                   >
@@ -334,11 +334,11 @@ export default function Hero() {
                       shouldReduceMotion
                         ? {}
                         : {
-                            duration: 4.4,
-                            ease: "easeInOut",
-                            repeat: Infinity,
-                            delay: 0.3
-                          }
+                          duration: 4.4,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                          delay: 0.3
+                        }
                     }
                     className="absolute -bottom-3.5 -left-3 sm:-left-5 z-20"
                   >
@@ -364,11 +364,11 @@ export default function Hero() {
                       shouldReduceMotion
                         ? {}
                         : {
-                            duration: 5.1,
-                            ease: "easeInOut",
-                            repeat: Infinity,
-                            delay: 0.7
-                          }
+                          duration: 5.1,
+                          ease: "easeInOut",
+                          repeat: Infinity,
+                          delay: 0.7
+                        }
                     }
                     className="absolute top-1/2 -translate-y-1/2 -right-4 sm:-right-8 z-20"
                   >
