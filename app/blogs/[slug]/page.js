@@ -28,13 +28,13 @@ export async function generateMetadata({ params }) {
 
   if (!post) {
     return {
-      title: "Article Not Found | Chinmaya Kumar Mishra",
+      title: "Article Not Found",
       description: "The requested publication does not exist.",
     };
   }
 
   const postUrl = `${siteUrl}/blogs/${post.slug}`;
-  const pageTitle = post.metaTitle ? `${post.metaTitle} | Chinmaya Kumar Mishra` : `${post.title} | Chinmaya Kumar Mishra`;
+  const pageTitle = post.metaTitle || post.title;
   const pageDesc = post.metaDescription || post.summary;
 
   return {

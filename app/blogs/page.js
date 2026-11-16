@@ -17,7 +17,7 @@ import {
 const siteUrl = "https://www.chinmayakumarmishra.sbs";
 
 export const metadata = {
-  title: "Engineering Blog & AppSec Publications | Chinmaya Kumar Mishra",
+  title: "Engineering Blog & AppSec Publications",
   description:
     "Deep-dive technical publications on full-stack architecture, API security (BOLA/IDOR), automated Semgrep SAST, Node.js microservices, and modern Next.js systems by Chinmaya Kumar Mishra.",
   alternates: {
