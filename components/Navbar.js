@@ -109,7 +109,7 @@ export default function Navbar() {
                 Chinmaya Kumar Mishra
               </span>
               <span className="font-mono text-[10px] text-[#666666] tracking-wider uppercase">
-                AI AppSec · Full-Stack
+                Full-Stack · AppSec
               </span>
             </div>
           </a>

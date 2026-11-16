@@ -8,12 +8,12 @@ export const personalInfo = {
   brand: "Chinmaya Kumar Mishra",
   brandShort: "CM",
   brandSlug: "chinmaya00111",
-  title: "AI Application Security Engineer | Full-Stack Engineer",
-  tag: "AI APPLICATION SECURITY ENGINEER",
-  specialization: "Full-Stack Engineering · Vulnerability Analysis · AI Security",
-  headline: "Building Software. Investigating Vulnerabilities. Engineering Security.",
-  location: "Bhubaneswar, Odisha, India",
-  heroLocation: "Bhubaneswar, India · Available Worldwide",
+  title: "Full Stack Developer & Application Security Engineer",
+  tag: "FULL STACK DEVELOPER // APPLICATION SECURITY",
+  specialization: "Full Stack Web Development · MERN Stack · React & Next.js · Application Security",
+  headline: "Building Modern Web Applications. Securing Production Systems.",
+  location: "Ganjam, Odisha, India",
+  heroLocation: "Ganjam & Bhubaneswar, Odisha · Available Across India & Remote",
   email: "imchinu17@gmail.com",
   phone: "7077835119",
   links: {
@@ -23,20 +23,20 @@ export const personalInfo = {
     email: "mailto:imchinu17@gmail.com",
     resume: "/resumes/Chinmaya_AppSec_Resume.pdf"
   },
-  resumeTitle: "AI Application Security & Full-Stack Resume",
+  resumeTitle: "Full-Stack & Application Security Resume",
   heroIntro:
-    "I am a Full-Stack Engineer working at the intersection of Application Security and AI. My work focuses on building security-oriented developer tools, analyzing application vulnerabilities, reviewing code, and exploring how LLM-powered systems can improve vulnerability analysis.",
-  aboutHeading: "Engineering with a Security-First Mindset.",
+    "Chinmaya Kumar Mishra is a Full Stack Developer based in Ganjam, Odisha, India, specializing in React, Next.js, Node.js, MERN Stack development, REST APIs, and Application Security. Explore modern web development projects and secure application engineering.",
+  aboutHeading: "Full-Stack Engineering with a Security-First Mindset.",
   aboutBio: [
-    "I am a Full-Stack Engineer with 2+ years of experience building web applications, backend systems, and AI-powered products.",
-    "My work increasingly focuses on Application Security, particularly secure code review, vulnerability analysis, API security, authentication mechanisms, and security automation.",
-    "At Secure Code LLC, I work on AI-powered application security tooling that connects code repositories, scanning workflows, and LLM-driven analysis to help developers understand potential vulnerabilities.",
-    "I approach security from an engineering perspective: understanding the application architecture, tracing data flows, identifying trust-boundary failures, validating vulnerabilities, and understanding their underlying causes.",
-    "I am particularly interested in the intersection of application security, AI security, and developer-focused security engineering."
+    "I am a Full Stack Developer and Application Security Engineer based in Ganjam, Odisha, India, with 2+ years of experience engineering modern web applications, scalable backend systems, and AI-powered products.",
+    "A graduate in Technology (B.Tech) from Parala Maharaja Engineering College (PMEC) in Berhampur, Ganjam, I actively build web solutions for startups, software companies, and businesses across Berhampur, Khallikote, Rambha, Keshpur, Khordha, Bhubaneswar, and nationwide across India.",
+    "My development stack centers around React, Next.js, Node.js, Express.js, MongoDB (MERN Stack), REST APIs, and Docker, engineered with clean architecture, fast loading, and responsive mobile-first UI.",
+    "In Application Security, my work focuses on secure code review, vulnerability analysis, API security (OWASP Top 10, BOLA/IDOR), authentication mechanisms (OAuth 2.0, JWT), and security automation tools like Semgrep.",
+    "At Secure Code LLC, I develop developer-focused security tooling integrating repository scanning workflows with automated analysis, helping engineering teams identify and remediate vulnerabilities early in the software lifecycle."
   ],
-  contactHeading: "Let's Build More Secure Software.",
+  contactHeading: "Let's Build Fast, Secure Web Applications.",
   contactDescription:
-    "Open to Application Security, Product Security, AI Security, and Full-Stack Engineering opportunities, as well as meaningful technical collaborations."
+    "Available for Full Stack Developer roles, MERN stack web development, Application Security consulting, and freelance engineering projects across Odisha and India."
 };
 
 // Focused Technical Expertise Areas (3 Focused Areas)
@@ -242,7 +242,7 @@ export const servicesCta = {
   email: "imchinu17@gmail.com",
   phone: "+91 7077835119",
   whatsappNumber: "917077835119",
-  location: "Bhubaneswar, Odisha, India",
+  location: "Ganjam & Bhubaneswar, Odisha, India (PIN 761029 / 761030)",
   whatsappUrl:
     "https://wa.me/917077835119?text=Hello%20Chinmaya%2C%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
 };

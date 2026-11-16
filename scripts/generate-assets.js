@@ -36,7 +36,7 @@ function createOgSvg(photoBase64) {
     <g transform="translate(56, 12)">
       <circle cx="6" cy="10" r="4" fill="#3B5BFF" />
       <text x="18" y="14" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#3B5BFF" letter-spacing="1.5">
-        AI APPLICATION SECURITY // FULL-STACK
+        FULL STACK DEVELOPER // APPLICATION SECURITY
       </text>
     </g>
   </g>
@@ -48,20 +48,20 @@ function createOgSvg(photoBase64) {
 
   <!-- Professional Title -->
   <text x="120" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#3B5BFF">
-    AI Application Security Engineer | Full-Stack Engineer
+    Full Stack Developer | Application Security Engineer
   </text>
 
   <!-- Tagline -->
   <text x="120" y="325" font-family="Georgia, serif" font-style="italic" font-size="24" fill="#171717">
-    &#8220;Building Software. Investigating Vulnerabilities. Engineering Security.&#8221;
+    &#8220;Building Modern Web Applications. Securing Production Systems.&#8221;
   </text>
 
   <!-- Bio Summary -->
   <text x="120" y="375" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="400" fill="#666666">
-    Vulnerability analysis, secure code reviews, and developer tooling
+    Full Stack engineering with React, Next.js, Node.js, and REST APIs,
   </text>
   <text x="120" y="402" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="400" fill="#666666">
-    engineered with modern AI systems and an adversarial security mindset.
+    reinforced with secure code review and defensive web security in Odisha, India.
   </text>
 
   <!-- Divider -->
@@ -73,7 +73,7 @@ function createOgSvg(photoBase64) {
       www.chinmayakumarmishra.sbs
     </text>
     <text x="240" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="500" fill="#666666">
-      •  Bhubaneswar, India  •  github.com/chinmaya0011
+      •  Ganjam · Berhampur · Bhubaneswar, Odisha  •  github.com/chinmaya0011
     </text>
   </g>
 
@@ -87,10 +87,10 @@ function createOgSvg(photoBase64) {
 
     <!-- Photo Floating Location Badge -->
     <g transform="translate(780, 500)">
-      <rect width="200" height="38" rx="10" fill="#171717" fill-opacity="0.9" />
+      <rect width="210" height="38" rx="10" fill="#171717" fill-opacity="0.9" />
       <circle cx="18" cy="19" r="4" fill="#10B981" />
       <text x="32" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">
-        Bhubaneswar, India
+        Ganjam, Odisha, IN
       </text>
     </g>
   </g>

@@ -51,37 +51,59 @@ export default function BlogsPage() {
   const featuredPost = blogPosts.find((p) => p.featured) || blogPosts[0];
   const regularPosts = blogPosts.filter((p) => p.slug !== featuredPost?.slug);
 
-  const collectionSchema = {
+  const pageSchema = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "@id": `${siteUrl}/blogs#collection`,
-    url: `${siteUrl}/blogs`,
-    name: "Engineering Blog & AppSec Publications",
-    description:
-      "Deep-dive technical articles on full-stack architecture, API security, and defensive web engineering by Chinmaya Kumar Mishra.",
-    publisher: {
-      "@type": "Person",
-      name: "Chinmaya Kumar Mishra",
-      url: `${siteUrl}/`,
-    },
-    hasPart: blogPosts.map((post) => ({
-      "@type": "BlogPosting",
-      headline: post.title,
-      description: post.summary,
-      url: `${siteUrl}/blogs/${post.slug}`,
-      datePublished: post.isoDate,
-      author: {
-        "@type": "Person",
-        name: "Chinmaya Kumar Mishra",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${siteUrl}/blogs#collection`,
+        url: `${siteUrl}/blogs`,
+        name: "Engineering Blog & AppSec Publications",
+        description:
+          "Deep-dive technical articles on full-stack architecture, API security, and defensive web engineering by Chinmaya Kumar Mishra.",
+        publisher: {
+          "@type": "Person",
+          name: "Chinmaya Kumar Mishra",
+          url: `${siteUrl}/`,
+        },
+        hasPart: blogPosts.map((post) => ({
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.summary,
+          url: `${siteUrl}/blogs/${post.slug}`,
+          datePublished: post.isoDate,
+          author: {
+            "@type": "Person",
+            name: "Chinmaya Kumar Mishra",
+          },
+        })),
       },
-    })),
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${siteUrl}/blogs#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${siteUrl}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: `${siteUrl}/blogs`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-[#171717] selection:bg-[#365CF5]/15 selection:text-[#365CF5]">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
       />
 
       <Navbar />

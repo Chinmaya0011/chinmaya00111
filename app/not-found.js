@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { ShieldAlert, ArrowLeft } from "lucide-react";
 
+export const metadata = {
+  title: "404 - Page Not Found",
+  description: "The requested page or resource could not be found on this domain.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-[#171717] flex flex-col items-center justify-center p-4 font-mono">

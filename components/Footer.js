@@ -32,11 +32,11 @@ export default function Footer() {
               </span>
               <span className="text-[#E7E5E0] font-mono">/</span>
               <span className="text-[#365CF5] text-xs font-mono font-semibold">
-                AI APPSEC &amp; FULL-STACK
+                FULL-STACK &amp; APPSEC
               </span>
             </div>
             <p className="text-xs text-[#666666] font-sans">
-              Building software, investigating vulnerabilities, and engineering security. Based in Bhubaneswar, Odisha, India.
+              Full Stack Developer &amp; Application Security Engineer based in Ganjam, Odisha, India. Serving clients across Berhampur, Khallikote, Rambha, Bhubaneswar, and nationwide.
             </p>
           </div>
 

@@ -118,7 +118,7 @@ export default function Hero() {
                   </span>
                   <span className="font-medium text-[#171717]">Available worldwide</span>
                   <span className="text-[#C8C6BE]">•</span>
-                  <span className="text-[#666666] hidden sm:inline">Bhubaneswar, IN</span>
+                  <span className="text-[#666666] hidden sm:inline">Ganjam &amp; Bhubaneswar, Odisha</span>
                 </div>
               </motion.div>
 
@@ -128,7 +128,7 @@ export default function Hero() {
                   Chinmaya Kumar Mishra
                 </span>
                 <span className="font-mono text-xs sm:text-sm font-semibold text-[#3B5BFF] uppercase tracking-wider block mt-0.5">
-                  AI Application Security Engineer
+                  Full Stack Developer · Application Security
                 </span>
               </motion.div>
 
@@ -179,7 +179,7 @@ export default function Hero() {
                 variants={itemVariants}
                 className="text-[#666666] text-base sm:text-lg lg:text-xl font-normal leading-relaxed mb-8 max-w-lg font-sans"
               >
-                Full-stack engineer finding and fixing vulnerabilities with AI.
+                Full-Stack Developer in Odisha, India, specializing in React, Next.js, and Application Security.
               </motion.p>
 
               {/* 2 Buttons Only & 3 Small Icon Links */}
@@ -292,7 +292,7 @@ export default function Hero() {
                           </span>
                         </div>
                         <span className="text-[10px] font-mono font-medium text-[#3B5BFF]">
-                          AppSec · AI
+                          Full-Stack · AppSec
                         </span>
                       </div>
                     </div>

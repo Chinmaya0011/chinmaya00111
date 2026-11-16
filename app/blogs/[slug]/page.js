@@ -81,28 +81,56 @@ export default async function BlogPostPage({ params }) {
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": `${siteUrl}/blogs/${post.slug}#article`,
-    headline: post.title,
-    alternativeHeadline: post.subtitle,
-    description: post.summary,
-    datePublished: post.isoDate,
-    dateModified: post.isoDate,
-    mainEntityOfPage: `${siteUrl}/blogs/${post.slug}`,
-    author: {
-      "@type": "Person",
-      name: "Chinmaya Kumar Mishra",
-      url: `${siteUrl}/`,
-      jobTitle: "Full-Stack Developer & Application Security Engineer",
-    },
-    publisher: {
-      "@type": "Person",
-      name: "Chinmaya Kumar Mishra",
-      url: `${siteUrl}/`,
-    },
-    keywords: post.tags.join(", "),
-    articleSection: post.category,
-    image: `${siteUrl}/og-image.png`,
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${siteUrl}/blogs/${post.slug}#article`,
+        headline: post.title,
+        alternativeHeadline: post.subtitle,
+        description: post.summary,
+        datePublished: post.isoDate,
+        dateModified: post.isoDate,
+        mainEntityOfPage: `${siteUrl}/blogs/${post.slug}`,
+        author: {
+          "@type": "Person",
+          name: "Chinmaya Kumar Mishra",
+          url: `${siteUrl}/`,
+          jobTitle: "Full-Stack Developer & Application Security Engineer",
+        },
+        publisher: {
+          "@type": "Person",
+          name: "Chinmaya Kumar Mishra",
+          url: `${siteUrl}/`,
+        },
+        keywords: post.tags.join(", "),
+        articleSection: post.category,
+        image: `${siteUrl}/og-image.png`,
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${siteUrl}/blogs/${post.slug}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${siteUrl}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blogs",
+            item: `${siteUrl}/blogs`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.title,
+            item: `${siteUrl}/blogs/${post.slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
