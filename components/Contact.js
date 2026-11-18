@@ -15,7 +15,7 @@ import {
   ArrowUpRight
 } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
-import { fadeInUp, defaultViewport } from "@/lib/motion";
+import { fadeInUp, defaultViewport, buttonMotionProps } from "@/lib/motion";
 
 export default function Contact() {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -44,8 +44,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-transparent">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="py-20 md:py-32 relative border-t border-[#E7E5E0] bg-transparent scroll-mt-16">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <motion.div
@@ -57,7 +57,7 @@ export default function Contact() {
         >
           <div className="flex items-center gap-2 text-[#3B5BFF] font-mono text-xs font-bold uppercase tracking-widest mb-2.5">
             <span className="w-2 h-2 rounded-full bg-[#3B5BFF]" />
-            <span>CONTACT // 06</span>
+            <span>CONTACT // 07</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#171717] tracking-tight mb-3.5 font-sans">
@@ -69,7 +69,7 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        {/* Balanced 2-Column Grid: Symmetrical gap, margin, and padding on both sides */}
+        {/* Balanced 2-Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
           
           {/* Left Column Card: Direct Reach & Verified Profiles */}
@@ -78,7 +78,7 @@ export default function Contact() {
             whileInView="visible"
             viewport={defaultViewport}
             variants={fadeInUp}
-            className="p-6 sm:p-8 rounded-2xl bg-white border border-[#E7E5E0] shadow-xs flex flex-col justify-between h-full"
+            className="p-7 sm:p-9 rounded-3xl bg-white border border-[#E7E5E0] shadow-xs flex flex-col justify-between h-full"
           >
             <div>
               {/* Card Header */}
@@ -97,9 +97,9 @@ export default function Contact() {
               {/* Direct Info Tiles */}
               <div className="space-y-3.5 mb-6">
                 {/* Email Tile */}
-                <div className="p-4 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] hover:border-[#3B5BFF]/40 transition-colors flex items-center justify-between gap-3">
+                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#E7E5E0] hover:border-[#3B5BFF]/40 transition-colors flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-10 h-10 rounded-lg bg-[#3B5BFF]/10 text-[#3B5BFF] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-xl bg-[#3B5BFF]/10 text-[#3B5BFF] flex items-center justify-center shrink-0">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
@@ -117,7 +117,7 @@ export default function Contact() {
 
                   <button
                     onClick={handleCopyEmail}
-                    className="p-2 rounded-lg bg-white border border-[#E7E5E0] hover:bg-[#F3F2EE] text-[#666666] hover:text-[#171717] transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-[#3B5BFF]"
+                    className="p-2.5 rounded-xl bg-white border border-[#E7E5E0] hover:bg-[#F3F2EE] text-[#666666] hover:text-[#171717] transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-[#3B5BFF] shadow-xs"
                     title="Copy email address"
                     aria-label="Copy email address"
                   >
@@ -130,8 +130,8 @@ export default function Contact() {
                 </div>
 
                 {/* Location Tile */}
-                <div className="p-4 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
+                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#E7E5E0] flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
@@ -148,14 +148,14 @@ export default function Contact() {
               {/* Social Profiles */}
               <div>
                 <span className="text-[10px] font-mono text-[#666666] uppercase block font-semibold tracking-wider mb-2.5">
-                  PROFESSIONAL NETWORKS
+                  PROFESSIONAL PROFILES
                 </span>
                 <div className="grid grid-cols-2 gap-3">
                   <a
                     href={personalInfo.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] hover:border-[#3B5BFF]/40 text-[#171717] hover:text-[#3B5BFF] transition-colors flex items-center justify-between text-xs font-mono font-medium"
+                    className="p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E7E5E0] hover:border-[#3B5BFF]/40 text-[#171717] hover:text-[#3B5BFF] transition-colors flex items-center justify-between text-xs font-mono font-medium shadow-xs"
                   >
                     <div className="flex items-center gap-2">
                       <Github className="w-4 h-4 text-[#666666]" />
@@ -168,7 +168,7 @@ export default function Contact() {
                     href={personalInfo.links.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] hover:border-[#3B5BFF]/40 text-[#171717] hover:text-[#3B5BFF] transition-colors flex items-center justify-between text-xs font-mono font-medium"
+                    className="p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#E7E5E0] hover:border-[#3B5BFF]/40 text-[#171717] hover:text-[#3B5BFF] transition-colors flex items-center justify-between text-xs font-mono font-medium shadow-xs"
                   >
                     <div className="flex items-center gap-2">
                       <Linkedin className="w-4 h-4 text-[#3B5BFF]" />
@@ -194,7 +194,7 @@ export default function Contact() {
             viewport={defaultViewport}
             variants={fadeInUp}
             transition={{ delay: 0.08 }}
-            className="p-6 sm:p-8 rounded-2xl bg-white border border-[#E7E5E0] shadow-xs flex flex-col justify-between h-full"
+            className="p-7 sm:p-9 rounded-3xl bg-white border border-[#E7E5E0] shadow-xs flex flex-col justify-between h-full"
           >
             {isSubmitted ? (
               <div className="py-16 my-auto flex flex-col items-center justify-center text-center">
@@ -212,7 +212,7 @@ export default function Contact() {
                     setIsSubmitted(false);
                     setFormState({ name: "", email: "", topic: "Application Security Role", message: "" });
                   }}
-                  className="px-5 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] text-xs font-mono font-medium text-[#171717] hover:bg-[#F3F2EE] transition-colors"
+                  className="px-5 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] text-xs font-mono font-medium text-[#171717] hover:bg-[#F3F2EE] transition-colors shadow-xs"
                 >
                   Send Another Message
                 </button>
@@ -243,39 +243,40 @@ export default function Contact() {
                         required
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        placeholder="Jane Doe"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] text-xs sm:text-sm text-[#171717] placeholder-[#999999] focus:outline-none focus:ring-1 focus:ring-[#3B5BFF] focus:border-[#3B5BFF] transition-all font-sans"
+                        placeholder="e.g. Alex Morgan"
+                        className="w-full px-4 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] focus:border-[#3B5BFF] focus:bg-white text-xs sm:text-sm text-[#171717] outline-none transition-colors"
                       />
                     </div>
 
                     <div>
                       <label className="block text-[11px] font-mono text-[#666666] uppercase font-semibold mb-1.5">
-                        Email Address
+                        Your Email
                       </label>
                       <input
                         type="email"
                         required
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        placeholder="jane@company.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] text-xs sm:text-sm text-[#171717] placeholder-[#999999] focus:outline-none focus:ring-1 focus:ring-[#3B5BFF] focus:border-[#3B5BFF] transition-all font-sans"
+                        placeholder="alex@company.com"
+                        className="w-full px-4 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] focus:border-[#3B5BFF] focus:bg-white text-xs sm:text-sm text-[#171717] outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-[11px] font-mono text-[#666666] uppercase font-semibold mb-1.5">
-                      Subject / Discussion Area
+                      Subject / Topic
                     </label>
                     <select
                       value={formState.topic}
                       onChange={(e) => setFormState({ ...formState, topic: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] text-xs sm:text-sm text-[#171717] focus:outline-none focus:ring-1 focus:ring-[#3B5BFF] focus:border-[#3B5BFF] transition-all font-sans"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] focus:border-[#3B5BFF] focus:bg-white text-xs sm:text-sm text-[#171717] outline-none transition-colors"
                     >
-                      <option value="Application Security Role">Application Security Role</option>
-                      <option value="Full-Stack Engineering Role">Full-Stack Engineering Role</option>
-                      <option value="AI Security Collaboration">AI Security Collaboration</option>
-                      <option value="General Inquiry">General Technical Inquiry</option>
+                      <option value="Application Security Role">Application Security Opportunity</option>
+                      <option value="Full-Stack Engineering">Full-Stack Engineering Role</option>
+                      <option value="Security Audit Consulting">Security Audit / Code Review Consulting</option>
+                      <option value="Freelance Development">Freelance Web / Mobile Project</option>
+                      <option value="Other Collaboration">General Technical Inquiry</option>
                     </select>
                   </div>
 
@@ -288,21 +289,26 @@ export default function Contact() {
                       rows={4}
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      placeholder="Hello Chinmaya, I would like to discuss..."
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] text-xs sm:text-sm text-[#171717] placeholder-[#999999] focus:outline-none focus:ring-1 focus:ring-[#3B5BFF] focus:border-[#3B5BFF] transition-all font-sans resize-none"
+                      placeholder="Briefly describe your team, project requirements, or opportunity..."
+                      className="w-full px-4 py-2.5 rounded-xl bg-[#FAF9F6] border border-[#E7E5E0] focus:border-[#3B5BFF] focus:bg-white text-xs sm:text-sm text-[#171717] outline-none transition-colors resize-none"
                     />
                   </div>
 
-                  <div className="pt-2">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full sm:w-auto px-7 py-3 rounded-xl bg-[#3B5BFF] hover:bg-[#2F4EE6] text-white font-medium text-xs sm:text-sm font-mono tracking-wider transition-colors flex items-center justify-center gap-2 shadow-xs disabled:opacity-50"
-                    >
-                      <Send className="w-4 h-4" />
-                      <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
-                    </button>
-                  </div>
+                  <motion.button
+                    type="submit"
+                    disabled={isSubmitting}
+                    {...buttonMotionProps}
+                    className="w-full py-3 px-6 rounded-xl bg-[#171717] hover:bg-[#3B5BFF] text-white text-xs font-mono font-semibold tracking-wider transition-colors flex items-center justify-center gap-2 shadow-xs group"
+                  >
+                    {isSubmitting ? (
+                      <span>Transmitting...</span>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <Send className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </>
+                    )}
+                  </motion.button>
                 </form>
               </div>
             )}

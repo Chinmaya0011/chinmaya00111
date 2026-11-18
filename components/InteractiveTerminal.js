@@ -262,8 +262,8 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
   ];
 
   return (
-    <section id="terminal" className="py-20 md:py-28 relative border-t border-[#E7E5E0] bg-[#FAF9F6]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+    <section id="terminal" className="py-20 md:py-32 relative border-t border-[#E7E5E0] bg-transparent scroll-mt-16">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <motion.div
@@ -271,17 +271,17 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
           whileInView="visible"
           viewport={defaultViewport}
           variants={fadeInUp}
-          className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
+          className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4"
         >
           <div>
-            <div className="flex items-center gap-2 text-[#365CF5] font-mono text-xs font-bold uppercase tracking-widest mb-2.5">
-              <span className="w-2 h-2 rounded-full bg-[#365CF5]" />
-              <span>TERMINAL // 08 // WORKSTATION SHELL</span>
+            <div className="flex items-center gap-2 text-[#3B5BFF] font-mono text-xs font-bold uppercase tracking-widest mb-2.5">
+              <span className="w-2 h-2 rounded-full bg-[#3B5BFF]" />
+              <span>SECURITY CONSOLE // 06</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#171717] font-sans tracking-tight">
-              Interactive Linux Terminal
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#171717] font-sans tracking-tight">
+              Interactive Security Terminal
             </h2>
-            <p className="text-xs sm:text-sm text-[#666666] font-sans mt-1 max-w-xl">
+            <p className="text-sm sm:text-base text-[#666666] font-sans mt-3 max-w-xl">
               Simulated bash environment. Click preset commands or type directly to run AST security scans, inspect production stack, or review architecture.
             </p>
           </div>
@@ -289,7 +289,7 @@ Status:       Available for Full-Time Roles & High-Impact Contracts (Fast respon
           <motion.button
             {...buttonMotionProps}
             onClick={resetTerminal}
-            className="flex items-center gap-1.5 text-xs font-mono text-[#666666] hover:text-[#365CF5] bg-white border border-[#E7E5E0] hover:border-[#365CF5]/40 px-3.5 py-1.5 rounded-lg shadow-xs transition-colors self-start sm:self-auto shrink-0"
+            className="flex items-center gap-1.5 text-xs font-mono text-[#666666] hover:text-[#3B5BFF] bg-white border border-[#E7E5E0] hover:border-[#3B5BFF]/40 px-3.5 py-2 rounded-xl shadow-xs transition-colors self-start sm:self-auto shrink-0"
             title="Reset terminal history"
             aria-label="Reset terminal"
           >

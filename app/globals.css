@@ -5,16 +5,42 @@
 :root {
   --bg-canvas: #FAF9F6;
   --bg-card: #FFFFFF;
+  --bg-surface-muted: #F3F2EE;
   --text-primary: #171717;
   --text-secondary: #666666;
   --text-muted: #8E8C85;
-  --accent-blue: #365CF5;
+  --accent-cobalt: #3B5BFF;
+  --accent-cyan: #06B6D4;
+  --accent-violet: #8B5CF6;
+  --accent-emerald: #10B981;
   --border-subtle: #E7E5E0;
+  --border-hover: #D5D3CC;
 }
 
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+}
+
+/* Lenis smooth scroll optimizations */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
@@ -27,7 +53,7 @@ body {
 }
 
 ::selection {
-  background: rgba(54, 92, 245, 0.15);
+  background: rgba(59, 91, 255, 0.16);
   color: #171717;
 }
 
@@ -46,7 +72,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #365CF5;
+  background: #3B5BFF;
 }
 
 /* Editorial Card Utility */
@@ -55,12 +81,14 @@ body {
   border: 1px solid #E7E5E0;
   border-radius: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .editorial-card:hover {
   border-color: #D5D3CC;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.06), 0 8px 12px -8px rgba(0, 0, 0, 0.03);
 }
 
 /* Keyboard accessibility focus ring */
@@ -68,8 +96,27 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #365CF5;
+  outline: 2px solid #3B5BFF;
   outline-offset: 2px;
+}
+
+/* Gradient typography utilities */
+.text-gradient-cobalt {
+  background: linear-gradient(135deg, #171717 15%, #3B5BFF 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #3B5BFF 0%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-security {
+  background: linear-gradient(135deg, #171717 30%, #3B5BFF 65%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Fluid Aurora Background Animations */
@@ -106,21 +153,6 @@ textarea:focus-visible {
     opacity: 0.85;
     transform: translate3d(15px, -15px, 0) scale(1.1);
   }
-}
-
-.animate-aurora-slow {
-  animation: auroraSlow 24s ease-in-out infinite;
-  will-change: transform;
-}
-
-.animate-aurora-reverse {
-  animation: auroraReverse 28s ease-in-out infinite;
-  will-change: transform;
-}
-
-.animate-pulse-slow {
-  animation: pulseSlow 18s ease-in-out infinite;
-  will-change: transform, opacity;
 }
 
 /* Reduced motion preference */

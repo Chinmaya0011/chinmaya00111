@@ -39,7 +39,7 @@ export const personalInfo = {
     "Open to Application Security, Product Security, AI Security, and Full-Stack Engineering opportunities, as well as meaningful technical collaborations."
 };
 
-// Focused Technical Expertise Areas (3 Focused Areas)
+// Focused Technical Expertise Areas (4 Core Clusters)
 export const expertiseAreas = [
   {
     id: "appsec",
@@ -47,40 +47,53 @@ export const expertiseAreas = [
     title: "APPLICATION SECURITY",
     description: "Analyzing software weaknesses, auditing code, and hardening web applications and APIs against common failure modes.",
     points: [
-      "Web and API security.",
-      "Secure code review.",
-      "Authentication and authorization.",
-      "Vulnerability identification and analysis.",
-      "OWASP security principles."
+      "Web and API security (OWASP Top 10, BOLA/IDOR).",
+      "Deterministic SAST & AST rule creation with Semgrep.",
+      "Authentication and authorization flow verification.",
+      "Vulnerability triage, proof-of-concept validation, and remediation.",
+      "Security auditing with Burp Suite and OWASP ZAP."
     ],
-    technologies: ["OWASP Top 10", "Burp Suite", "OWASP ZAP", "Semgrep", "Nmap"]
+    technologies: ["OWASP Top 10", "Burp Suite", "OWASP ZAP", "Semgrep", "AST Parsing", "Nmap"]
+  },
+  {
+    id: "fullstack",
+    areaNumber: "02",
+    title: "FULL-STACK ENGINEERING",
+    description: "Designing reliable, reactive full-stack web architectures with modern frameworks, RESTful APIs, and database modeling.",
+    points: [
+      "Next.js 15 App Router & React 19 architecture.",
+      "Node.js & Express RESTful API microservices.",
+      "MongoDB document modeling & indexing.",
+      "Real-time event streaming with WebSockets / Socket.IO.",
+      "Responsive, accessible UI with Tailwind CSS."
+    ],
+    technologies: ["Next.js", "React 19", "Node.js", "Express.js", "MongoDB", "JavaScript (ES6+)", "Tailwind CSS"]
   },
   {
     id: "ai-sec",
-    areaNumber: "02",
-    title: "AI & SECURITY ENGINEERING",
-    description: "Integrating LLM intelligence into security workflows while addressing adversarial threats specific to AI systems.",
+    areaNumber: "03",
+    title: "AI & LLM SECURITY",
+    description: "Integrating LLM intelligence into security workflows while hardening generative AI pipelines against adversarial manipulation.",
     points: [
-      "LLM-powered vulnerability analysis.",
-      "RAG application security.",
-      "AI-assisted code analysis.",
-      "Prompt injection and AI application security."
+      "LLM-powered vulnerability analysis & automated triage.",
+      "Retrieval-Augmented Generation (RAG) architecture & defense.",
+      "Prompt injection mitigation & output sanitization.",
+      "Context isolation and guardrails for code ingestion."
     ],
-    technologies: ["OpenAI API", "RAG", "LLMs", "Prompt Hardening", "Guardrails"]
+    technologies: ["OpenAI API", "RAG", "LLMs", "Prompt Hardening", "Guardrails", "Python"]
   },
   {
-    id: "software-eng",
-    areaNumber: "03",
-    title: "SOFTWARE ENGINEERING",
-    description: "Designing reliable, full-stack systems with modern frameworks, RESTful services, and developer workflows.",
+    id: "devops",
+    areaNumber: "04",
+    title: "INFRASTRUCTURE & DEVOPS",
+    description: "Containerizing services, managing reproducible developer environments, and securing automated CI/CD deployment pipelines.",
     points: [
-      "Next.js and React.",
-      "Node.js and Express.",
-      "Python and Bash.",
-      "MongoDB and REST APIs.",
-      "Docker and GitHub integrations."
+      "Docker containerization & multi-stage image optimization.",
+      "GitHub Apps integration & webhook event pipelines.",
+      "Linux server administration & bash scripting.",
+      "Static analysis and dependency auditing in CI/CD."
     ],
-    technologies: ["Next.js", "React", "Node.js", "Express", "Python", "Bash", "MongoDB", "Docker"]
+    technologies: ["Docker", "GitHub Apps", "Linux / Bash", "Git", "CI/CD Workflows", "REST APIs"]
   }
 ];
 
@@ -93,8 +106,13 @@ export const projects = [
     id: "github-scanner",
     number: "PROJECT 01",
     title: "GitHub Security Scanner",
+    category: "Application Security Platform",
     description:
       "An application security platform integrating GitHub repositories with automated security scanning workflows. Designed to connect repository access, scanning processes, and vulnerability findings through a developer-facing dashboard.",
+    engineeringChallenge:
+      "Parsing repository abstract syntax trees (AST) deterministically without server latency while dispatching real-time scan telemetry asynchronously.",
+    securityCapability:
+      "Automated OWASP Top 10 pattern matching, ephemeral GitHub App token negotiation (1-hour TTL), and cryptographic webhook HMAC verification.",
     technologies: ["Next.js", "Node.js", "Express.js", "MongoDB", "Semgrep", "GitHub Apps", "OAuth"],
     stack: ["Next.js", "Node.js", "Express.js", "MongoDB", "Semgrep", "GitHub Apps", "OAuth"],
     githubUrl: "https://github.com/chinmaya0011/github-scanner-platform",
@@ -104,8 +122,13 @@ export const projects = [
     id: "ai-github-assistant",
     number: "PROJECT 02",
     title: "AI GitHub Repository Assistant",
+    category: "AI Developer Tooling & RAG",
     description:
       "An AI-powered repository assistant that enables developers to interact with code repositories through LLM-based workflows and GitHub integrations.",
+    engineeringChallenge:
+      "Chunking source code syntax trees into semantic embedding vectors to provide grounded context without token window overflow.",
+    securityCapability:
+      "Prompt hardening against indirect injection embedded in untrusted codebase files, with strict context isolation and sanitization.",
     technologies: ["Next.js", "Express.js", "MongoDB", "OpenAI API", "RAG", "GitHub Apps"],
     stack: ["Next.js", "Express.js", "MongoDB", "OpenAI API", "RAG", "GitHub Apps"],
     githubUrl: "https://github.com/chinmaya0011/ai-github-chatbot",
@@ -114,9 +137,14 @@ export const projects = [
   {
     id: "booksaathi",
     number: "PROJECT 03",
-    title: "BookSaathi",
+    title: "BookSaathi SaaS",
+    category: "Multi-Tenant Cloud Platform",
     description:
       "A multi-tenant practice management SaaS featuring appointment management, real-time updates, and integrated payment workflows.",
+    engineeringChallenge:
+      "Handling concurrent booking slot contention with real-time Socket.IO broadcasts and idempotent payment webhook handling.",
+    securityCapability:
+      "Strict multi-tenant authorization boundaries preventing BOLA/IDOR object exposure across isolated practices and roles.",
     technologies: ["Next.js", "React", "Node.js", "MongoDB", "Socket.IO"],
     stack: ["Next.js", "React", "Node.js", "MongoDB", "Socket.IO"],
     githubUrl: "https://github.com/chinmaya0011/booksaathi-saas",

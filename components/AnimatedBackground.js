@@ -24,6 +24,7 @@ export default function AnimatedBackground() {
     let width = 0;
     let height = 0;
     let dpr = 1;
+    let isVisible = true;
 
     // Track mouse / pointer coordinates smoothly
     const handlePointerMove = (e) => {
@@ -45,20 +46,20 @@ export default function AnimatedBackground() {
     let particles = [];
     const initParticles = () => {
       const isMobile = width < 768;
-      const count = isMobile ? 32 : 65;
+      const count = isMobile ? 24 : 54;
       particles = [];
 
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5),
-          vy: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5),
-          radius: Math.random() * 1.6 + 0.8,
-          baseAlpha: Math.random() * 0.35 + 0.2,
+          vx: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.45),
+          vy: (Math.random() - 0.5) * (isMobile ? 0.3 : 0.45),
+          radius: Math.random() * 1.5 + 0.7,
+          baseAlpha: Math.random() * 0.3 + 0.15,
           pulseSpeed: Math.random() * 0.02 + 0.01,
           pulseOffset: Math.random() * Math.PI * 2,
-          // Color variance: AppSec blue (#3B5BFF), Cyan (#06B6D4), soft Violet (#8B5CF6)
+          // Color variance: AppSec blue (#3B5BFF), Cyan (#06B6D4), soft Violet (#8B5CF6), Emerald (#10B981)
           color: i % 4 === 0 ? "59, 91, 255" : i % 4 === 1 ? "6, 182, 212" : i % 4 === 2 ? "139, 92, 246" : "16, 185, 129"
         });
       }
@@ -75,18 +76,23 @@ export default function AnimatedBackground() {
     };
 
     resize();
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resize, { passive: true });
 
-    // Occasional data packet pulses traveling along links
+    // Packets traveling along links
     const packets = [
-      { from: 0, to: 1, progress: 0, speed: 0.008 },
-      { from: 2, to: 3, progress: 0.4, speed: 0.006 },
-      { from: 4, to: 5, progress: 0.8, speed: 0.007 },
+      { from: 0, to: 1, progress: 0, speed: 0.007 },
+      { from: 2, to: 3, progress: 0.35, speed: 0.005 },
+      { from: 4, to: 5, progress: 0.7, speed: 0.006 },
     ];
 
     let tick = 0;
 
     const render = () => {
+      if (!isVisible || motionQuery.matches) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+
       tick++;
       ctx.clearRect(0, 0, width, height);
 
@@ -95,7 +101,7 @@ export default function AnimatedBackground() {
       mouse.x += (mouse.targetX - mouse.x) * 0.12;
       mouse.y += (mouse.targetY - mouse.y) * 0.12;
 
-      // 1. Draw subtle interactive mouse spotlight if cursor is active
+      // 1. Subtle interactive mouse spotlight if cursor is active
       if (mouse.active && mouse.x > 0 && mouse.y > 0) {
         const spotlight = ctx.createRadialGradient(
           mouse.x,
@@ -103,49 +109,49 @@ export default function AnimatedBackground() {
           0,
           mouse.x,
           mouse.y,
-          width < 768 ? 180 : 320
+          260
         );
-        spotlight.addColorStop(0, "rgba(59, 91, 255, 0.08)");
-        spotlight.addColorStop(0.5, "rgba(96, 165, 250, 0.035)");
+        spotlight.addColorStop(0, "rgba(59, 91, 255, 0.06)");
+        spotlight.addColorStop(0.5, "rgba(6, 182, 212, 0.03)");
         spotlight.addColorStop(1, "rgba(250, 249, 246, 0)");
-
         ctx.fillStyle = spotlight;
-        ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, width < 768 ? 180 : 320, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.fillRect(0, 0, width, height);
       }
 
-      const connectionDist = width < 768 ? 95 : 130;
-      const connectionDistSq = connectionDist * connectionDist;
-      const mouseRadius = width < 768 ? 110 : 160;
-      const mouseRadiusSq = mouseRadius * mouseRadius;
+      // 2. Update and draw constellation nodes & links
+      const maxDistance = width < 768 ? 100 : 140;
 
-      // 2. Update and draw connection lines between close particles
       for (let i = 0; i < particles.length; i++) {
         const p1 = particles[i];
+        p1.x += p1.vx;
+        p1.y += p1.vy;
 
-        if (!motionQuery.matches) {
-          p1.x += p1.vx;
-          p1.y += p1.vy;
+        // Bounce gently at screen boundaries
+        if (p1.x < 0 || p1.x > width) p1.vx *= -1;
+        if (p1.y < 0 || p1.y > height) p1.vy *= -1;
 
-          // Bounce smoothly on screen bounds
-          if (p1.x < 0) { p1.x = 0; p1.vx *= -1; }
-          else if (p1.x > width) { p1.x = width; p1.vx *= -1; }
-          if (p1.y < 0) { p1.y = 0; p1.vy *= -1; }
-          else if (p1.y > height) { p1.y = height; p1.vy *= -1; }
+        // Mouse proximity reaction (gentle magnetic evasion)
+        if (mouse.active) {
+          const dx = p1.x - mouse.x;
+          const dy = p1.y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 110 && dist > 0) {
+            const force = (110 - dist) / 110;
+            p1.x += (dx / dist) * force * 1.5;
+            p1.y += (dy / dist) * force * 1.5;
+          }
         }
 
-        // Connect with other particles
+        // Draw connecting edges
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
-          const distSq = dx * dx + dy * dy;
+          const dist = Math.hypot(dx, dy);
 
-          if (distSq < connectionDistSq) {
-            const dist = Math.sqrt(distSq);
-            const alpha = (1 - dist / connectionDist) * 0.18;
-            ctx.strokeStyle = `rgba(59, 91, 255, ${alpha})`;
+          if (dist < maxDistance) {
+            const edgeAlpha = (1 - dist / maxDistance) * 0.16;
+            ctx.strokeStyle = `rgba(59, 91, 255, ${edgeAlpha})`;
             ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
@@ -154,46 +160,34 @@ export default function AnimatedBackground() {
           }
         }
 
-        // Interactive mouse connection line
-        if (mouse.active) {
-          const mdx = p1.x - mouse.x;
-          const mdy = p1.y - mouse.y;
-          const mdistSq = mdx * mdx + mdy * mdy;
-
-          if (mdistSq < mouseRadiusSq) {
-            const mdist = Math.sqrt(mdistSq);
-            const mAlpha = (1 - mdist / mouseRadius) * 0.28;
-            ctx.strokeStyle = `rgba(59, 91, 255, ${mAlpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.stroke();
-
-            // Subtle mouse repulsion/attraction physics
-            if (!motionQuery.matches) {
-              const force = (1 - mdist / mouseRadius) * 0.25;
-              p1.x += (mdx / mdist) * force;
-              p1.y += (mdy / mdist) * force;
-            }
-          }
-        }
-
-        // Draw particle node
-        const pulse = Math.sin(tick * p1.pulseSpeed + p1.pulseOffset) * 0.2 + 0.8;
-        const currentAlpha = p1.baseAlpha * pulse;
-
-        // Subtle glow halo
-        ctx.fillStyle = `rgba(${p1.color}, ${currentAlpha * 0.35})`;
-        ctx.beginPath();
-        ctx.arc(p1.x, p1.y, p1.radius * 2.2, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Core bright node
-        ctx.fillStyle = `rgba(${p1.color}, ${currentAlpha})`;
+        // Node glow
+        const currentAlpha = p1.baseAlpha + Math.sin(tick * p1.pulseSpeed + p1.pulseOffset) * 0.12;
+        ctx.fillStyle = `rgba(${p1.color}, ${Math.max(0.05, currentAlpha)})`;
         ctx.beginPath();
         ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
         ctx.fill();
+      }
+
+      // 3. Draw security data packets along links
+      for (let k = 0; k < packets.length; k++) {
+        const pkt = packets[k];
+        if (pkt.from < particles.length && pkt.to < particles.length) {
+          const pA = particles[pkt.from];
+          const pB = particles[pkt.to];
+          pkt.progress += pkt.speed;
+          if (pkt.progress >= 1) {
+            pkt.progress = 0;
+            pkt.from = Math.floor(Math.random() * particles.length);
+            pkt.to = (pkt.from + 1 + Math.floor(Math.random() * 4)) % particles.length;
+          }
+          const px = pA.x + (pB.x - pA.x) * pkt.progress;
+          const py = pA.y + (pB.y - pA.y) * pkt.progress;
+
+          ctx.fillStyle = "rgba(6, 182, 212, 0.75)";
+          ctx.beginPath();
+          ctx.arc(px, py, 1.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
 
       animationFrameId = requestAnimationFrame(render);
@@ -201,11 +195,18 @@ export default function AnimatedBackground() {
 
     render();
 
+    // Pause when page is hidden to preserve battery and CPU
+    const handleVisibilityChange = () => {
+      isVisible = !document.hidden;
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("mouseleave", handlePointerLeave);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       motionQuery.removeEventListener("change", handleMotionChange);
     };
   }, []);

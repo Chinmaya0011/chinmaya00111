@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
+import { ArrowUp, Github, Linkedin, Mail, ShieldCheck } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import { buttonMotionProps } from "@/lib/motion";
 
@@ -11,8 +12,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#FAF9F6]/85 backdrop-blur-md border-t border-[#E7E5E0] py-14 text-[#666666] relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <footer className="bg-[#FAF9F6]/90 backdrop-blur-md border-t border-[#E7E5E0] py-14 text-[#666666] relative z-10">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main Footer Block */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-[#E7E5E0]">
@@ -20,7 +21,7 @@ export default function Footer() {
           {/* Brand Identity */}
           <div>
             <div className="flex items-center gap-2.5 mb-2">
-              <div className="w-7 h-7 rounded-lg overflow-hidden border border-[#E7E5E0] shadow-xs flex-shrink-0 bg-[#FAF9F6]">
+              <div className="w-8 h-8 rounded-lg overflow-hidden border border-[#E7E5E0] shadow-xs flex-shrink-0 bg-[#FAF9F6]">
                 <img
                   src="/chinmaya.png"
                   alt="Chinmaya Kumar Mishra"
@@ -30,8 +31,8 @@ export default function Footer() {
               <span className="font-sans font-extrabold text-base text-[#171717] tracking-tight">
                 {personalInfo.name}
               </span>
-              <span className="text-[#E7E5E0] font-mono">/</span>
-              <span className="text-[#365CF5] text-xs font-mono font-semibold">
+              <span className="text-[#D5D3CC] font-mono">/</span>
+              <span className="text-[#3B5BFF] text-xs font-mono font-semibold">
                 AI APPSEC &amp; FULL-STACK
               </span>
             </div>
@@ -41,24 +42,37 @@ export default function Footer() {
           </div>
 
           {/* Nav Jumps & Socials */}
-          <div className="flex flex-wrap items-center gap-5 text-xs font-mono">
-            <a href="/blogs" className="text-[#365CF5] font-semibold hover:underline transition-colors">Blog</a>
-            <a href="/#about" className="hover:text-[#365CF5] transition-colors">About</a>
-            <a href="/#expertise" className="hover:text-[#365CF5] transition-colors">Expertise</a>
-            <a href="/#services" className="hover:text-[#365CF5] transition-colors">Services</a>
-            <a href="/#projects" className="hover:text-[#365CF5] transition-colors">Work</a>
-            <a href="/#experience" className="hover:text-[#365CF5] transition-colors">Experience</a>
-            <a href="/#contact" className="hover:text-[#365CF5] transition-colors">Contact</a>
+          <div className="flex flex-wrap items-center gap-4 sm:gap-5 text-xs font-mono">
+            <Link href="/services" className="text-[#3B5BFF] font-semibold hover:underline transition-colors">Services</Link>
+            <Link href="/blogs" className="text-[#3B5BFF] font-semibold hover:underline transition-colors">Blog</Link>
+            <Link href="/#about" className="hover:text-[#3B5BFF] transition-colors">About</Link>
+            <Link href="/#expertise" className="hover:text-[#3B5BFF] transition-colors">Expertise</Link>
+            <Link href="/#projects" className="hover:text-[#3B5BFF] transition-colors">Work</Link>
+            <Link href="/#terminal" className="hover:text-[#3B5BFF] transition-colors">Terminal</Link>
+            <Link href="/#experience" className="hover:text-[#3B5BFF] transition-colors">Experience</Link>
+            <Link href="/security" className="hover:text-[#3B5BFF] transition-colors font-medium">Security</Link>
+            <Link href="/privacy" className="hover:text-[#3B5BFF] transition-colors font-medium">Privacy</Link>
+            <button
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("openCookieConsent"));
+                }
+              }}
+              className="hover:text-[#3B5BFF] transition-colors font-medium"
+            >
+              Cookies
+            </button>
+            <Link href="/#contact" className="hover:text-[#3B5BFF] transition-colors">Contact</Link>
 
             <div className="h-4 w-px bg-[#E7E5E0] hidden sm:block" />
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <motion.a
                 {...buttonMotionProps}
                 href={personalInfo.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#666666] hover:text-[#365CF5] transition-colors p-1.5 rounded-md hover:bg-white border border-transparent hover:border-[#E7E5E0]"
+                className="text-[#666666] hover:text-[#3B5BFF] transition-colors p-2 rounded-lg hover:bg-white border border-transparent hover:border-[#E7E5E0]"
                 title="GitHub"
                 aria-label="GitHub Profile"
               >
@@ -69,7 +83,7 @@ export default function Footer() {
                 href={personalInfo.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#666666] hover:text-[#365CF5] transition-colors p-1.5 rounded-md hover:bg-white border border-transparent hover:border-[#E7E5E0]"
+                className="text-[#666666] hover:text-[#3B5BFF] transition-colors p-2 rounded-lg hover:bg-white border border-transparent hover:border-[#E7E5E0]"
                 title="LinkedIn"
                 aria-label="LinkedIn Profile"
               >
@@ -78,7 +92,7 @@ export default function Footer() {
               <motion.a
                 {...buttonMotionProps}
                 href={personalInfo.links.email}
-                className="text-[#666666] hover:text-[#365CF5] transition-colors p-1.5 rounded-md hover:bg-white border border-transparent hover:border-[#E7E5E0]"
+                className="text-[#666666] hover:text-[#3B5BFF] transition-colors p-2 rounded-lg hover:bg-white border border-transparent hover:border-[#E7E5E0]"
                 title="Email"
                 aria-label="Email Chinmaya"
               >
@@ -89,39 +103,26 @@ export default function Footer() {
             <motion.button
               {...buttonMotionProps}
               onClick={scrollToTop}
-              className="p-2 rounded-lg bg-white border border-[#E7E5E0] hover:border-[#365CF5]/40 text-[#666666] hover:text-[#365CF5] transition-colors flex items-center gap-1.5 text-xs font-mono shadow-xs"
+              className="p-2 px-3 rounded-xl bg-white border border-[#E7E5E0] hover:border-[#3B5BFF]/40 text-[#171717] hover:text-[#3B5BFF] transition-colors flex items-center gap-1.5 text-xs font-mono shadow-xs"
               aria-label="Back to top"
             >
               <span>TOP</span>
-              <ArrowUp className="w-3.5 h-3.5 text-[#365CF5]" />
+              <ArrowUp className="w-3.5 h-3.5 text-[#3B5BFF]" />
             </motion.button>
           </div>
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#666666]">
-          <div className="flex flex-wrap items-center gap-3">
-            <span>&copy; {new Date().getFullYear()} {personalInfo.name}. Engineered in Odisha, India.</span>
-            <span className="text-[#E7E5E0] hidden sm:inline">•</span>
-            <a
-              href="https://www.seobility.net/en/seocheck/check?url=https%3A%2F%2Fwww.chinmayakumarmishra.sbs%2F"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center hover:opacity-85 transition-opacity"
-              title="Seobility Score for chinmayakumarmishra.sbs"
-            >
-              <img
-                src="https://app.seobility.net/widget/widget.png?url=https%3A%2F%2Fwww.chinmayakumarmishra.sbs%2F"
-                alt="Seobility Score for chinmayakumarmishra.sbs"
-                className="h-8 sm:h-9 w-auto object-contain rounded drop-shadow-xs"
-              />
-            </a>
-          </div>
-          <div className="flex items-center gap-2">
-            <span>Built with Next.js, Tailwind CSS &amp; Framer Motion</span>
-            <span className="text-[#E7E5E0]">•</span>
-            <span>Press <kbd className="px-1.5 py-0.5 rounded bg-white border border-[#E7E5E0] text-[#171717] font-semibold text-[10px] shadow-xs">⌘K</kbd> for quick jump</span>
+        {/* Bottom Sub-bar */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-[#888888]">
+          <p>© {new Date().getFullYear()} Chinmaya Kumar Mishra. All rights reserved.</p>
+          <div className="flex items-center gap-3">
+            <span className="flex items-center gap-1 text-emerald-600">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>TLS / DNSSEC Verified</span>
+            </span>
+            <span>•</span>
+            <span>Next.js 15 &amp; React 19</span>
           </div>
         </div>
 

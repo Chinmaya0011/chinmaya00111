@@ -65,12 +65,26 @@ export default function CommandPalette({ isOpen, onClose, onOpenResume }) {
       }
     },
     {
+      id: "freelance-services",
+      name: "Freelance Engineering & AppSec Services (/services)",
+      category: "Services",
+      icon: Briefcase,
+      run: () => {
+        window.location.href = "/services";
+        onClose();
+      }
+    },
+    {
       id: "services",
       name: "Services & Technical Consulting",
       category: "Services",
       icon: Briefcase,
       run: () => {
-        document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+        if (window.location.pathname === "/") {
+          document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.location.href = "/services";
+        }
         onClose();
       }
     },

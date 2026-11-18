@@ -12,11 +12,14 @@ import {
   ShieldCheck,
   Cpu,
   Sparkles,
-  MapPin,
-  CheckCircle2
+  Lock,
+  Code2,
+  Terminal,
+  Activity
 } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import dynamic from "next/dynamic";
+import { buttonMotionProps } from "@/lib/motion";
 
 const ResumeModal = dynamic(() => import("./ResumeModal"), { ssr: false });
 
@@ -24,7 +27,7 @@ export default function Hero() {
   const [resumeModalOpen, setResumeModalOpen] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
-  // Smooth 3D tilt tracking for the photo card
+  // Smooth 3D tilt tracking for the studio card
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -32,8 +35,8 @@ export default function Hero() {
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  const rotateX = useTransform(smoothY, [-0.5, 0.5], ["6deg", "-6deg"]);
-  const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-6deg", "6deg"]);
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], ["7deg", "-7deg"]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-7deg", "7deg"]);
 
   const handleMouseMove = (e) => {
     if (shouldReduceMotion) return;
@@ -55,7 +58,7 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.09,
+        staggerChildren: 0.08,
         delayChildren: 0.05
       }
     }
@@ -67,7 +70,7 @@ export default function Hero() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.55,
         ease: [0.16, 1, 0.3, 1]
       }
     }
@@ -77,10 +80,10 @@ export default function Hero() {
     <>
       <section className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-transparent">
 
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
 
-            {/* Left Column (7 cols): Clean, minimal typography */}
+            {/* Left Column (7 cols): Clean, expressive typography */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
@@ -89,38 +92,46 @@ export default function Hero() {
             >
               {/* Badge: Available worldwide with pulsing green beacon */}
               <motion.div variants={itemVariants} className="mb-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-[#E7E5E0] text-xs font-mono text-[#444444] shadow-xs">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#E7E5E0] text-xs font-mono text-[#444444] shadow-xs">
                   <span className="relative flex h-2 w-2" aria-hidden="true">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
-                  <span className="font-medium text-[#171717]">Available worldwide</span>
+                  <span className="font-semibold text-[#171717]">Available worldwide</span>
                   <span className="text-[#C8C6BE]">•</span>
-                  <span className="text-[#666666] hidden sm:inline">Bhubaneswar, IN</span>
+                  <span className="text-[#666666]">Bhubaneswar, IN</span>
                 </div>
               </motion.div>
 
-              {/* Name & Role */}
-              <motion.div variants={itemVariants} className="mb-4">
-                <span className="text-sm sm:text-base font-semibold text-[#171717] tracking-tight block">
-                  Chinmaya Kumar Mishra
+              {/* Name & Professional Identity Label */}
+              <motion.div variants={itemVariants} className="mb-3">
+                <span className="text-base sm:text-lg font-bold text-[#171717] tracking-tight block">
+                  {personalInfo.name}
                 </span>
-                <span className="font-mono text-xs sm:text-sm font-semibold text-[#3B5BFF] uppercase tracking-wider block mt-0.5">
-                  AI Application Security Engineer
-                </span>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="font-mono text-xs sm:text-sm font-semibold text-[#3B5BFF] uppercase tracking-wider">
+                    AI Application Security Engineer
+                  </span>
+                  <span className="text-[#D5D3CC]">•</span>
+                  <span className="font-mono text-xs sm:text-sm font-medium text-[#666666] uppercase tracking-wider">
+                    Full-Stack Developer
+                  </span>
+                </div>
               </motion.div>
 
-              {/* Headline with animated gradient underline on "secure" */}
+              {/* Headline with cobalt gradient typography */}
               <motion.h1
                 variants={itemVariants}
-                className="text-[2.75rem] sm:text-6xl lg:text-[4.25rem] font-extrabold text-[#171717] tracking-tight leading-[1.08] mb-5 font-sans"
+                className="text-[2.65rem] sm:text-6xl lg:text-[4.15rem] font-extrabold text-[#171717] tracking-tight leading-[1.08] mb-6 font-sans"
               >
-                I build{" "}
-                <span className="relative inline-block whitespace-nowrap">
-                  <span className="relative z-10 text-[#171717]">secure</span>
+                Building{" "}
+                <span className="relative inline-block">
+                  <span className="bg-gradient-to-r from-[#3B5BFF] via-[#2A4CE8] to-[#06B6D4] bg-clip-text text-transparent">
+                    Secure Digital
+                  </span>
                   <svg
                     aria-hidden="true"
-                    viewBox="0 0 220 18"
+                    viewBox="0 0 240 18"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className="absolute -bottom-1.5 left-0 w-full h-2.5 sm:h-3 overflow-visible pointer-events-none"
@@ -128,11 +139,12 @@ export default function Hero() {
                     <defs>
                       <linearGradient id="secureGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stopColor="#3B5BFF" />
-                        <stop offset="100%" stopColor="#60A5FA" />
+                        <stop offset="50%" stopColor="#06B6D4" />
+                        <stop offset="100%" stopColor="#8B5CF6" />
                       </linearGradient>
                     </defs>
                     <motion.path
-                      d="M 2 12 Q 110 3 218 10"
+                      d="M 2 12 Q 120 3 238 10"
                       stroke="url(#secureGradient)"
                       strokeWidth="5"
                       strokeLinecap="round"
@@ -142,91 +154,92 @@ export default function Hero() {
                         shouldReduceMotion
                           ? { duration: 0 }
                           : {
-                            pathLength: { delay: 0.55, duration: 0.75, ease: [0.16, 1, 0.3, 1] },
-                            opacity: { delay: 0.55, duration: 0.2 }
-                          }
+                              pathLength: { delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+                              opacity: { delay: 0.5, duration: 0.2 }
+                            }
                       }
                     />
                   </svg>
                 </span>{" "}
-                software.
+                Experiences.
               </motion.h1>
 
-              {/* One-line subtext (max 12 words) */}
+              {/* Short professional introduction */}
               <motion.p
                 variants={itemVariants}
-                className="text-[#666666] text-base sm:text-lg lg:text-xl font-normal leading-relaxed mb-8 max-w-lg font-sans"
+                className="text-[#666666] text-base sm:text-lg lg:text-xl font-normal leading-relaxed mb-8 max-w-xl font-sans"
               >
-                Full-stack engineer finding and fixing vulnerabilities with AI.
+                Full-stack engineer uniting application security auditing, AST-based vulnerability scanning, and AI-driven defense to build resilient, production-ready web software.
               </motion.p>
 
-              {/* 2 Buttons Only & 3 Small Icon Links */}
+              {/* CTAs & Social Links */}
               <motion.div
                 variants={itemVariants}
                 className="flex flex-wrap items-center gap-3 w-full sm:w-auto"
               >
-                {/* Primary Button: View Work */}
+                {/* View Projects CTA */}
                 <motion.a
                   href="#projects"
-                  whileHover={shouldReduceMotion ? {} : { y: -2, boxShadow: "0 10px 25px -4px rgba(59, 91, 255, 0.35)" }}
-                  whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#3B5BFF] text-white font-medium text-xs sm:text-sm tracking-wide transition-colors shadow-xs hover:bg-[#2F4EE6] focus:outline-none focus:ring-2 focus:ring-[#3B5BFF] focus:ring-offset-2"
+                  {...buttonMotionProps}
+                  className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#3B5BFF] text-white font-medium text-xs sm:text-sm tracking-wide transition-all shadow-xs hover:bg-[#2A4CE8] focus:outline-none focus:ring-2 focus:ring-[#3B5BFF] focus:ring-offset-2"
                 >
-                  <span>View Work</span>
+                  <span>View Projects</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </motion.a>
 
-                {/* Secondary Button: Resume */}
-                <motion.button
-                  onClick={() => setResumeModalOpen(true)}
-                  whileHover={shouldReduceMotion ? {} : { y: -2 }}
-                  whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
+                {/* Contact Me CTA */}
+                <motion.a
+                  href="#contact"
+                  {...buttonMotionProps}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white border border-[#E7E5E0] text-[#171717] font-medium text-xs sm:text-sm tracking-wide transition-all shadow-xs hover:bg-[#F7F6F2] hover:border-[#D5D3CC] focus:outline-none focus:ring-2 focus:ring-[#3B5BFF] focus:ring-offset-2"
                 >
-                  <FileDown className="w-4 h-4 text-[#3B5BFF]" />
+                  <Mail className="w-4 h-4 text-[#3B5BFF]" />
+                  <span>Get in Touch</span>
+                </motion.a>
+
+                {/* Resume Download CTA */}
+                <motion.button
+                  onClick={() => setResumeModalOpen(true)}
+                  {...buttonMotionProps}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white border border-[#E7E5E0] text-[#171717] font-medium text-xs sm:text-sm tracking-wide transition-all shadow-xs hover:bg-[#F7F6F2] hover:border-[#D5D3CC] focus:outline-none focus:ring-2 focus:ring-[#3B5BFF] focus:ring-offset-2"
+                >
+                  <FileDown className="w-4 h-4 text-[#666666]" />
                   <span>Resume</span>
                 </motion.button>
 
-                {/* 3 Small Icon Links */}
-                <div className="flex items-center gap-1.5 ml-0 sm:ml-3 pt-2 sm:pt-0">
-                  <a
+                {/* Verified Social Links */}
+                <div className="flex items-center gap-1.5 ml-0 sm:ml-2 pt-2 sm:pt-0">
+                  <motion.a
+                    {...buttonMotionProps}
                     href={personalInfo.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2.5 rounded-xl bg-white hover:bg-[#F3F2EE] border border-[#E7E5E0] text-[#666666] hover:text-[#171717] hover:border-[#D5D3CC] transition-colors shadow-xs focus:outline-none focus:ring-2 focus:ring-[#3B5BFF]"
+                    className="p-3 rounded-xl bg-white hover:bg-[#F3F2EE] border border-[#E7E5E0] text-[#666666] hover:text-[#171717] hover:border-[#D5D3CC] transition-colors shadow-xs focus:outline-none focus:ring-2 focus:ring-[#3B5BFF]"
                     aria-label="GitHub Profile"
                     title="GitHub: chinmaya0011"
                   >
                     <Github className="w-4 h-4" />
-                  </a>
+                  </motion.a>
 
-                  <a
+                  <motion.a
+                    {...buttonMotionProps}
                     href={personalInfo.links.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2.5 rounded-xl bg-white hover:bg-[#F3F2EE] border border-[#E7E5E0] text-[#666666] hover:text-[#3B5BFF] hover:border-[#3B5BFF]/30 transition-colors shadow-xs focus:outline-none focus:ring-2 focus:ring-[#3B5BFF]"
+                    className="p-3 rounded-xl bg-white hover:bg-[#F3F2EE] border border-[#E7E5E0] text-[#666666] hover:text-[#3B5BFF] hover:border-[#3B5BFF]/30 transition-colors shadow-xs focus:outline-none focus:ring-2 focus:ring-[#3B5BFF]"
                     aria-label="LinkedIn Profile"
                     title="LinkedIn: chinmaya00111"
                   >
                     <Linkedin className="w-4 h-4" />
-                  </a>
-
-                  <a
-                    href={personalInfo.links.email}
-                    className="p-2.5 rounded-xl bg-white hover:bg-[#F3F2EE] border border-[#E7E5E0] text-[#666666] hover:text-[#171717] hover:border-[#D5D3CC] transition-colors shadow-xs focus:outline-none focus:ring-2 focus:ring-[#3B5BFF]"
-                    aria-label="Send direct email"
-                    title={personalInfo.email}
-                  >
-                    <Mail className="w-4 h-4" />
-                  </a>
+                  </motion.a>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* Right Column (5 cols): Studio Card + 3 floating stat chips */}
+            {/* Right Column (5 cols): Interactive 3D Perspective Card + Floating Stat Badges */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
               <div
-                className="relative w-full max-w-[340px] sm:max-w-[370px]"
+                className="relative w-full max-w-[340px] sm:max-w-[380px]"
                 style={{ perspective: 1000 }}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
@@ -239,56 +252,57 @@ export default function Hero() {
                     shouldReduceMotion
                       ? {}
                       : {
-                        y: { duration: 6, ease: "easeInOut", repeat: Infinity }
-                      }
+                          y: { duration: 6, ease: "easeInOut", repeat: Infinity }
+                        }
                   }
                   className="relative will-change-transform"
                 >
                   {/* Outer Bezel Card */}
-                  <div className="relative aspect-[4/5] w-full rounded-[30px] p-2.5 sm:p-3 bg-white/90 backdrop-blur-md border border-[#E7E5E0] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.09)] transition-all">
+                  <div className="relative aspect-[4/5] w-full rounded-[32px] p-3 bg-white/95 backdrop-blur-md border border-[#E7E5E0] shadow-[0_20px_50px_-12px_rgba(0,0,0,0.08)] transition-all">
 
                     {/* Inner Photo Container */}
-                    <div className="relative w-full h-full rounded-[22px] overflow-hidden bg-gradient-to-b from-[#EDEDF2] to-[#DFDFE6]">
+                    <div className="relative w-full h-full rounded-[24px] overflow-hidden bg-gradient-to-b from-[#EDEDF2] to-[#DFDFE6]">
                       <Image
                         src="/chinmaya.png"
                         alt="Chinmaya Kumar Mishra — AI Application Security Engineer"
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 370px"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
                         priority
                         className="object-cover object-top filter contrast-[1.03] saturate-[1.02]"
                       />
 
                       {/* Subtle Vignette at Base of Portrait */}
-                      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none" />
+                      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/50 via-black/15 to-transparent pointer-events-none" />
 
                       {/* Studio Bottom Identifier Bar */}
-                      <div className="absolute bottom-3 inset-x-3 p-2.5 rounded-xl bg-white/90 backdrop-blur-md border border-white/40 shadow-sm flex items-center justify-between pointer-events-none">
+                      <div className="absolute bottom-3 inset-x-3 p-2.5 rounded-xl bg-white/90 backdrop-blur-md border border-white/50 shadow-xs flex items-center justify-between pointer-events-none">
                         <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                           <span className="text-[11px] font-mono font-bold text-[#171717] tracking-tight">
                             Chinmaya K. Mishra
                           </span>
                         </div>
-                        <span className="text-[10px] font-mono font-medium text-[#3B5BFF]">
-                          AppSec · AI
+                        <span className="text-[10px] font-mono font-semibold text-[#3B5BFF] flex items-center gap-1">
+                          <ShieldCheck className="w-3 h-3" />
+                          <span>AppSec · AI</span>
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Floating Stat Chip 1: 2+ yrs experience (Top-Right) */}
+                  {/* Floating Stat Badge 1: 2+ yrs experience (Top-Right) */}
                   <motion.div
                     animate={shouldReduceMotion ? {} : { y: [-4, 4, -4] }}
                     transition={
                       shouldReduceMotion
                         ? {}
                         : {
-                          duration: 3.6,
-                          ease: "easeInOut",
-                          repeat: Infinity
-                        }
+                            duration: 3.8,
+                            ease: "easeInOut",
+                            repeat: Infinity
+                          }
                     }
-                    className="absolute -top-3.5 -right-3 sm:-right-5 z-20"
+                    className="absolute -top-3 -right-3 sm:-right-5 z-20"
                   >
                     <div className="px-3.5 py-2 rounded-xl bg-white/95 backdrop-blur-md border border-[#E7E5E0] shadow-md flex items-center gap-2.5 hover:border-[#3B5BFF]/40 transition-colors">
                       <div className="w-6 h-6 rounded-lg bg-[#3B5BFF]/10 text-[#3B5BFF] flex items-center justify-center shrink-0">
@@ -299,26 +313,26 @@ export default function Hero() {
                           2+ yrs experience
                         </span>
                         <span className="text-[9px] font-mono text-[#888888] uppercase tracking-wider">
-                          Full-Stack Dev
+                          Full-Stack &amp; AppSec
                         </span>
                       </div>
                     </div>
                   </motion.div>
 
-                  {/* Floating Stat Chip 2: MERN + AppSec (Bottom-Left) */}
+                  {/* Floating Stat Badge 2: MERN + AppSec (Bottom-Left) */}
                   <motion.div
                     animate={shouldReduceMotion ? {} : { y: [4, -4, 4] }}
                     transition={
                       shouldReduceMotion
                         ? {}
                         : {
-                          duration: 4.4,
-                          ease: "easeInOut",
-                          repeat: Infinity,
-                          delay: 0.3
-                        }
+                            duration: 4.6,
+                            ease: "easeInOut",
+                            repeat: Infinity,
+                            delay: 0.4
+                          }
                     }
-                    className="absolute -bottom-3.5 -left-3 sm:-left-5 z-20"
+                    className="absolute -bottom-3 -left-3 sm:-left-5 z-20"
                   >
                     <div className="px-3.5 py-2 rounded-xl bg-white/95 backdrop-blur-md border border-[#E7E5E0] shadow-md flex items-center gap-2.5 hover:border-emerald-500/40 transition-colors">
                       <div className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
@@ -326,27 +340,27 @@ export default function Hero() {
                       </div>
                       <div className="flex flex-col">
                         <span className="font-mono text-xs font-bold text-[#171717] whitespace-nowrap leading-tight">
-                          MERN + AppSec
+                          AST &amp; Vulnerability
                         </span>
                         <span className="text-[9px] font-mono text-[#888888] uppercase tracking-wider">
-                          Vulnerability Triage
+                          Triage &amp; Remediation
                         </span>
                       </div>
                     </div>
                   </motion.div>
 
-                  {/* Floating Stat Chip 3: AI Security (Center-Right) */}
+                  {/* Floating Stat Badge 3: AI Security (Center-Right) */}
                   <motion.div
                     animate={shouldReduceMotion ? {} : { y: [-3, 3, -3] }}
                     transition={
                       shouldReduceMotion
                         ? {}
                         : {
-                          duration: 5.1,
-                          ease: "easeInOut",
-                          repeat: Infinity,
-                          delay: 0.7
-                        }
+                            duration: 5.2,
+                            ease: "easeInOut",
+                            repeat: Infinity,
+                            delay: 0.8
+                          }
                     }
                     className="absolute top-1/2 -translate-y-1/2 -right-4 sm:-right-8 z-20"
                   >

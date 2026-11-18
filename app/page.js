@@ -2,16 +2,18 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
-import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
+import Services from "@/components/Services";
+import InteractiveTerminal from "@/components/InteractiveTerminal";
+import BlogSection from "@/components/BlogSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export const metadata = {
-  title: "Chinmaya Kumar Mishra | Full Stack Developer & Application Security in Odisha, India",
+  title: "Chinmaya Kumar Mishra | AI Application Security Engineer & Full-Stack Developer",
   description:
-    "Chinmaya Kumar Mishra is a Full Stack Developer based in Ganjam, Odisha, India, specializing in React, Next.js, Node.js, MERN Stack development, REST APIs, and Application Security. Explore modern web development projects and secure application engineering.",
+    "Chinmaya Kumar Mishra is an AI Application Security Engineer & Full-Stack Developer specializing in AST/SAST scanning, API security (OWASP Top 10, BOLA/IDOR), React 19, Next.js 15, and secure web architectures.",
   alternates: {
     canonical: "https://www.chinmayakumarmishra.sbs/",
   },
@@ -25,9 +27,11 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
-        <Services />
         <Projects />
         <Experience />
+        <Services />
+        <InteractiveTerminal />
+        <BlogSection />
         <Contact />
       </main>
       <Footer />
